@@ -1,5 +1,6 @@
 import Counter from "./components/Counter";
 import logo from "./assets/logo.svg";
+import Test from "./components/Test";
 
 import "./App.css";
 
@@ -35,6 +36,7 @@ function App() {
           </a>
         </p>
       </header>
+      <Test />
     </div>
   );
 }
