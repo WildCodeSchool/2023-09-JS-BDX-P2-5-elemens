@@ -8,8 +8,14 @@
   text-decoration: none;
 }
 
+// variables
+$black-color: #202124;
+$blue-color: #1a8dfd;
+$white-color: #e8eaed;
+
+//general
 body {
-  background-color: #202124;
+  background-color: $black-color;
   color: white;
   overflow-x: hidden;
 }
@@ -41,10 +47,11 @@ h2 {
   padding: 0 12px;
 }
 
+// aligns
+
 .dflex {
   display: flex;
 }
-
 .dflex-center {
   display: flex;
   align-items: center;
@@ -55,22 +62,23 @@ h2 {
   text-align: center;
 }
 
+// margins
+
 .mb-10 {
   margin-bottom: 10px;
 }
-
 .mb-20 {
   margin-bottom: 20px;
 }
-
 .mb-30 {
   margin-bottom: 30px;
 }
-
 .mb-40 {
   margin-bottom: 40px;
 }
 
+// Pages
+// Movie Details
 .backdrop {
   height: 40vh;
   background-size: cover;
@@ -86,60 +94,67 @@ iframe {
 .infos-list {
   position: relative;
   padding-right: 100px;
-}
-.infos-list li {
-  margin-bottom: 3px;
-}
-.infos-list li.note {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  border: 3px solid #1a8dfd;
-  border-radius: 50%;
-  width: 58px;
-  height: 58px;
-  line-height: 51px;
-  text-align: center;
-}
-.infos-list li.note:after {
-  content: "  /10";
-  font-size: 10px;
+
+  li {
+    margin-bottom: 3px;
+
+    &.note {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      border: 3px solid #1a8dfd;
+      border-radius: 50%;
+      width: 58px;
+      height: 58px;
+      line-height: 51px;
+      text-align: center;
+
+      &:after {
+        content: "  /10";
+        font-size: 10px;
+      }
+    }
+  }
 }
 
 .platform-list {
   gap: 10px;
+
+  img {
+    border-radius: 15px;
+    max-width: 80px;
+  }
 }
-.platform-list img {
-  border-radius: 15px;
-  max-width: 80px;
-}
+
+// Custom List/Navbar
 
 .horizontal-list {
   width: 100%;
   overflow-x: auto;
   gap: 10px;
-}
-.horizontal-list img {
-  width: 150px;
-  border-radius: 8px;
+
+  img {
+    width: 150px;
+    border-radius: 8px;
+  }
 }
 
-.horizontal-list::-webkit-scrollbar,
-.custom-scrollbar-container::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.horizontal-list,
+.custom-scrollbar-container {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #2021247f;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $white-color;
+    border-radius: 6px;
+  }
+
+  li {
+    display: inline-block;
+  }
 }
-.horizontal-list::-webkit-scrollbar-thumb,
-.custom-scrollbar-container::-webkit-scrollbar-thumb {
-  background-color: rgba(32, 33, 36, 0.4980392157);
-  border-radius: 6px;
-}
-.horizontal-list::-webkit-scrollbar-track,
-.custom-scrollbar-container::-webkit-scrollbar-track {
-  background-color: #e8eaed;
-  border-radius: 6px;
-}
-.horizontal-list li,
-.custom-scrollbar-container li {
-  display: inline-block;
-} /*# sourceMappingURL=App.css.map */
