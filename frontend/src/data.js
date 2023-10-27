@@ -15,7 +15,7 @@ const countryData = [
     rank: 3,
   },
   {
-    iso: "AL",
+    iso: "DE",
     name: "Allemagne",
     rank: 4,
   },
