@@ -18,7 +18,7 @@ function Popularseries() {
     axios
       .request(options)
       .then((response) => {
-        setseriesArray(response.data.results.slice(0, 8));
+        setseriesArray(response.data.results.slice(0, 10));
       })
       .catch((error) => {
         console.error(error);
@@ -31,8 +31,8 @@ function Popularseries() {
 
   return (
     <div className="container">
+      <h1>Séries de la semaine</h1>
       <div className="Popularcontent">
-        <h1>Séries de la semaine</h1>
         {seriesArray.map((serie) => (
           <div className="Displaycontent">
             <img

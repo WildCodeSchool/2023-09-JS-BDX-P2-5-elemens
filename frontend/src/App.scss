@@ -21,14 +21,15 @@ body {
 .Popularcontent {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   text-align: center;
   gap: 20px;
 }
 
-// h1 {
-//   font-size: 17px;
-//   margin: 20px 0 20px 20px;
-// }
+h1 {
+  font-size: 17px;
+  margin: 20px 0 20px 20px;
+}
 
 .Displaycontent {
   width: 50%;
