@@ -51,12 +51,14 @@ function App() {
               width: "220px",
             }}
           >
-            <img
-              id={movie.id}
-              style={{ width: "200px", margin: "10px 10px 0 10px" }}
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt="movie-poster"
-            />
+            {movie.poster_path && (
+              <img
+                id={movie.id}
+                style={{ width: "200px", margin: "10px 10px 0 10px" }}
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt="movie-poster"
+              />
+            )}
             <div>
               <p id={movie.id} style={{ textAlign: "center", marginTop: "0" }}>
                 {movie.title}
