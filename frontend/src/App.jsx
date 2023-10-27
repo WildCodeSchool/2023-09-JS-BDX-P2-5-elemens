@@ -44,6 +44,7 @@ function getProviderCountries(details, providerId) {
 
 function App() {
   const [movieDetails, setMovieDetails] = useState(null);
+  const [vpn, setVpn] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,59 +104,83 @@ function App() {
             <h2 className="mb-20">Synopsis</h2>
             <p className="mb-30">{movieDetails.overview}</p>
             <h2 className="mb-20">Plateformes de streaming</h2>
-            <ul className="platform-list dflex mb-40">
-              {movieDetails["watch/providers"].results.FR &&
-                movieDetails["watch/providers"].results.FR.flatrate.map(
-                  (platform) => (
-                    <li key={platform.provider_id}>
-                      <img
-                        className="mb-10"
-                        src={`https://image.tmdb.org/t/p/w300/${platform.logo_path}`}
-                        alt={platform.provider_name}
-                      />
-                    </li>
-                  )
-                )}
-            </ul>
-            <h3 className="mb-10">Netflix</h3>
-            <ul className="vpn-list netflix-list mb-20 t-nowrap">
-              {getProviderCountries(movieDetails, 8)
-                .slice(0, 8)
-                .map((country) => {
-                  return (
-                    <li key={country.iso}>
-                      {getFlagEmoji(country.iso)}
-                      <span>{country.name}</span>
-                    </li>
-                  );
-                })}
-            </ul>
-            <h3 className="mb-10">Amizon Prime Video</h3>
-            <ul className="vpn-list amazon-list mb-20 t-nowrap">
-              {getProviderCountries(movieDetails, 119)
-                .slice(0, 8)
-                .map((country) => {
-                  return (
-                    <li key={country.iso}>
-                      {getFlagEmoji(country.iso)}
-                      <span>{country.name}</span>
-                    </li>
-                  );
-                })}
-            </ul>
-            <h3 className="mb-10">Disney+</h3>
-            <ul className="vpn-list disney-list mb-20 t-nowrap">
-              {getProviderCountries(movieDetails, 337)
-                .slice(0, 8)
-                .map((country) => {
-                  return (
-                    <li key={country.iso}>
-                      {getFlagEmoji(country.iso)}
-                      <span>{country.name}</span>
-                    </li>
-                  );
-                })}
-            </ul>
+            <div className="switch-button">
+              <button
+                type="button"
+                onClick={() => setVpn(false)}
+                className={!vpn ? "active" : ""}
+              >
+                France
+              </button>
+              <button
+                type="button"
+                onClick={() => setVpn(true)}
+                className={vpn ? "active" : ""}
+              >
+                VPN
+              </button>
+            </div>
+            {!vpn && (
+              <div>
+                <ul className="platform-list dflex mb-40">
+                  {movieDetails["watch/providers"].results.FR &&
+                    movieDetails["watch/providers"].results.FR.flatrate.map(
+                      (platform) => (
+                        <li key={platform.provider_id}>
+                          <img
+                            className="mb-10"
+                            src={`https://image.tmdb.org/t/p/w300/${platform.logo_path}`}
+                            alt={platform.provider_name}
+                          />
+                        </li>
+                      )
+                    )}
+                </ul>
+              </div>
+            )}
+            {vpn && (
+              <div>
+                <h3 className="mb-10">Netflix</h3>
+                <ul className="vpn-list netflix-list mb-30">
+                  {getProviderCountries(movieDetails, 8)
+                    .slice(0, 5)
+                    .map((country) => {
+                      return (
+                        <li key={country.iso}>
+                          {getFlagEmoji(country.iso)}
+                          <span>{country.name}</span>
+                        </li>
+                      );
+                    })}
+                </ul>
+                <h3 className="mb-10">Amazon Prime Video</h3>
+                <ul className="vpn-list amazon-list mb-30">
+                  {getProviderCountries(movieDetails, 119)
+                    .slice(0, 5)
+                    .map((country) => {
+                      return (
+                        <li key={country.iso}>
+                          {getFlagEmoji(country.iso)}
+                          <span>{country.name}</span>
+                        </li>
+                      );
+                    })}
+                </ul>
+                <h3 className="mb-10">Disney+</h3>
+                <ul className="vpn-list disney-list mb-30">
+                  {getProviderCountries(movieDetails, 337)
+                    .slice(0, 5)
+                    .map((country) => {
+                      return (
+                        <li key={country.iso}>
+                          {getFlagEmoji(country.iso)}
+                          <span>{country.name}</span>
+                        </li>
+                      );
+                    })}
+                </ul>
+              </div>
+            )}
             <h2 className="mb-20">Bande-annonce</h2>
           </div>
           <div className="container-max mb-40">

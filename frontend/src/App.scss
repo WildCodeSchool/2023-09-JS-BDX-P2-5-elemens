@@ -12,6 +12,10 @@
   text-decoration: none;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 // variables
 $black-color: #202124;
 $blue-color: #1a8dfd;
@@ -22,7 +26,7 @@ body {
   background-color: $black-color;
   color: white;
   overflow-x: hidden;
-  min-width: 400px;
+  min-width: 380px;
 }
 
 img {
@@ -88,6 +92,39 @@ h3 {
   margin-bottom: 40px;
 }
 
+// switch button
+.switch-button {
+  text-align: center;
+  margin-bottom: 25px;
+
+  button {
+    border: 3px solid $blue-color;
+    background-color: transparent;
+    width: 90px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+
+    &:first-child {
+      border-right: 0;
+      border-radius: 20px 0 0 20px;
+    }
+    &:last-child {
+      border-left: 0;
+      border-radius: 0 20px 20px 0;
+      margin-left: -2px;
+    }
+    &.active {
+      background-color: $blue-color;
+    }
+    &,
+    &.active {
+      transition: all 0.3s;
+    }
+  }
+}
+
 // Pages
 // Movie Details
 .backdrop {
@@ -129,6 +166,7 @@ iframe {
 }
 
 .platform-list {
+  flex-wrap: wrap;
   gap: 10px;
 
   img {
@@ -176,10 +214,13 @@ iframe {
 
 .vpn-list {
   display: flex;
-  height: 48px;
+  width: 90%;
+  margin: 0 auto;
+  height: 60px;
+  justify-content: space-between;
 
   li {
-    margin-right: 8px;
+    margin: 0 8px;
     font-size: 36px;
     line-height: 36px;
     position: relative;
@@ -187,11 +228,12 @@ iframe {
 
     span {
       position: absolute;
-      bottom: -11px;
-      left: 0;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
-      width: 100%;
       opacity: 0;
+      text-wrap: nowrap;
     }
     &:hover span {
       opacity: 1;

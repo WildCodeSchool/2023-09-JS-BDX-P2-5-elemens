@@ -30,11 +30,6 @@ const countryData = [
     rank: 6,
   },
   {
-    iso: "FR",
-    name: "France",
-    rank: 7,
-  },
-  {
     iso: "RU",
     name: "Russie",
     rank: 8,
