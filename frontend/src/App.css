@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 * {
-  font-family: sans-serif;
+  font-family: "Twemoji Country Flags", "Poppins", sans-serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -24,6 +25,10 @@ h1 {
 
 h2 {
   font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
 }
 
 .container-max,
@@ -53,6 +58,13 @@ h2 {
 
 .t-center {
   text-align: center;
+}
+
+.t-nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 16px;
 }
 
 .mb-10 {
@@ -118,6 +130,7 @@ iframe {
   width: 100%;
   overflow-x: auto;
   gap: 10px;
+  display: flex;
 }
 .horizontal-list img {
   width: 150px;
@@ -139,7 +152,31 @@ iframe {
   background-color: #e8eaed;
   border-radius: 6px;
 }
-.horizontal-list li,
-.custom-scrollbar-container li {
+.horizontal-list > li,
+.custom-scrollbar-container > li {
   display: inline-block;
+}
+
+.vpn-list {
+  display: flex;
+  height: 48px;
+}
+.vpn-list li {
+  margin-right: 8px;
+  font-size: 36px;
+  line-height: 36px;
+  position: relative;
+  cursor: pointer;
+}
+.vpn-list li span {
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+}
+.vpn-list li:hover span {
+  opacity: 1;
+  transition: all 0.3s;
 } /*# sourceMappingURL=App.css.map */

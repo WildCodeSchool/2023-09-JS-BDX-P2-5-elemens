@@ -5,6 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <script type="module" defer>
+      import { polyfillCountryFlagEmojis } from "https://cdn.skypack.dev/country-flag-emoji-polyfill";
+      polyfillCountryFlagEmojis();
+    </script>
   </head>
   <body class="custom-scrollbar-container">
     <div id="root"></div>

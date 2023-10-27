@@ -13,7 +13,6 @@ const options = {
 function toHoursAndMinutes(totalMinutes) {
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
-
   return `${hours}h${minutes > 0 ? `${minutes}` : ""}`;
 }
 
@@ -33,7 +32,7 @@ function getProviderCountries(details, providerId) {
       providers[country].flatrate &&
       providers[country].flatrate.find((p) => p.provider_id === providerId)
     ) {
-      result.push(getFlagEmoji(country));
+      result.push(country);
     }
   }
   return result;
@@ -46,7 +45,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/movie/238?language=fr-FR&append_to_response=videos,credits,watch/providers",
+          "https://api.themoviedb.org/3/movie/550?language=fr-FR&append_to_response=videos,credits,watch/providers",
           options
         );
         if (response.ok) {
@@ -115,22 +114,37 @@ function App() {
                 )}
             </ul>
             {console.info(getProviderCountries(movieDetails, 8))}
-            <h3>Netflix</h3>
-            <ul className="horizontal-list">
+            <h3 className="mb-10">Netflix</h3>
+            <ul className="vpn-list netflix-list mb-20 t-nowrap">
               {getProviderCountries(movieDetails, 8).map((country) => {
-                return <li>{country}</li>;
+                return (
+                  <li>
+                    {getFlagEmoji(country)}
+                    <span>{country}</span>
+                  </li>
+                );
               })}
             </ul>
-            <h3>Amazon Prime Video</h3>
-            <ul className="horizontal-list">
+            <h3 className="mb-10">Amazon Prime Video</h3>
+            <ul className="vpn-list amazon-list mb-20 t-nowrap">
               {getProviderCountries(movieDetails, 119).map((country) => {
-                return <li>{country}</li>;
+                return (
+                  <li>
+                    {getFlagEmoji(country)}
+                    <span>{country}</span>
+                  </li>
+                );
               })}
             </ul>
-            <h3>Disney Plus</h3>
-            <ul className="horizontal-list">
+            <h3 className="mb-10">Disney Plus</h3>
+            <ul className="vpn-list disney-list mb-20 t-nowrap">
               {getProviderCountries(movieDetails, 337).map((country) => {
-                return <li>{country}</li>;
+                return (
+                  <li>
+                    {getFlagEmoji(country)}
+                    <span>{country}</span>
+                  </li>
+                );
               })}
             </ul>
             <h2 className="mb-20">Bande-annonce</h2>
@@ -150,12 +164,11 @@ function App() {
           </div>
           <div className="container">
             <h2 className="mb-20">Casting</h2>
-            <ul className="horizontal-list dflex mb-40">
+            <ul className="horizontal-list mb-40">
               {movieDetails.credits.cast.slice(0, 10).map((person) => (
                 <li className="t-center" key={person.id}>
                   <figure className="mb-20">
                     <img
-                      className="mb-10"
                       x
                       src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
                       alt={person.name}
