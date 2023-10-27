@@ -125,7 +125,7 @@ function App() {
                 );
               })}
             </ul>
-            <h3 className="mb-10">Amazon Prime Video</h3>
+            <h3 className="mb-10">Amizon Prime Video</h3>
             <ul className="vpn-list amazon-list mb-20 t-nowrap">
               {getProviderCountries(movieDetails, 119).map((country) => {
                 return (
@@ -136,7 +136,7 @@ function App() {
                 );
               })}
             </ul>
-            <h3 className="mb-10">Disney Plus</h3>
+            <h3 className="mb-10">Disney+</h3>
             <ul className="vpn-list disney-list mb-20 t-nowrap">
               {getProviderCountries(movieDetails, 337).map((country) => {
                 return (

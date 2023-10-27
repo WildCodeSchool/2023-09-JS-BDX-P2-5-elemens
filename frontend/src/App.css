@@ -13,6 +13,7 @@ body {
   background-color: #202124;
   color: white;
   overflow-x: hidden;
+  min-width: 400px;
 }
 
 img {
@@ -124,6 +125,7 @@ iframe {
 .platform-list img {
   border-radius: 15px;
   max-width: 80px;
+  min-width: 44px;
 }
 
 .horizontal-list {
