@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Headroom from "react-headroom";
+import FilterBar from "./components/FilterBar";
+import FilterBadge from "./components/FilterBadge";
+import "./components/filters.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MainResearch from "./components/MainResearch";
@@ -37,6 +40,28 @@ function App() {
         console.error(error);
       });
   };
+  // Créer des États pour chacune des actions.
+  const [movies, setMovies] = useState(false);
+  const [series, setSeries] = useState(false);
+  const [filters, setFilters] = useState(false);
+
+  // Handle click qui passe d'un État false à true ou inversement.
+  const handleClickMovies = () => {
+    setMovies(!movies);
+    setSeries(false);
+    // console.log(movies);
+  };
+
+  const handleClickSeries = () => {
+    setSeries(!series);
+    setMovies(false);
+    // console.log(series);
+  };
+
+  const handleClickFilters = () => {
+    setFilters(!filters);
+    // console.log(filters);
+  };
 
   useEffect(() => {
     getMovie();
@@ -47,6 +72,15 @@ function App() {
       <Headroom>
         <Navbar setTextFound={setTextFound} setPageNumber={setPageNumber} />
       </Headroom>
+
+      <div className="App">
+        <FilterBar
+          handleClickMovies={handleClickMovies}
+          handleClickSeries={handleClickSeries}
+          handleClickFilters={handleClickFilters}
+        />
+        {filters && <FilterBadge handleClickFilters={handleClickFilters} />}
+      </div>
 
       <div className="main-area">
         <MainResearch movieList={movieList} />
