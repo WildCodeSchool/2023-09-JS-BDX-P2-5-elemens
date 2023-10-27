@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-color: var(--Raisin-black);
+}
+
+/* FILTER BAR */
+.filter-bar {
+  color: var(--Anti-flash-white);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-inline: 20px;
+}
+
+.filter-bar > div > .categorie-seleted {
+  text-decoration: underline;
+}
+
+.filter-bar > div > button > img {
+  height: 30px;
+  width: 30px;
+}
+
+.arrow {
+  height: 100px;
+  width: 100px;
+}
+
+/* FENETRE DE FILTRES */
+.filters-window {
+  flex-direction: row;
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 3px solid var(--Anti-flash-white);
+  border-radius: 30px;
+}
+
+.filters-window > .close-btn {
+  height: 5px;
+  width: 100px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.filters-window > .genres {
+  margin-top: 30px;
+}
+
+.filters-window > .genres,
+.year {
+  margin-bottom: 30px;
+  background-color: var(--Raisin-black);
+  border-radius: 10px;
+  border: 1px solid var(--Anti-flash-white);
+}
+
+.bloc-filter > img {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.bloc-filter {
+  color: var(--Anti-flash-white);
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 20px;
+  transition: all ease 1s;
+}
+
+/* Bouttons */
+.filters-window > .genres > .boutons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin: 10px;
+  margin-bottom: 30px;
+  justify-content: space-around;
+  transition: all ease 1s;
+}
+
+.filters-window > .genres > .boutons > p {
+  color: var(--Anti-flash-white);
+  padding: 5px;
+  padding-inline: 20px;
+  background-color: var(--Raisin-black);
+  border: 1px solid var(--Anti-flash-white);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters-window > .genres > .boutons > .selected {
+  border: 1px solid var(--Dodger-blue);
+}
+
+/* Years */
+.filters-window > .year > .slider {
+  margin-bottom: 20px;
+  transition: all ease 1s;
+}
+
+.filters-window > .year > .slider > label {
+  color: var(--Anti-flash-white);
+}
