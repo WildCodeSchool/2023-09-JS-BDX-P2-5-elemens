@@ -12,15 +12,17 @@ function FilterBar({
         <button onClick={(event) => handleClickMovies(event)} type="submit">
           <p className="categorie-selected">Films</p>
         </button>
-      </div>
-      <div>
         <button onClick={(event) => handleClickSeries(event)} type="submit">
           <p>Séries</p>
         </button>
       </div>
       <div>
         <button onClick={(event) => handleClickFilters(event)} type="submit">
-          <img src="./src/assets/img/filter.png" alt="Bouton de Filtres." />
+          <img
+            src="./src/assets/img/filter.png"
+            alt="Bouton de Filtres."
+            className="arrow"
+          />
         </button>
       </div>
     </div>

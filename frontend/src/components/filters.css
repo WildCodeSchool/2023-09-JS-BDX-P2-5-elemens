@@ -4,16 +4,26 @@
   background-color: var(--Raisin-black);
 }
 
+button {
+  border: none;
+}
+
 /* FILTER BAR */
 .filter-bar {
-  color: var(--Anti-flash-white);
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
   margin-inline: 20px;
 }
 
-.filter-bar > div > .categorie-seleted {
+.filter-bar > div > button {
+  font-size: 18px;
+  color: var(--Anti-flash-white);
+  margin-right: 30px;
+}
+
+.filter-bar > div > button > .categorie-selected {
+  font-weight: bold;
   text-decoration: underline;
 }
 
@@ -34,9 +44,11 @@
   padding: 20px;
   border-top: 3px solid var(--Anti-flash-white);
   border-radius: 30px;
+  transition: all ease 1s;
 }
 
-.filters-window > .close-btn {
+.filters-window > button > .close-btn {
+  font-size: 1px;
   height: 5px;
   width: 100px;
   margin: 0 auto;
@@ -46,7 +58,7 @@
 }
 
 .filters-window > .genres {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .filters-window > .genres,
@@ -55,15 +67,18 @@
   background-color: var(--Raisin-black);
   border-radius: 10px;
   border: 1px solid var(--Anti-flash-white);
+  transition: all ease 1s;
 }
 
-.bloc-filter > img {
+.bloc-filter > button > img {
   height: 50px;
   width: 50px;
   cursor: pointer;
 }
 
 .bloc-filter {
+  font-size: 18px;
+  font-weight: bold;
   color: var(--Anti-flash-white);
   display: flex;
   text-align: center;
@@ -81,11 +96,12 @@
   margin: 10px;
   margin-bottom: 30px;
   justify-content: space-around;
-  transition: all ease 1s;
 }
 
 .filters-window > .genres > .boutons > p {
   color: var(--Anti-flash-white);
+  width: 70%;
+  margin: auto;
   padding: 5px;
   padding-inline: 20px;
   background-color: var(--Raisin-black);
@@ -100,10 +116,14 @@
 
 /* Years */
 .filters-window > .year > .slider {
-  margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 30px;
+  padding-inline: 30px;
+  flex-direction: column-reverse;
   transition: all ease 1s;
 }
 
 .filters-window > .year > .slider > label {
   color: var(--Anti-flash-white);
+  margin-bottom: 10px;
 }
