@@ -210,6 +210,43 @@ iframe {
   }
 }
 
+// Slider (plateformes/VPN)
+
+.slider-container {
+  overflow-x: hidden;
+  display: flex;
+  width: 200vw;
+
+  .slider-item {
+    width: 50%;
+    opacity: 0;
+    transform: translateX(-100%);
+
+    &:first-child {
+      ul {
+        padding-top: 10px;
+      }
+    }
+    &:last-child {
+      transform: translateX(100%);
+    }
+    &.active-slide {
+      opacity: 1;
+
+      &:first-child {
+        transform: translateX(0);
+      }
+      &:last-child {
+        transform: translateX(-100%);
+      }
+    }
+  }
+  .slider-item,
+  .slider-item.active {
+    transition: all 0.3s;
+  }
+}
+
 // VPN lists
 
 .vpn-list {

@@ -194,6 +194,36 @@ iframe {
   display: inline-block;
 }
 
+.slider-container {
+  overflow-x: hidden;
+  display: flex;
+  width: 200vw;
+}
+.slider-container .slider-item {
+  width: 50%;
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.slider-container .slider-item:first-child ul {
+  padding-top: 10px;
+}
+.slider-container .slider-item:last-child {
+  transform: translateX(100%);
+}
+.slider-container .slider-item.active-slide {
+  opacity: 1;
+}
+.slider-container .slider-item.active-slide:first-child {
+  transform: translateX(0);
+}
+.slider-container .slider-item.active-slide:last-child {
+  transform: translateX(-100%);
+}
+.slider-container .slider-item,
+.slider-container .slider-item.active {
+  transition: all 0.3s;
+}
+
 .vpn-list {
   display: flex;
   width: 90%;

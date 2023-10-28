@@ -84,7 +84,7 @@ function App() {
             src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
             alt={movieDetails.title}
           /> */}
-            <h1 className="mb-20">{movieDetails.title}</h1>
+            <h1 className="mb-20 t-center">{movieDetails.title}</h1>
             <ul className="infos-list mb-30">
               <li>{movieDetails.release_date.slice(0, 4)}</li>
               <li>{toHoursAndMinutes(movieDetails.runtime)}</li>
@@ -120,9 +120,11 @@ function App() {
                 VPN
               </button>
             </div>
-            {!vpn && (
-              <div>
-                <ul className="platform-list dflex mb-40">
+          </div>
+          <div className="container-max">
+            <div className="slider-container">
+              <div className={`slider-item${!vpn ? " active-slide" : ""}`}>
+                <ul className="container platform-list dflex mb-40">
                   {movieDetails["watch/providers"].results.FR &&
                     movieDetails["watch/providers"].results.FR.flatrate.map(
                       (platform) => (
@@ -137,50 +139,52 @@ function App() {
                     )}
                 </ul>
               </div>
-            )}
-            {vpn && (
-              <div>
-                <h3 className="mb-10">Netflix</h3>
-                <ul className="vpn-list netflix-list mb-30">
-                  {getProviderCountries(movieDetails, 8)
-                    .slice(0, 5)
-                    .map((country) => {
-                      return (
-                        <li key={country.iso}>
-                          {getFlagEmoji(country.iso)}
-                          <span>{country.name}</span>
-                        </li>
-                      );
-                    })}
-                </ul>
-                <h3 className="mb-10">Amazon Prime Video</h3>
-                <ul className="vpn-list amazon-list mb-30">
-                  {getProviderCountries(movieDetails, 119)
-                    .slice(0, 5)
-                    .map((country) => {
-                      return (
-                        <li key={country.iso}>
-                          {getFlagEmoji(country.iso)}
-                          <span>{country.name}</span>
-                        </li>
-                      );
-                    })}
-                </ul>
-                <h3 className="mb-10">Disney+</h3>
-                <ul className="vpn-list disney-list mb-30">
-                  {getProviderCountries(movieDetails, 337)
-                    .slice(0, 5)
-                    .map((country) => {
-                      return (
-                        <li key={country.iso}>
-                          {getFlagEmoji(country.iso)}
-                          <span>{country.name}</span>
-                        </li>
-                      );
-                    })}
-                </ul>
+              <div className={`slider-item${vpn ? " active-slide" : ""}`}>
+                <div className="container">
+                  <h3 className="mb-10">Netflix</h3>
+                  <ul className="vpn-list netflix-list mb-30">
+                    {getProviderCountries(movieDetails, 8)
+                      .slice(0, 5)
+                      .map((country) => {
+                        return (
+                          <li key={country.iso}>
+                            {getFlagEmoji(country.iso)}
+                            <span>{country.name}</span>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                  <h3 className="mb-10">Amazon Prime Video</h3>
+                  <ul className="vpn-list amazon-list mb-30">
+                    {getProviderCountries(movieDetails, 119)
+                      .slice(0, 5)
+                      .map((country) => {
+                        return (
+                          <li key={country.iso}>
+                            {getFlagEmoji(country.iso)}
+                            <span>{country.name}</span>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                  <h3 className="mb-10">Disney+</h3>
+                  <ul className="vpn-list disney-list mb-30">
+                    {getProviderCountries(movieDetails, 337)
+                      .slice(0, 5)
+                      .map((country) => {
+                        return (
+                          <li key={country.iso}>
+                            {getFlagEmoji(country.iso)}
+                            <span>{country.name}</span>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
               </div>
-            )}
+            </div>
+          </div>
+          <div className="container">
             <h2 className="mb-20">Bande-annonce</h2>
           </div>
           <div className="container-max mb-40">
