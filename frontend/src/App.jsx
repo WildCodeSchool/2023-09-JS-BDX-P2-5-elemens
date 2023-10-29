@@ -46,7 +46,7 @@ function App() {
         <Navbar setTextFound={setTextFound} setPageNumber={setPageNumber} />
       </Headroom>
 
-      <div className="maim-area">
+      <div className="main-area">
         <MainResearch movieList={movieList} />
       </div>
     </div>

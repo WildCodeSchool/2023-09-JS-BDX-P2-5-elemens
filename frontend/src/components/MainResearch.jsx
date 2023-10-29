@@ -7,6 +7,7 @@ function MainResearch({ movieList }) {
     >
       {movieList.map((movie) => (
         <div
+          key={movie.id}
           style={{
             display: "flex",
             flexDirection: "column",
