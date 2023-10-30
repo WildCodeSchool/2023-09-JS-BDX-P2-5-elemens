@@ -18,7 +18,7 @@ function Popularmovies() {
     axios
       .request(options)
       .then((response) => {
-        setmoviesArray(response.data.results.slice(0, 10));
+        setmoviesArray(response.data.results.slice(0, 12));
       })
       .catch((error) => {
         console.error(error);
@@ -31,7 +31,7 @@ function Popularmovies() {
 
   return (
     <div className="container">
-      <h1>Films de la semaine</h1>
+      <h1>Films de la semaine :</h1>
       <div className="Popularcontent">
         {moviesArray.map((movie) => (
           <div className="Displaycontent">
