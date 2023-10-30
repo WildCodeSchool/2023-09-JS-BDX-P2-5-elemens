@@ -21,17 +21,22 @@ const certificate = (movieDetails) => {
     (country) => country.iso_3166_1 === "FR"
   ).release_dates[0].certification;
 
-  return certif === "TP" ? (
+  return certif === "TP" || certif === "U" ? (
     "Tout Public"
   ) : (
-    <i className="certificate">-{certif}</i>
+    <i className="certificate">{certif}</i>
   );
 };
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
-  const movieId = 550;
+  const movieId = Math.random() * (1000 - 1) + 1;
+  // fight club : 550
+  // mission impossible : 575264
+  // usual suspects : 629
+  // astérix : 2899
+  // un poisson nommé Wanda : 623
 
   const toggleTrailerPopup = () => {
     setTrailerPopup(!trailerPopup);
@@ -44,10 +49,6 @@ function MoviePage() {
           `https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR&append_to_response=videos,credits,watch/providers,release_dates`,
           options
         );
-        // fight club : 550
-        // mission impossible : 575264
-        // usual suspects : 629
-        // astérix : 2899
         if (response.ok) {
           const data = await response.json();
           setMovieDetails(data);
@@ -86,13 +87,15 @@ function MoviePage() {
               <i className="note">{movieDetails.vote_average.toFixed(1)}</i>
               <div className="infos-note dflex-center mb-20">
                 <div>
-                  <button
-                    type="button"
-                    className="blue-button icon-play"
-                    onClick={toggleTrailerPopup}
-                  >
-                    Bande annonce
-                  </button>
+                  {movieDetails.videos.results[0] && (
+                    <button
+                      type="button"
+                      className="blue-button icon-play"
+                      onClick={toggleTrailerPopup}
+                    >
+                      Bande annonce
+                    </button>
+                  )}
                 </div>
               </div>
               <p className="t-center mb-20">
@@ -137,30 +140,32 @@ function MoviePage() {
               ))}
             </ul>
           </div>
-          <div
-            className={`dflex-center popup-container${
-              trailerPopup === true ? " active" : ""
-            }`}
-          >
-            <div className="trailer-popup">
-              <iframe
-                width="100%"
-                height="auto"
-                src={`https://www.youtube.com/embed/${movieDetails.videos.results[0].key}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-              />
-              <button
-                type="button"
-                className="close-popup"
-                onClick={toggleTrailerPopup}
-              >
-                Test
-              </button>
+          {movieDetails.videos.results[0] && (
+            <div
+              className={`dflex-center popup-container${
+                trailerPopup === true ? " active" : ""
+              }`}
+            >
+              <div className="trailer-popup">
+                <iframe
+                  width="100%"
+                  height="auto"
+                  src={`https://www.youtube.com/embed/${movieDetails.videos.results[0].key}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Embedded youtube"
+                />
+                <button
+                  type="button"
+                  className="close-popup"
+                  onClick={toggleTrailerPopup}
+                >
+                  Test
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>

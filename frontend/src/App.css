@@ -148,10 +148,24 @@ iframe {
   background-color: white;
   color: #202124;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 700;
+  padding-right: 2px;
+  position: relative;
+}
+.certificate:before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 4px;
+  background-color: #202124;
+  position: absolute;
+  left: -1px;
+  top: calc(50% - 2px);
 }
 
 .movies-infos-container {
