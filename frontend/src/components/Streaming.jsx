@@ -63,7 +63,7 @@ function Streaming({ providers }) {
 Streaming.propTypes = {
   providers: PropTypes.shape({
     FR: PropTypes.shape({
-      flatrate: PropTypes.shape(),
+      flatrate: PropTypes.arrayOf(PropTypes.shape()),
     }),
   }).isRequired,
 };

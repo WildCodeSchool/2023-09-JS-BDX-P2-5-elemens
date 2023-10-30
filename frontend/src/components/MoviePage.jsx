@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Streaming from "./Streaming";
 
 const options = {
@@ -31,7 +32,8 @@ const certificate = (movieDetails) => {
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
-  const movieId = 550;
+  let { id } = useParams();
+  id ??= 550;
 
   const toggleTrailerPopup = () => {
     setTrailerPopup(!trailerPopup);
@@ -41,13 +43,9 @@ function MoviePage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR&append_to_response=videos,credits,watch/providers,release_dates`,
+          `https://api.themoviedb.org/3/movie/${id}?language=fr-FR&append_to_response=videos,credits,watch/providers,release_dates`,
           options
         );
-        // fight club : 550
-        // mission impossible : 575264
-        // usual suspects : 629
-        // astérix : 2899
         if (response.ok) {
           const data = await response.json();
           setMovieDetails(data);
