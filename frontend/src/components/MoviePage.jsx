@@ -22,10 +22,15 @@ const certificate = (movieDetails) => {
     (country) => country.iso_3166_1 === "FR"
   ).release_dates[0].certification;
 
-  return certif === "TP" || certif === "U" ? (
-    "Tout Public"
-  ) : (
-    <i className="certificate">{certif}</i>
+  return (
+    <span>
+      <b>•</b>
+      {certif === "12" || certif === "16" || certif === "18" ? (
+        <i className="certificate">{certif}</i>
+      ) : (
+        "Tout Public"
+      )}
+    </span>
   );
 };
 
@@ -33,7 +38,12 @@ function MoviePage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
   let { id } = useParams();
-  id ??= 550;
+  id ??= Math.random() * (1000 - 1) + 1;
+  // fight club : 550
+  // mission impossible : 575264
+  // usual suspects : 629
+  // astérix : 2899
+  // un poisson nommé Wanda : 623
 
   const toggleTrailerPopup = () => {
     setTrailerPopup(!trailerPopup);
@@ -82,9 +92,10 @@ function MoviePage() {
             <div className="movies-infos-container mb-30">
               <h1 className="mb-20 t-center">{movieDetails.title}</h1>
               <i className="note">{movieDetails.vote_average.toFixed(1)}</i>
-              <div className="infos-note dflex-center mb-20">
-                <div>
-                  {movieDetails.videos.results[0] && (
+
+              {movieDetails.videos.results[0] && (
+                <div className="infos-note dflex-center mb-20">
+                  <div>
                     <button
                       type="button"
                       className="blue-button icon-play"
@@ -92,16 +103,17 @@ function MoviePage() {
                     >
                       Bande annonce
                     </button>
-                  )}
+                  </div>
                 </div>
-              </div>
+              )}
               <p className="t-center mb-20">
-                {certificate(movieDetails)}
-                <b>•</b>
                 {movieDetails.release_date.slice(0, 4)}
                 <b>•</b>
                 {toHoursAndMinutes(movieDetails.runtime)}
-                <b>•</b>
+                {movieDetails.release_dates.results.find(
+                  (country) => country.iso_3166_1 === "FR"
+                ) && certificate(movieDetails)}
+                <br />
                 {movieDetails.genres.map((objet) => objet.name).join(", ")}
                 <br />
                 <i>Réalisé par </i>
@@ -112,9 +124,11 @@ function MoviePage() {
                 }
               </p>
             </div>
-
+            <p>ID = {movieDetails.id}</p>
             <h2 className="mb-20 blue-title">Synopsis</h2>
-            <p className="tagline mb-20">"{movieDetails.tagline}"</p>
+            {movieDetails.tagline && (
+              <p className="tagline mb-20">"{movieDetails.tagline}"</p>
+            )}
             <p className="mb-60">{movieDetails.overview}</p>
           </div>
 

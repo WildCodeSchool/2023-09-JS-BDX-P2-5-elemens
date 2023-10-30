@@ -15,6 +15,10 @@ const router = createBrowserRouter([
     path: "/movie/:id",
     element: <MoviePage />,
   },
+  {
+    path: "/movie/",
+    element: <MoviePage />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

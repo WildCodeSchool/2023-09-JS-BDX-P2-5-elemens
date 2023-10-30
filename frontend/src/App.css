@@ -13,6 +13,10 @@ html {
   overflow-x: hidden;
 }
 
+.no-scroll {
+  overflow: hidden !important;
+}
+
 body {
   background-color: #202124;
   color: white;
@@ -173,7 +177,7 @@ iframe {
   background-color: #202124;
   border-radius: 15px;
   margin-top: -60px;
-  padding: 40px 20px 16px;
+  padding: 40px 12px 16px;
   box-shadow: 0px 0px 50px -13px #000000;
 }
 .movies-infos-container .note {
