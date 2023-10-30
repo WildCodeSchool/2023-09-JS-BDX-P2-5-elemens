@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
-import countryData from "../data";
+import Streaming from "./Streaming";
 
 const options = {
   method: "GET",
@@ -17,36 +16,10 @@ function toHoursAndMinutes(totalMinutes) {
   return `${hours}h${minutes > 0 ? `${minutes}` : ""}`;
 }
 
-function getFlagEmoji(countryCode) {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split("")
-    .map((char) => 127397 + char.charCodeAt());
-  return String.fromCodePoint(...codePoints);
-}
-
-function getProviderCountries(details, providerId) {
-  const providers = details["watch/providers"].results;
-  const providerCountries = [];
-  for (const country in providers) {
-    if (
-      providers[country].flatrate &&
-      providers[country].flatrate.find((p) => p.provider_id === providerId)
-    ) {
-      providerCountries.push(country);
-    }
-  }
-  const filteredList = countryData.filter((country) =>
-    providerCountries.includes(country.iso)
-  );
-  return filteredList;
-}
-
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState(null);
-  const [vpn, setVpn] = useState(false);
   const [trailerPopup, setTrailerPopup] = useState(false);
-  const movieId = useState(2899);
+  const movieId = useState(550);
 
   const toggleTrailerPopup = () => {
     setTrailerPopup(!trailerPopup);
@@ -89,11 +62,13 @@ function MoviePage() {
               }}
             />
           </div>
+
           <div className="container">
             {/* <img
             src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
             alt={movieDetails.title}
           /> */}
+
             <div className="movies-infos-container mb-30">
               <h1 className="mb-20 t-center">{movieDetails.title}</h1>
               <i className="note">{movieDetails.vote_average.toFixed(1)}</i>
@@ -123,91 +98,14 @@ function MoviePage() {
                 }
               </p>
             </div>
+
             <h2 className="mb-20 blue-title">Synopsis</h2>
             <p className="tagline mb-20">"{movieDetails.tagline}"</p>
             <p className="mb-60">{movieDetails.overview}</p>
-            <h2 className="mb-20 blue-title">Plateformes de streaming</h2>
-            <div className="switch-button">
-              <button
-                type="button"
-                onClick={() => setVpn(false)}
-                className={!vpn ? "active" : ""}
-              >
-                France
-              </button>
-              <button
-                type="button"
-                onClick={() => setVpn(true)}
-                className={vpn ? "active" : ""}
-              >
-                VPN
-              </button>
-            </div>
           </div>
-          <div className="container-max">
-            <div className="slider-container">
-              <div className={`slider-item${!vpn ? " active-slide" : ""}`}>
-                <ul className="container platform-list dflex mb-40">
-                  {movieDetails["watch/providers"].results.FR &&
-                    movieDetails["watch/providers"].results.FR.flatrate &&
-                    movieDetails["watch/providers"].results.FR.flatrate.map(
-                      (platform) => (
-                        <li key={platform.provider_id}>
-                          <img
-                            className="mb-10"
-                            src={`https://image.tmdb.org/t/p/w300/${platform.logo_path}`}
-                            alt={platform.provider_name}
-                          />
-                        </li>
-                      )
-                    )}
-                </ul>
-              </div>
-              <div className={`slider-item${vpn ? " active-slide" : ""}`}>
-                <div className="container">
-                  <h3 className="mb-10">Netflix</h3>
-                  <ul className="vpn-list netflix-list mb-30">
-                    {getProviderCountries(movieDetails, 8)
-                      .slice(0, 5)
-                      .map((country) => {
-                        return (
-                          <li key={country.iso}>
-                            {getFlagEmoji(country.iso)}
-                            <span>{country.name}</span>
-                          </li>
-                        );
-                      })}
-                  </ul>
-                  <h3 className="mb-10">Amazon Prime Video</h3>
-                  <ul className="vpn-list amazon-list mb-30">
-                    {getProviderCountries(movieDetails, 119)
-                      .slice(0, 5)
-                      .map((country) => {
-                        return (
-                          <li key={country.iso}>
-                            {getFlagEmoji(country.iso)}
-                            <span>{country.name}</span>
-                          </li>
-                        );
-                      })}
-                  </ul>
-                  <h3 className="mb-10">Disney+</h3>
-                  <ul className="vpn-list disney-list mb-30">
-                    {getProviderCountries(movieDetails, 337)
-                      .slice(0, 5)
-                      .map((country) => {
-                        return (
-                          <li key={country.iso}>
-                            {getFlagEmoji(country.iso)}
-                            <span>{country.name}</span>
-                          </li>
-                        );
-                      })}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <Streaming providers={movieDetails["watch/providers"].results} />
+
           <div className="container">
             <h2 className="mb-20 blue-title">Têtes d'affiche</h2>
             <ul className="horizontal-list mb-40">
