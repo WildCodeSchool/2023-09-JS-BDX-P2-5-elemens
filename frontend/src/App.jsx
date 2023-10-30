@@ -14,18 +14,15 @@ function App() {
   const handleClickMovies = () => {
     setMovies(!movies);
     setSeries(false);
-    // console.log(movies);
   };
 
   const handleClickSeries = () => {
     setSeries(!series);
     setMovies(false);
-    // console.log(series);
   };
 
   const handleClickFilters = () => {
     setFilters(!filters);
-    // console.log(filters);
   };
 
   return (
