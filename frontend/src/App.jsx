@@ -4,6 +4,8 @@ import Headroom from "react-headroom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MainResearch from "./components/MainResearch";
+import Popularmovies from "./components/Popularmovies";
+import Popularseries from "./components/Popularseries";
 
 function App() {
   const [textFound, setTextFound] = useState("");
@@ -48,6 +50,8 @@ function App() {
 
       <div className="main-area">
         <MainResearch movieList={movieList} />
+        <Popularseries />
+        <Popularmovies />
       </div>
     </div>
   );
