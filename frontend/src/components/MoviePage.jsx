@@ -16,10 +16,22 @@ function toHoursAndMinutes(totalMinutes) {
   return `${hours}h${minutes > 0 ? `${minutes}` : ""}`;
 }
 
+const certificate = (movieDetails) => {
+  const certif = movieDetails.release_dates.results.find(
+    (country) => country.iso_3166_1 === "FR"
+  ).release_dates[0].certification;
+
+  return certif === "TP" ? (
+    "Tout Public"
+  ) : (
+    <i className="certificate">-{certif}</i>
+  );
+};
+
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
-  const movieId = useState(550);
+  const movieId = 550;
 
   const toggleTrailerPopup = () => {
     setTrailerPopup(!trailerPopup);
@@ -29,7 +41,7 @@ function MoviePage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR&append_to_response=videos,credits,watch/providers`,
+          `https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR&append_to_response=videos,credits,watch/providers,release_dates`,
           options
         );
         // fight club : 550
@@ -84,6 +96,8 @@ function MoviePage() {
                 </div>
               </div>
               <p className="t-center mb-20">
+                {certificate(movieDetails)}
+                <b>•</b>
                 {movieDetails.release_date.slice(0, 4)}
                 <b>•</b>
                 {toHoursAndMinutes(movieDetails.runtime)}
