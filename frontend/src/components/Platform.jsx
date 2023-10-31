@@ -27,11 +27,12 @@ function getProviderCountries(providers, providerId) {
 }
 
 function Platform({ providers, providerId }) {
-  return (
-    <ul className="vpn-list mb-30">
-      {getProviderCountries(providers, providerId)
-        .slice(0, 5)
-        .map((country) => {
+  const countries = getProviderCountries(providers, providerId);
+
+  if (countries[0]) {
+    return (
+      <ul className="vpn-list mb-30">
+        {countries.slice(0, 5).map((country) => {
           return (
             <li key={country.iso}>
               {getFlagEmoji(country.iso)}
@@ -39,8 +40,10 @@ function Platform({ providers, providerId }) {
             </li>
           );
         })}
-    </ul>
-  );
+      </ul>
+    );
+  }
+  return <div>Non disponible</div>;
 }
 
 Platform.propTypes = {

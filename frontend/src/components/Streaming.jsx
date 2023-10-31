@@ -30,19 +30,23 @@ function Streaming({ providers }) {
       <div className="container-max">
         <div className="slider-container">
           <div className={`slider-item${!vpn ? " active-slide" : ""}`}>
-            <ul className="container platform-list dflex mb-40">
-              {providers.FR &&
-                providers.FR.flatrate &&
-                providers.FR.flatrate.map((platform) => (
-                  <li key={platform.provider_id}>
-                    <img
-                      className="mb-10"
-                      src={`https://image.tmdb.org/t/p/w300/${platform.logo_path}`}
-                      alt={platform.provider_name}
-                    />
-                  </li>
-                ))}
-            </ul>
+            {providers.FR && providers.FR.flatrate ? (
+              <ul className="container platform-list dflex mb-40">
+                {providers.FR &&
+                  providers.FR.flatrate &&
+                  providers.FR.flatrate.map((platform) => (
+                    <li key={platform.provider_id}>
+                      <img
+                        className="mb-10"
+                        src={`https://image.tmdb.org/t/p/w300/${platform.logo_path}`}
+                        alt={platform.provider_name}
+                      />
+                    </li>
+                  ))}
+              </ul>
+            ) : (
+              <div>Non disponible</div>
+            )}
           </div>
           <div className={`slider-item${vpn ? " active-slide" : ""}`}>
             <div className="container">
