@@ -7,17 +7,18 @@ import "./components/filters.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MainResearch from "./components/MainResearch";
-import Popularmovies from "./components/Popularmovies";
-import Popularseries from "./components/Popularseries";
+import PopularVideos from "./components/PopularVideos";
 
 function App() {
   const [textFound, setTextFound] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [filters, setFilters] = useState(false);
+  const [typeVideo, setTypeVideo] = useState("movie");
 
   const options = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/search/movie",
+    url: `https://api.themoviedb.org/3/search/${typeVideo}`,
     params: {
       query: `${textFound}`,
       include_adult: "true",
@@ -40,20 +41,13 @@ function App() {
         console.error(error);
       });
   };
-  // Créer des États pour chacune des actions.
-  const [movies, setMovies] = useState(false);
-  const [series, setSeries] = useState(false);
-  const [filters, setFilters] = useState(false);
 
-  // Handle click qui passe d'un État false à true ou inversement.
   const handleClickMovies = () => {
-    setMovies(!movies);
-    setSeries(false);
+    setTypeVideo("movie");
   };
 
   const handleClickSeries = () => {
-    setSeries(!series);
-    setMovies(false);
+    setTypeVideo("tv");
   };
 
   const handleClickFilters = () => {
@@ -62,7 +56,7 @@ function App() {
 
   useEffect(() => {
     getMovie();
-  }, [textFound]);
+  }, [textFound, typeVideo]);
 
   return (
     <div>
@@ -81,8 +75,7 @@ function App() {
 
       <div className="main-area">
         <MainResearch movieList={movieList} />
-        <Popularseries />
-        <Popularmovies />
+        {textFound === "" && <PopularVideos typeVideo={typeVideo} />}
       </div>
     </div>
   );

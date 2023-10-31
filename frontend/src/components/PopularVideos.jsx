@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
-function Popularmovies() {
+function PopularVideos({ typeVideo }) {
   const [moviesArray, setmoviesArray] = useState([]);
 
   const options = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/movie/popular",
+    url: `https://api.themoviedb.org/3/${typeVideo}/popular`,
     params: { language: "fr", page: "1" },
     headers: {
       accept: "application/json",
@@ -27,7 +28,7 @@ function Popularmovies() {
 
   useEffect(() => {
     getMovies();
-  }, []);
+  }, [typeVideo]);
 
   return (
     <div className="container">
@@ -46,5 +47,7 @@ function Popularmovies() {
     </div>
   );
 }
-
-export default Popularmovies;
+PopularVideos.propTypes = {
+  typeVideo: PropTypes.string.isRequired,
+};
+export default PopularVideos;

@@ -32,6 +32,7 @@ function MainResearch({ movieList }) {
                 style={{ width: "200px", margin: "10px 10px 0 10px" }}
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt="movie-poster"
+                loading="lazy"
               />
             ) : (
               <div
