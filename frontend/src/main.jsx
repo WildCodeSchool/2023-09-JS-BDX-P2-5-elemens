@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-import MoviePage from "./components/MoviePage";
+import MediaPage from "./components/MediaPage";
 
 const router = createBrowserRouter([
   {
@@ -12,12 +12,20 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/movie/:id",
-    element: <MoviePage />,
+    path: "/movie/",
+    element: <MediaPage />,
   },
   {
-    path: "/movie/",
-    element: <MoviePage />,
+    path: "/movie/:id",
+    element: <MediaPage />,
+  },
+  {
+    path: "/tv/",
+    element: <MediaPage />,
+  },
+  {
+    path: "/tv/:id",
+    element: <MediaPage />,
   },
 ]);
 
