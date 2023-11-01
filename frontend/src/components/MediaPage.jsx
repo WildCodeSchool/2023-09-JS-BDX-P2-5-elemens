@@ -190,7 +190,6 @@ function MediaPage() {
                 <li className="t-center" key={person.id}>
                   <figure className="mb-20">
                     <img
-                      x
                       src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
                       alt={person.name}
                     />
