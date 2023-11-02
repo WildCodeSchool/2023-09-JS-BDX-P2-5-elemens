@@ -32,7 +32,11 @@ function PopularVideos({ typeVideo }) {
 
   return (
     <div className="container">
-      <h1>Films de la semaine :</h1>
+      {typeVideo === "movie" ? (
+        <h1>Films de la semaine :</h1>
+      ) : (
+        <h1>Series de la semaine :</h1>
+      )}
       <div className="Popularcontent">
         {moviesArray.map((movie) => (
           <div className="Displaycontent">
