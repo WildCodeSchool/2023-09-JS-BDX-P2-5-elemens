@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 function PopularVideos({ typeVideo }) {
-  const [moviesArray, setmoviesArray] = useState([]);
+  const [videoArray, setVideoArray] = useState([]);
 
   const options = {
     method: "GET",
@@ -15,11 +15,11 @@ function PopularVideos({ typeVideo }) {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjM0YjFlZjE4ODI5YmU4ZTc5OWExNjBjNzlhZTVlMSIsInN1YiI6IjY1MzdkZThkZjQ5NWVlMDBlMmM0ZmY2NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9B5aBAEiRjkua7VhxNINdRXZENwPr-N7W-GbQ8bOGqw",
     },
   };
-  const getMovies = () => {
+  const getVideos = () => {
     axios
       .request(options)
       .then((response) => {
-        setmoviesArray(response.data.results.slice(0, 12));
+        setVideoArray(response.data.results.slice(0, 12));
       })
       .catch((error) => {
         console.error(error);
@@ -27,7 +27,7 @@ function PopularVideos({ typeVideo }) {
   };
 
   useEffect(() => {
-    getMovies();
+    getVideos();
   }, [typeVideo]);
 
   return (
@@ -37,14 +37,42 @@ function PopularVideos({ typeVideo }) {
       ) : (
         <h1>Series de la semaine :</h1>
       )}
-      <div className="Popularcontent">
-        {moviesArray.map((movie) => (
-          <div className="Displaycontent">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt="poster"
-            />
-            <p>{movie.title}</p>
+      <div
+        className="Popularcontent"
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
+        {videoArray.map((video) => (
+          <div
+            className="Displaycontent"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "220px",
+            }}
+          >
+            <div
+              className="img-container"
+              style={{
+                width: "220px",
+                height: "365px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                style={{ width: "200px", margin: "10px 10px 0 10px" }}
+                src={`https://image.tmdb.org/t/p/w500${video.poster_path}`}
+                alt="poster"
+              />
+            </div>
+            <div style={{ height: "3rem" }}>
+              <p style={{ textAlign: "center", marginTop: "0" }}>
+                {video.title || video.name}
+              </p>
+            </div>
           </div>
         ))}
       </div>
