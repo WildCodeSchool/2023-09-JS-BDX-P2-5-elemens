@@ -17,9 +17,10 @@ function App() {
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
   const [hasMore, setHasMore] = useState(true);
-  // useRef pour observer un element de la liste créée pour paser à la page suivante
+  // useRef pour observer un element de la liste créé pour passer à la page suivante
   const observer = useRef();
-  // Fonction pour passer à la page suivante lorsqu'on arrive sur un élémént de la liste
+
+  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént de la page actuelle
   const lastMovieElementRef = useCallback(
     (node) => {
       console.warn(node);
@@ -66,6 +67,7 @@ function App() {
 
   // Appel de l'API si modification du texte de recherche ou du type recherché (film/série)
   useEffect(() => {
+    setPageNumber((prevPageNumber) => prevPageNumber + 1);
     getMovie();
   }, [textFound, typeVideo]);
 
@@ -86,15 +88,15 @@ function App() {
     };
     fetchNextMovies();
   };
-
+  // Choisir le endpoint films
   const handleClickMovies = () => {
     setTypeVideo("movie");
   };
-
+  // Choisir le endpoint series
   const handleClickSeries = () => {
     setTypeVideo("tv");
   };
-
+  // Afficher ou faire disparaitre la section filtres
   const handleClickFilters = () => {
     setFilters(!filters);
   };
