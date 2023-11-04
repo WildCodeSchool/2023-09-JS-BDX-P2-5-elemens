@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Popularseries() {
-  const [seriesArray, setseriesArray] = useState([]);
+  const [seriesArray, setSeriesArray] = useState([]);
 
   const options = {
     method: "GET",
@@ -18,7 +18,7 @@ function Popularseries() {
     axios
       .request(options)
       .then((response) => {
-        setseriesArray(response.data.results.slice(0, 12));
+        setSeriesArray(response.data.results.slice(0, 12));
       })
       .catch((error) => {
         console.error(error);
@@ -34,7 +34,7 @@ function Popularseries() {
       <h1>Séries de la semaine :</h1>
       <div className="Popularcontent">
         {seriesArray.map((serie) => (
-          <div className="Displaycontent">
+          <div key={serie.name} className="Displaycontent">
             <img
               src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
               alt="poster"

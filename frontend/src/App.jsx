@@ -1,5 +1,6 @@
 import Popularmovies from "./components/Popularmovies";
 import Popularseries from "./components/Popularseries";
+import ActorsPopularCards from "./components/ActorsPopularCards";
 
 import "./App.scss";
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Popularseries />
       <Popularmovies />
+      <ActorsPopularCards />
     </div>
   );
 }

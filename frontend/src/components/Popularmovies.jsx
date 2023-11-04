@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Popularmovies() {
-  const [moviesArray, setmoviesArray] = useState([]);
+  const [moviesArray, setMoviesArray] = useState([]);
 
   const options = {
     method: "GET",
@@ -18,7 +18,7 @@ function Popularmovies() {
     axios
       .request(options)
       .then((response) => {
-        setmoviesArray(response.data.results.slice(0, 12));
+        setMoviesArray(response.data.results.slice(0, 12));
       })
       .catch((error) => {
         console.error(error);
@@ -34,7 +34,7 @@ function Popularmovies() {
       <h1>Films de la semaine :</h1>
       <div className="Popularcontent">
         {moviesArray.map((movie) => (
-          <div className="Displaycontent">
+          <div key={movie.title} className="Displaycontent">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt="poster"
