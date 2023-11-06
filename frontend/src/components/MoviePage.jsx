@@ -51,19 +51,16 @@ function MoviePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?language=fr-FR&append_to_response=videos,credits,watch/providers,release_dates`,
-          options
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setMovieDetails(data);
-        } else {
-          console.error("Échec de la récupération des données");
-        }
-      } catch (error) {
-        console.error(error);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?language=fr-FR&append_to_response=videos,credits,watch/providers,release_dates`,
+        options
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setMovieDetails(data);
+      } else {
+        console.error();
+        throw new Error("Échec de la récupération des données");
       }
     };
 
@@ -73,63 +70,94 @@ function MoviePage() {
   return (
     <div className={`App${trailerPopup === true ? " no-scroll" : ""}`}>
       {movieDetails && (
-        <div className="movie-detail">
-          <div className="container-max">
+        <div className="media-detail">
+          <div className="container-max pos-r">
             <div
-              className="backdrop"
+              className="backdrop mb-d-block"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
               }}
             />
-          </div>
-
-          <div className="container">
-            {/* <img
-            src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
-            alt={movieDetails.title}
-          /> */}
-
-            <div className="movies-infos-container mb-30">
-              <h1 className="mb-20 t-center">{movieDetails.title}</h1>
-              <i className="note">{movieDetails.vote_average.toFixed(1)}</i>
-
-              {movieDetails.videos.results[0] && (
-                <div className="infos-note dflex-center mb-20">
-                  <div>
-                    <button
-                      type="button"
-                      className="blue-button icon-play"
-                      onClick={toggleTrailerPopup}
-                    >
-                      Bande annonce
-                    </button>
-                  </div>
+            <div className="container media-infos-container tc-d-flex">
+              <div className="poster-container mb-d-none">
+                <img
+                  className="poster"
+                  src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+                  alt={movieDetails.title}
+                />
+                <p>ID = {movieDetails.id}</p>
+              </div>
+              <div>
+                <div className="media-infos mb-30">
+                  <h1 className="mb-20 mb-t-center">{movieDetails.title}</h1>
+                  <i className="note">{movieDetails.vote_average.toFixed(1)}</i>
+                  {movieDetails.videos.results[0] && (
+                    <div className="infos-note dflex-center mb-d-flex mb-20">
+                      <div>
+                        <button
+                          type="button"
+                          className="blue-button icon-play"
+                          onClick={toggleTrailerPopup}
+                        >
+                          Bande annonce
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <p className="mb-t-center mb-20">
+                    {movieDetails.release_date.slice(0, 4)}
+                    <b>•</b>
+                    {toHoursAndMinutes(movieDetails.runtime)}
+                    <b>•</b>
+                    {movieDetails.genres.map((objet) => objet.name).join(", ")}
+                    {movieDetails.release_dates.results.find(
+                      (country) => country.iso_3166_1 === "FR"
+                    ) && certificate(movieDetails)}
+                    <br />
+                    <i>Réalisé par </i>
+                    {
+                      movieDetails.credits.crew.find(
+                        (person) => person.job === "Director"
+                      ).name
+                    }
+                  </p>
+                  <h2 className="blue-title mb-10 mb-d-none">Synopsis</h2>
+                  {movieDetails.tagline && (
+                    <p className="tagline mb-d-none">
+                      "{movieDetails.tagline}"
+                    </p>
+                  )}
+                  <p className="mb-d-none mb-20">{movieDetails.overview}</p>
+                  {movieDetails.videos.results[0] && (
+                    <div className="infos-note mb-d-none td-d-flex">
+                      <div>
+                        <button
+                          type="button"
+                          className="blue-button icon-play"
+                          onClick={toggleTrailerPopup}
+                        >
+                          Bande annonce
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-              <p className="t-center mb-20">
-                {movieDetails.release_date.slice(0, 4)}
-                <b>•</b>
-                {toHoursAndMinutes(movieDetails.runtime)}
-                {movieDetails.release_dates.results.find(
-                  (country) => country.iso_3166_1 === "FR"
-                ) && certificate(movieDetails)}
-                <br />
-                {movieDetails.genres.map((objet) => objet.name).join(", ")}
-                <br />
-                <i>Réalisé par </i>
-                {
-                  movieDetails.credits.crew.find(
-                    (person) => person.job === "Director"
-                  ).name
-                }
-              </p>
+              </div>
+              <div className="mb-d-block">
+                <p>ID = {movieDetails.id}</p>
+                <h2 className="mb-20 blue-title">Synopsis</h2>
+                {movieDetails.tagline && (
+                  <p className="tagline mb-20">"{movieDetails.tagline}"</p>
+                )}
+                <p className="mb-60">{movieDetails.overview}</p>
+              </div>
             </div>
-            <p>ID = {movieDetails.id}</p>
-            <h2 className="mb-20 blue-title">Synopsis</h2>
-            {movieDetails.tagline && (
-              <p className="tagline mb-20">"{movieDetails.tagline}"</p>
-            )}
-            <p className="mb-60">{movieDetails.overview}</p>
+            <div
+              className="backdrop mb-d-none"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
+              }}
+            />
           </div>
 
           <Streaming providers={movieDetails["watch/providers"].results} />
@@ -142,7 +170,11 @@ function MoviePage() {
                   <figure className="mb-20">
                     <img
                       x
-                      src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                      src={
+                        person.profile_path !== null
+                          ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+                          : "../src/assets/elemen5-casting-white.jpg"
+                      }
                       alt={person.name}
                     />
                     <figcaption>{person.name}</figcaption>
@@ -157,7 +189,7 @@ function MoviePage() {
                 trailerPopup === true ? " active" : ""
               }`}
             >
-              <div className="trailer-popup">
+              <div className="trailer-popup t-center">
                 <iframe
                   width="100%"
                   height="auto"

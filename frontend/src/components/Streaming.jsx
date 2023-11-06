@@ -27,7 +27,7 @@ function Streaming({ providers }) {
         </div>
       </div>
 
-      <div className="container-max">
+      <div className="container-max mb-40">
         <div className="slider-container">
           <div className={`slider-item${!vpn ? " active-slide" : ""}`}>
             {providers.FR && providers.FR.flatrate ? (
@@ -45,17 +45,23 @@ function Streaming({ providers }) {
                   ))}
               </ul>
             ) : (
-              <div>Non disponible</div>
+              <p className="container">Non disponible en France</p>
             )}
           </div>
           <div className={`slider-item${vpn ? " active-slide" : ""}`}>
-            <div className="container">
-              <h3 className="mb-10">Netflix</h3>
-              <Platform providers={providers} providerId={8} />
-              <h3 className="mb-10">Amazon Prime Video</h3>
-              <Platform providers={providers} providerId={119} />
-              <h3 className="mb-10">Disney+</h3>
-              <Platform providers={providers} providerId={337} />
+            <div className="media-platforms container td-d-flex">
+              <div>
+                <h3 className="mb-10">Netflix</h3>
+                <Platform providers={providers} providerId={8} />
+              </div>
+              <div>
+                <h3 className="mb-10">Amazon Prime Video</h3>
+                <Platform providers={providers} providerId={119} />
+              </div>
+              <div>
+                <h3 className="mb-10">Disney+</h3>
+                <Platform providers={providers} providerId={337} />
+              </div>
             </div>
           </div>
         </div>

@@ -81,7 +81,7 @@ h3 {
   padding: 0 12px;
 }
 
-// aligns
+// aligns & placements
 
 .dflex {
   display: flex;
@@ -102,6 +102,9 @@ h3 {
 }
 .t-underline {
   text-decoration: underline;
+}
+.pos-r {
+  position: relative;
 }
 
 // margins
@@ -126,11 +129,8 @@ h3 {
 }
 
 // Pages
-// Movie Details
+// Media Details
 .backdrop {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 50vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -177,15 +177,7 @@ iframe {
   }
 }
 
-.movies-infos-container {
-  position: relative;
-  background-color: $black-color;
-  border-radius: 15px;
-  margin-top: -60px;
-  padding: 40px 12px 16px;
-  -webkit-box-shadow: 0px 0px 50px -13px #000000;
-  box-shadow: 0px 0px 50px -13px #000000;
-
+.media-infos {
   .note {
     display: block;
     background-color: $blue-color;
@@ -217,6 +209,10 @@ iframe {
       margin: 0 10px;
     }
   }
+}
+
+.poster-container {
+  display: none;
 }
 
 .platform-list {
@@ -374,8 +370,8 @@ iframe {
 
 .vpn-list {
   display: flex;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
   height: 60px;
   justify-content: space-between;
 
@@ -434,7 +430,7 @@ iframe {
     background-color: transparent;
     border: none;
     font-size: 0;
-
+    cursor: pointer;
     position: absolute;
     top: -30px;
     right: 12px;
@@ -456,5 +452,189 @@ iframe {
       transform: rotate(-45deg);
       top: calc(50% - 2px);
     }
+    &:hover {
+      &:before,
+      &:after {
+        background-color: $blue-color;
+      }
+    }
+    &,
+    &:after,
+    &:before {
+      transition: all 0.3s;
+    }
+  }
+}
+
+////////// RESPONSIVE AND MEDIA QUERIES //////////////////
+
+// Mobile
+
+@media screen and (max-width: 767px) {
+  .mb-d-block {
+    display: block;
+  }
+  .mb-d-flex {
+    display: flex;
+  }
+  .mb-d-none {
+    display: none;
+  }
+  .mb-t-center {
+    text-align: center;
+  }
+
+  //////////////// Pages ////////////////
+  // Media Details
+
+  .backdrop {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 50vh;
+  }
+  .media-infos {
+    position: relative;
+    background-color: $black-color;
+    border-radius: 15px;
+    margin-top: -60px;
+    padding: 40px 12px 16px;
+    -webkit-box-shadow: 0px 0px 50px -13px #000000;
+    box-shadow: 0px 0px 50px -13px #000000;
+  }
+}
+
+// Tablette 1
+
+@media screen and (min-width: 767px) {
+  .mb-d-block,
+  .mb-d-flex {
+    display: none;
+  }
+  .mb-d-none {
+    display: block;
+  }
+  .td-d-flex {
+    display: flex;
+  }
+  .td-t-center {
+    text-align: center;
+  }
+
+  //////////////// Pages ////////////////
+  // Media Details
+  .media-infos {
+    h1,
+    p:first-of-type {
+      padding-right: 70px;
+    }
+    .note {
+      top: 30px;
+      right: 12px;
+    }
+  }
+
+  .media-infos-container {
+    display: flex;
+    padding: 30px 12px;
+    margin-bottom: 50px;
+
+    position: relative;
+
+    .poster-container {
+      display: block;
+      width: 300px;
+      height: 450px;
+      flex: none;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .media-infos {
+      text-align: left;
+      padding-left: 50px;
+      width: fit-content;
+    }
+  }
+
+  .backdrop {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    opacity: 0.3;
+    height: 100%;
+    width: 100%;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .media-platforms {
+    justify-content: space-around;
+
+    & > div {
+      width: 33.3333%;
+      padding: 0 15px;
+      border-right: 2px solid white;
+      &:last-child {
+        border: none;
+      }
+
+      li:last-child {
+        display: none;
+      }
+    }
+    .vpn-list {
+      justify-content: flex-start;
+      float: left;
+    }
+  }
+}
+
+// Tablette 2
+
+@media screen and (min-width: 1024px) {
+  .tc-d-flex {
+    display: flex;
+  }
+
+  //////////////// Pages ////////////////
+  // Media Details
+  .media-platforms {
+    & > div {
+      padding: 0 15px;
+
+      li:last-child {
+        display: block;
+      }
+    }
+  }
+}
+
+// Desktop
+
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 18px;
+  }
+
+  //////////////// Pages ////////////////
+  // Media Details
+
+  .note {
+    transform: scale(1.3);
   }
 }

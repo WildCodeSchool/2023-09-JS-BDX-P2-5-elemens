@@ -103,6 +103,10 @@ h3 {
   text-decoration: underline;
 }
 
+.pos-r {
+  position: relative;
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
@@ -128,9 +132,6 @@ h3 {
 }
 
 .backdrop {
-  width: 100%;
-  aspect-ratio: 16/9;
-  max-height: 50vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -172,15 +173,7 @@ iframe {
   top: calc(50% - 2px);
 }
 
-.movies-infos-container {
-  position: relative;
-  background-color: #202124;
-  border-radius: 15px;
-  margin-top: -60px;
-  padding: 40px 12px 16px;
-  box-shadow: 0px 0px 50px -13px #000000;
-}
-.movies-infos-container .note {
+.media-infos .note {
   display: block;
   background-color: #1a8dfd;
   border-radius: 50%;
@@ -195,16 +188,20 @@ iframe {
   font-style: normal;
   font-weight: bold;
 }
-.movies-infos-container .note:after {
+.media-infos .note:after {
   content: "  /10";
   font-size: 10px;
 }
-.movies-infos-container p {
+.media-infos p {
   line-height: 30px;
 }
-.movies-infos-container p b {
+.media-infos p b {
   color: #1a8dfd;
   margin: 0 10px;
+}
+
+.poster-container {
+  display: none;
 }
 
 .platform-list {
@@ -340,8 +337,8 @@ iframe {
 
 .vpn-list {
   display: flex;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
   height: 60px;
   justify-content: space-between;
 }
@@ -392,6 +389,7 @@ iframe {
   background-color: transparent;
   border: none;
   font-size: 0;
+  cursor: pointer;
   position: absolute;
   top: -30px;
   right: 12px;
@@ -412,4 +410,145 @@ iframe {
 .popup-container .close-popup:after {
   transform: rotate(-45deg);
   top: calc(50% - 2px);
+}
+.popup-container .close-popup:hover:before,
+.popup-container .close-popup:hover:after {
+  background-color: #1a8dfd;
+}
+.popup-container .close-popup,
+.popup-container .close-popup:after,
+.popup-container .close-popup:before {
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 767px) {
+  .mb-d-block {
+    display: block;
+  }
+  .mb-d-flex {
+    display: flex;
+  }
+  .mb-d-none {
+    display: none;
+  }
+  .mb-t-center {
+    text-align: center;
+  }
+  .backdrop {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-height: 50vh;
+  }
+  .media-infos {
+    position: relative;
+    background-color: #202124;
+    border-radius: 15px;
+    margin-top: -60px;
+    padding: 40px 12px 16px;
+    box-shadow: 0px 0px 50px -13px #000000;
+  }
+}
+@media screen and (min-width: 767px) {
+  .mb-d-block,
+  .mb-d-flex {
+    display: none;
+  }
+  .mb-d-none {
+    display: block;
+  }
+  .td-d-flex {
+    display: flex;
+  }
+  .td-t-center {
+    text-align: center;
+  }
+  .media-infos h1,
+  .media-infos p:first-of-type {
+    padding-right: 70px;
+  }
+  .media-infos .note {
+    top: 30px;
+    right: 12px;
+  }
+  .media-infos-container {
+    display: flex;
+    padding: 30px 12px;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  .media-infos-container .poster-container {
+    display: block;
+    width: 300px;
+    height: 450px;
+    flex: none;
+  }
+  .media-infos-container .poster-container img {
+    height: 100%;
+    width: 100%;
+  }
+  .media-infos-container .media-infos {
+    text-align: left;
+    padding-left: 50px;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .backdrop {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    opacity: 0.3;
+    height: 100%;
+    width: 100%;
+  }
+  .backdrop:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .media-platforms {
+    justify-content: space-around;
+  }
+  .media-platforms > div {
+    width: 33.3333%;
+    padding: 0 15px;
+    border-right: 2px solid white;
+  }
+  .media-platforms > div:last-child {
+    border: none;
+  }
+  .media-platforms > div li:last-child {
+    display: none;
+  }
+  .media-platforms .vpn-list {
+    justify-content: flex-start;
+    float: left;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .tc-d-flex {
+    display: flex;
+  }
+  .media-platforms > div {
+    padding: 0 15px;
+  }
+  .media-platforms > div li:last-child {
+    display: block;
+  }
+}
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 18px;
+  }
+  .note {
+    transform: scale(1.3);
+  }
 } /*# sourceMappingURL=App.css.map */

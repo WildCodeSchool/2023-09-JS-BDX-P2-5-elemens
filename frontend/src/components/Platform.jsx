@@ -31,7 +31,7 @@ function Platform({ providers, providerId }) {
 
   if (countries[0]) {
     return (
-      <ul className="vpn-list mb-30">
+      <ul className="vpn-list">
         {countries.slice(0, 5).map((country) => {
           return (
             <li key={country.iso}>
