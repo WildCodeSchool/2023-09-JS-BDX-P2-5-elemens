@@ -131,6 +131,7 @@ function App() {
           movieList={movieList}
           pageNumber={pageNumber}
           lastMovieElementRef={lastMovieElementRef}
+          typeVideo={typeVideo}
         />
         {textFound === "" && <PopularVideos typeVideo={typeVideo} />}
       </div>

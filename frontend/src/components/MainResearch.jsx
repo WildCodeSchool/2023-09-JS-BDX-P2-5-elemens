@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-function MainResearch({ movieList, lastMovieElementRef }) {
+function MainResearch({ movieList, lastMovieElementRef, typeVideo }) {
   return (
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
     >
       {movieList.map((movie, index) =>
         index === movieList.length - 2 ? (
-          <div
+          <Link
+            to={`/${typeVideo}/${movie.id}`}
             key={movie.id}
             ref={lastMovieElementRef}
             style={{
@@ -16,6 +18,7 @@ function MainResearch({ movieList, lastMovieElementRef }) {
               alignItems: "center",
               justifyContent: "center",
               width: "220px",
+              color: "white",
             }}
           >
             <div
@@ -61,9 +64,10 @@ function MainResearch({ movieList, lastMovieElementRef }) {
                 {movie.title}
               </p>
             </div>
-          </div>
+          </Link>
         ) : (
-          <div
+          <Link
+            to={`/${typeVideo}/${movie.id}`}
             key={movie.id}
             style={{
               display: "flex",
@@ -71,6 +75,7 @@ function MainResearch({ movieList, lastMovieElementRef }) {
               alignItems: "center",
               justifyContent: "center",
               width: "220px",
+              color: "white",
             }}
           >
             <div
@@ -116,7 +121,7 @@ function MainResearch({ movieList, lastMovieElementRef }) {
                 {movie.title}
               </p>
             </div>
-          </div>
+          </Link>
         )
       )}
     </div>
@@ -132,5 +137,6 @@ MainResearch.propTypes = {
     })
   ).isRequired,
   lastMovieElementRef: PropTypes.func.isRequired,
+  typeVideo: PropTypes.string.isRequired,
 };
 export default MainResearch;
