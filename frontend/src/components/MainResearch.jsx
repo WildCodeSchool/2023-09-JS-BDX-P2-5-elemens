@@ -61,7 +61,7 @@ function MainResearch({ movieList, lastMovieElementRef, typeVideo }) {
             </div>
             <div style={{ height: "3rem" }}>
               <p id={movie.id} style={{ textAlign: "center", marginTop: "0" }}>
-                {movie.title}
+                {movie.title ?? movie.name}
               </p>
             </div>
           </Link>
@@ -118,7 +118,7 @@ function MainResearch({ movieList, lastMovieElementRef, typeVideo }) {
             </div>
             <div style={{ height: "3rem" }}>
               <p id={movie.id} style={{ textAlign: "center", marginTop: "0" }}>
-                {movie.title}
+                {movie.title ?? movie.name}
               </p>
             </div>
           </Link>
