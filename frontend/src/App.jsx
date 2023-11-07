@@ -18,6 +18,8 @@ function App() {
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
   const [genres, setGenres] = useState([]);
+  const [minYear, setMinYear] = useState("1901");
+  const [maxYear, setMaxYear] = useState("2023");
 
   const callOptions2 = {
     method: "GET",
@@ -27,6 +29,8 @@ function App() {
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
+      "primary_release_date.gte": `${minYear}-03-16`,
+      "primary_release_date.lte": `${maxYear}-03-23`,
       sort_by: "popularity.desc",
       with_genres: `${genres.join("%2C")}`,
       with_text_query: `${textFound}`,
@@ -122,6 +126,8 @@ function App() {
           <FilterBadge
             setGenres={setGenres}
             handleClickFilters={handleClickFilters}
+            setMinYear={setMinYear}
+            setMaxYear={setMaxYear}
           />
         )}
       </div>
