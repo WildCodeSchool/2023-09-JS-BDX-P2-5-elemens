@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import YearsSlider from "./YearsSlider";
 import "./filters.css";
 
-function FilterBadge({ handleClickFilters, setGenres, setPageNumber }) {
+function FilterBadge({
+  handleClickFilters,
+  setGenres,
+  setPageNumber,
+  typeVideo,
+}) {
   // ligne test
   const [showGenresButtons, setShowGenresButtons] = useState(false);
   const [showYearsSlider, setShowYearsSlider] = useState(false);
@@ -19,10 +24,10 @@ function FilterBadge({ handleClickFilters, setGenres, setPageNumber }) {
   const handleClickShowYears = () => {
     setShowYearsSlider(!showYearsSlider);
   };
-  // Appel du endpoint de l'API pour récupérer les différents genres de films
+  // Options du endpoint de l'API pour récupérer les différents genres de films
   const genreCallOptions = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/genre/movie/list",
+    url: `https://api.themoviedb.org/3/genre/${typeVideo}/list`,
     params: { language: "fr" },
     headers: {
       accept: "application/json",
@@ -44,7 +49,7 @@ function FilterBadge({ handleClickFilters, setGenres, setPageNumber }) {
         });
     };
     getGenres();
-  }, []);
+  }, [typeVideo]);
 
   // Ajouter ou supprimer des genres au filtres de recherche
   function toggleGenre(e) {
@@ -124,6 +129,7 @@ FilterBadge.propTypes = {
   handleClickFilters: PropTypes.func.isRequired,
   setGenres: PropTypes.func.isRequired,
   setPageNumber: PropTypes.func.isRequired,
+  typeVideo: PropTypes.string.isRequired,
 };
 
 export default FilterBadge;

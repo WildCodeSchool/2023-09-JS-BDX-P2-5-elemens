@@ -131,6 +131,7 @@ function App() {
             setMinYear={setMinYear}
             setMaxYear={setMaxYear}
             setPageNumber={setPageNumber}
+            typeVideo={typeVideo}
           />
         )}
       </div>
