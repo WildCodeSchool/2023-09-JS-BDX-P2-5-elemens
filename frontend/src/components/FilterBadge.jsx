@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import YearsSlider from "./YearsSlider";
 import "./filters.css";
 
-function FilterBadge({ handleClickFilters, setGenres }) {
+function FilterBadge({ handleClickFilters, setGenres, setPageNumber }) {
+  // ligne test
   const [showGenresButtons, setShowGenresButtons] = useState(false);
   const [showYearsSlider, setShowYearsSlider] = useState(false);
   // recuperer les genres de films de l'API
@@ -47,6 +48,8 @@ function FilterBadge({ handleClickFilters, setGenres }) {
 
   // Ajouter ou supprimer des genres au filtres de recherche
   function toggleGenre(e) {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // ligne en test
+    setPageNumber(1); // ligne en test
     const targetedGenre = e.target.id;
     if (movieGenreArray.includes(targetedGenre)) {
       setMovieGenresArray((type) =>
@@ -55,11 +58,10 @@ function FilterBadge({ handleClickFilters, setGenres }) {
     } else {
       setMovieGenresArray([...movieGenreArray, targetedGenre]);
     }
-
-    // setGenres(movieGenreArray); ---> to add again in props
   }
 
   useEffect(() => {
+    // console.log(movieGenreArray);
     setGenres(movieGenreArray);
   }, [movieGenreArray]); // rajouter setGenres ????
 
@@ -121,6 +123,7 @@ function FilterBadge({ handleClickFilters, setGenres }) {
 FilterBadge.propTypes = {
   handleClickFilters: PropTypes.func.isRequired,
   setGenres: PropTypes.func.isRequired,
+  setPageNumber: PropTypes.func.isRequired,
 };
 
 export default FilterBadge;
