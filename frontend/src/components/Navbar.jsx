@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { DebounceInput } from "react-debounce-input";
 
 function Navbar({ setTextFound, setPageNumber }) {
   const [letSearch, setLetSearch] = useState(false);
@@ -33,9 +34,10 @@ function Navbar({ setTextFound, setPageNumber }) {
         />
         <div className="searchArea" style={{ display: "flex" }}>
           {letSearch && (
-            <input
+            <DebounceInput
               type="text"
               style={{ backgroundColor: "white" }}
+              debounceTimeout={350}
               onChange={searchMovie}
             />
           )}

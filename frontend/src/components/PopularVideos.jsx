@@ -43,6 +43,7 @@ function PopularVideos({ typeVideo }) {
       >
         {videoArray.map((video) => (
           <div
+            key={video.id}
             className="Displaycontent"
             style={{
               display: "flex",

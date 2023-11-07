@@ -6,6 +6,7 @@
 
 button {
   border: none;
+  color: var(--Anti-flash-white);
 }
 
 /* FILTER BAR */
@@ -31,10 +32,15 @@ button {
   height: 30px;
   width: 30px;
 }
-
+/* boutons pour choisir les filtres */
 .arrow {
   height: 100px;
   width: 100px;
+  background-color: var(--Anti-flash-white);
+}
+
+.filter-arrow {
+  filter: invert(1);
 }
 
 /* FENETRE DE FILTRES */
@@ -68,6 +74,37 @@ button {
   border-radius: 10px;
   border: 1px solid var(--Anti-flash-white);
   transition: all ease 1s;
+}
+/*--------------YEAR SLIDER----------------*/
+.horizontal-slider {
+  height: 20px;
+  margin-top: 20px;
+  border: 1px black solid;
+}
+
+.example-track-0,
+.example-track-2 {
+  justify-content: center;
+  background-color: white;
+  height: 8px;
+  border-radius: 4px;
+}
+.example-track-1 {
+  justify-content: center;
+  background-color: var(--Dodger-blue);
+  height: 8px;
+  border-radius: 4px;
+}
+.example-thumb {
+  top: -4px;
+  width: 1rem;
+  height: 1rem;
+  line-height: 2.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--Anti-flash-white);
+  background-color: white;
+  border-radius: 50%;
 }
 
 .bloc-filter > button > img {

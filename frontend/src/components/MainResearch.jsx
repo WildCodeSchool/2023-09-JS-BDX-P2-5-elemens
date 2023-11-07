@@ -6,7 +6,7 @@ function MainResearch({ movieList, lastMovieElementRef }) {
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
     >
       {movieList.map((movie, index) =>
-        index === 1 ? (
+        index === movieList.length - 2 ? (
           <div
             key={movie.id}
             ref={lastMovieElementRef}

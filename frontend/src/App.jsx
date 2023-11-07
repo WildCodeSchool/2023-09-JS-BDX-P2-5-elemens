@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
 import Headroom from "react-headroom";
-import InfiniteScroll from "react-infinite-scroll-component";
+// import InfiniteScroll from "react-infinite-scroll-component";
 import FilterBar from "./components/FilterBar";
 import FilterBadge from "./components/FilterBadge";
 import "./components/filters.css";
@@ -14,36 +14,22 @@ function App() {
   const [textFound, setTextFound] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
-  const [hasMore, setHasMore] = useState(true);
-  // useRef pour observer un element de la liste créé pour passer à la page suivante
-  const observer = useRef();
+  const [genres, setGenres] = useState([]);
 
-  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént de la page actuelle
-  const lastMovieElementRef = useCallback(
-    (node) => {
-      console.warn(node);
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [hasMore]
-  );
-
-  // paramètres de requète de l'API
-  const callOptions = {
+  const callOptions2 = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/search/${typeVideo}`,
+    url: `https://api.themoviedb.org/3/discover/${typeVideo}`,
     params: {
-      query: `${textFound}`,
       include_adult: "true",
+      include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
+      sort_by: "popularity.desc",
+      with_genres: `${genres.join("%2C")}`,
+      with_text_query: `${textFound}`,
     },
     headers: {
       accept: "application/json",
@@ -55,7 +41,7 @@ function App() {
   // Fonction d'appel de l'API
   const getMovie = () => {
     axios
-      .request(callOptions)
+      .request(callOptions2)
       .then((response) => {
         setMovieList(response.data.results);
         setHasMore(response.data.results.length > 0);
@@ -64,30 +50,48 @@ function App() {
         console.error(error);
       });
   };
-
-  // Appel de l'API si modification du texte de recherche ou du type recherché (film/série)
-  useEffect(() => {
-    setPageNumber((prevPageNumber) => prevPageNumber + 1);
-    getMovie();
-  }, [textFound, typeVideo]);
-
-  // Rappel de l'API pour afficher les pages suivantes en scroll continu
-  const nextMovies = () => {
-    const fetchNextMovies = () => {
-      axios
-        .request(callOptions)
-        .then((response) => {
-          setMovieList((prevMovies) => {
-            return [...prevMovies, ...response.data.results];
-          });
-          setHasMore(response.data.results.length > 0);
-        })
-        .catch((error) => {
-          console.error(error);
+  // Fonction d'appel de l'API pour charger les pages suivantes corespondant à la recherche
+  const fetchNextMovies = () => {
+    axios
+      .request(callOptions2)
+      .then((response) => {
+        setMovieList((prevMovies) => {
+          return [...new Set([...prevMovies, ...response.data.results])];
         });
-    };
-    fetchNextMovies();
+        setHasMore(response.data.results.length > 0);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
+  // Appel de l'API en fonction des mots cherchés ou appelle l'API pour aficher les pages suivantes (scroll infini)
+  useEffect(() => {
+    if (pageNumber === 1) {
+      return getMovie();
+    }
+    return fetchNextMovies();
+  }, [pageNumber, textFound, typeVideo]);
+
+  useEffect(() => {
+    getMovie();
+  }, [pageNumber, textFound, typeVideo, genres]);
+
+  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page
+  const observer = useRef();
+  const lastMovieElementRef = useCallback(
+    (node) => {
+      // console.warn(node);
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber((prevPageNumber) => prevPageNumber + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [hasMore]
+  );
+
   // Choisir le endpoint films
   const handleClickMovies = () => {
     setTypeVideo("movie");
@@ -100,7 +104,6 @@ function App() {
   const handleClickFilters = () => {
     setFilters(!filters);
   };
-  console.warn(`LE NUMERO DE PAGE ${pageNumber}`);
 
   return (
     <div>
@@ -113,8 +116,14 @@ function App() {
           handleClickMovies={handleClickMovies}
           handleClickSeries={handleClickSeries}
           handleClickFilters={handleClickFilters}
+          typeVideo={typeVideo}
         />
-        {filters && <FilterBadge handleClickFilters={handleClickFilters} />}
+        {filters && (
+          <FilterBadge
+            setGenres={setGenres}
+            handleClickFilters={handleClickFilters}
+          />
+        )}
       </div>
 
       <div className="main-area">
@@ -125,7 +134,6 @@ function App() {
         />
         {textFound === "" && <PopularVideos typeVideo={typeVideo} />}
       </div>
-      <InfiniteScroll dataLength={movieList.length} next={nextMovies} hasMore />
     </div>
   );
 }
