@@ -3,6 +3,7 @@ import Popularseries from "./components/Popularseries";
 import ActorsPopularCards from "./components/ActorsPopularCards";
 
 import "./App.scss";
+import ActorsIndexCards from "./components/ActorsIndexCards";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Popularseries />
       <Popularmovies />
       <ActorsPopularCards />
+      <ActorsIndexCards />
     </div>
   );
 }
