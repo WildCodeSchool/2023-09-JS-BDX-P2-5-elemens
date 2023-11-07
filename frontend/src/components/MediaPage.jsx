@@ -232,7 +232,7 @@ function MediaPage() {
                 trailerPopup === true ? " active" : ""
               }`}
             >
-              <div className="trailer-popup">
+              <div className="trailer-popup t-center">
                 <iframe
                   width="100%"
                   height="auto"
