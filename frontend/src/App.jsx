@@ -74,7 +74,7 @@ function App() {
 
   useEffect(() => {
     getMovie();
-  }, [pageNumber, textFound, typeVideo, genres]);
+  }, [genres]);
 
   // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page
   const observer = useRef();
