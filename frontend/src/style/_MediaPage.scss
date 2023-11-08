@@ -108,6 +108,9 @@ iframe {
     width: 150px;
     border-radius: 8px;
   }
+  &.slider-200 img {
+    width: 200px;
+  }
 }
 
 .horizontal-list,
@@ -178,7 +181,7 @@ iframe {
   &.icon-play:before {
     content: "";
     display: inline-block;
-    background: url("assets/circle-play-regular.svg");
+    background: url("../assets/circle-play-regular.svg");
     width: 16px;
     height: 16px;
     margin-right: 7px;
@@ -243,7 +246,6 @@ iframe {
   width: 100%;
   max-width: 350px;
   height: 60px;
-  justify-content: space-between;
 
   li {
     margin: 0 8px;
@@ -460,7 +462,7 @@ iframe {
         border: none;
       }
 
-      li:last-child {
+      li:nth-child(5) {
         display: none;
       }
     }

@@ -63,6 +63,14 @@ body {
   padding: 0 12px;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
 .dflex {
   display: flex;
 }
@@ -365,6 +373,9 @@ iframe {
   width: 150px;
   border-radius: 8px;
 }
+.horizontal-list.slider-200 img {
+  width: 200px;
+}
 
 .horizontal-list::-webkit-scrollbar,
 .custom-scrollbar-container::-webkit-scrollbar {
@@ -428,7 +439,7 @@ iframe {
 .blue-button.icon-play:before {
   content: "";
   display: inline-block;
-  background: url("assets/circle-play-regular.svg");
+  background: url("../assets/circle-play-regular.svg");
   width: 16px;
   height: 16px;
   margin-right: 7px;
@@ -481,7 +492,6 @@ iframe {
   width: 100%;
   max-width: 350px;
   height: 60px;
-  justify-content: space-between;
 }
 .vpn-list li {
   margin: 0 8px;
@@ -663,7 +673,7 @@ iframe {
   .media-platforms > div:last-child {
     border: none;
   }
-  .media-platforms > div li:last-child {
+  .media-platforms > div li:nth-child(5) {
     display: none;
   }
   .media-platforms .vpn-list {
