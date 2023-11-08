@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { UseSearch } from "../contexts/SearchContext";
 
-function MainResearch({ movieList, lastMovieElementRef, typeVideo }) {
+function MainResearch({ lastMovieElementRef }) {
+  const { movieList, typeVideo } = UseSearch();
   return (
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
@@ -129,14 +131,6 @@ function MainResearch({ movieList, lastMovieElementRef, typeVideo }) {
 }
 
 MainResearch.propTypes = {
-  movieList: PropTypes.arrayOf(
-    PropTypes.shape({
-      poster_path: PropTypes.string,
-      title: PropTypes.string,
-      id: PropTypes.number,
-    })
-  ).isRequired,
   lastMovieElementRef: PropTypes.func.isRequired,
-  typeVideo: PropTypes.string.isRequired,
 };
 export default MainResearch;

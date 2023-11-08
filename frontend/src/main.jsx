@@ -5,31 +5,38 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import MediaPage from "./components/MediaPage";
+import DefaultTemplate from "./pages/templates/Default.template";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/movie/",
-    element: <MediaPage />,
-  },
-  {
-    path: "/movie/",
-    element: <MediaPage />,
-  },
-  {
-    path: "/movie/:id",
-    element: <MediaPage />,
-  },
-  {
-    path: "/tv/",
-    element: <MediaPage />,
-  },
-  {
-    path: "/tv/:id",
-    element: <MediaPage />,
+    element: <DefaultTemplate />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/movie/",
+        element: <MediaPage />,
+      },
+      {
+        path: "/movie/",
+        element: <MediaPage />,
+      },
+      {
+        path: "/movie/:id",
+        element: <MediaPage />,
+      },
+      {
+        path: "/tv/",
+        element: <MediaPage />,
+      },
+      {
+        path: "/tv/:id",
+        element: <MediaPage />,
+      },
+    ],
   },
 ]);
 
