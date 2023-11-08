@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import YearsSlider from "./YearsSlider";
-import "./filters.css";
 
 function FilterBadge({
   handleClickFilters,

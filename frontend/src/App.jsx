@@ -2,7 +2,6 @@ import { useCallback, useRef } from "react";
 // import InfiniteScroll from "react-infinite-scroll-component";
 import FilterBar from "./components/FilterBar";
 import FilterBadge from "./components/FilterBadge";
-import "./components/filters.css";
 import "./style/App.css";
 import MainResearch from "./components/MainResearch";
 import PopularVideos from "./components/PopularVideos";
