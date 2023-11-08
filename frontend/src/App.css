@@ -1,3 +1,12 @@
+#root {
+  --Raisin-black: #202124;
+  /* var(--Raisin-black); */
+  --Dodger-blue: #1a8dfd;
+  /* var(----Dodger-blue); */
+  --Anti-flash-white: #e8eaed;
+  /* var(--Anti-flash-white); */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

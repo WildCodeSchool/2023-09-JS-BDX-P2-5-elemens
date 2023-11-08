@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { DebounceInput } from "react-debounce-input";
 
-function Navbar({ setTextFound }) {
+function Navbar({ setTextFound, setPageNumber }) {
   const [letSearch, setLetSearch] = useState(false);
 
   const search = () => {
@@ -9,6 +10,8 @@ function Navbar({ setTextFound }) {
   };
 
   const searchMovie = (e) => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    setPageNumber(1);
     setTextFound(e.target.value);
   };
 
@@ -30,7 +33,14 @@ function Navbar({ setTextFound }) {
           alt="logo elemen5"
         />
         <div className="searchArea" style={{ display: "flex" }}>
-          {letSearch && <input type="text" onChange={searchMovie} />}
+          {letSearch && (
+            <DebounceInput
+              type="text"
+              style={{ backgroundColor: "white" }}
+              debounceTimeout={350}
+              onChange={searchMovie}
+            />
+          )}
           <button
             type="button"
             onClick={search}
@@ -40,6 +50,7 @@ function Navbar({ setTextFound }) {
               style={{ height: "25px" }}
               src="src\assets\pictures\icon_loupe.png"
               alt="search"
+              loading="lazy"
             />
           </button>
         </div>
@@ -50,5 +61,6 @@ function Navbar({ setTextFound }) {
 }
 Navbar.propTypes = {
   setTextFound: PropTypes.func.isRequired,
+  setPageNumber: PropTypes.func.isRequired,
 };
 export default Navbar;
