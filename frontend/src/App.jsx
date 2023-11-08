@@ -55,8 +55,6 @@ function App() {
           <FilterBadge
             setGenres={searchContext.setGenres}
             handleClickFilters={handleClickFilters}
-            setMinYear={searchContext.setMinYear}
-            setMaxYear={searchContext.setMaxYear}
             setPageNumber={searchContext.setPageNumber}
             typeVideo={searchContext.typeVideo}
           />

@@ -7,8 +7,9 @@ function YearsSlider() {
 
   const handleChange = (e) => {
     // console.log(e);
-    searchContext.setReleaseYear(e);
+    // window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // ligne en test
     searchContext.setPageNumber(1);
+    searchContext.setReleaseYear(e);
   };
 
   return (

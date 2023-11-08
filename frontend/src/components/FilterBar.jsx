@@ -43,14 +43,3 @@ FilterBar.propTypes = {
   typeVideo: PropTypes.string.isRequired,
 };
 export default FilterBar;
-
-// FilterBar.propTypes = {
-//   setMovies: PropTypes.shape({
-//     handleClickMovies: PropTypes.func.isRequired,
-//   }),
-//   isRequired,
-//   setSeries: PropTypes.shape({
-//     handleClickSeries: PropTypes.func.isRequired,
-//   }),
-//   isRequired,
-// };
