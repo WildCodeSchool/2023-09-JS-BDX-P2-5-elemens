@@ -18,6 +18,8 @@ function App() {
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
   const [genres, setGenres] = useState([]);
+  const [minYear, setMinYear] = useState("1901");
+  const [maxYear, setMaxYear] = useState("2023");
 
   const callOptions2 = {
     method: "GET",
@@ -27,6 +29,8 @@ function App() {
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
+      "primary_release_date.gte": `${minYear}-01-01`,
+      "primary_release_date.lte": `${maxYear}-01-01`,
       sort_by: "popularity.desc",
       with_genres: `${genres.join("%2C")}`,
       with_text_query: `${textFound}`,
@@ -45,6 +49,7 @@ function App() {
       .then((response) => {
         setMovieList(response.data.results);
         setHasMore(response.data.results.length > 0);
+        console.warn(callOptions2);
       })
       .catch((error) => {
         console.error(error);
@@ -59,6 +64,7 @@ function App() {
           return [...new Set([...prevMovies, ...response.data.results])];
         });
         setHasMore(response.data.results.length > 0);
+        console.warn(callOptions2);
       })
       .catch((error) => {
         console.error(error);
@@ -70,11 +76,11 @@ function App() {
       return getMovie();
     }
     return fetchNextMovies();
-  }, [pageNumber, textFound, typeVideo]);
+  }, [pageNumber, textFound, typeVideo, genres]);
 
-  useEffect(() => {
-    getMovie();
-  }, [genres]);
+  // useEffect(() => {
+  //   getMovie();
+  // }, [genres]);
 
   // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page
   const observer = useRef();
@@ -122,17 +128,23 @@ function App() {
           <FilterBadge
             setGenres={setGenres}
             handleClickFilters={handleClickFilters}
+            setMinYear={setMinYear}
+            setMaxYear={setMaxYear}
+            setPageNumber={setPageNumber}
+            typeVideo={typeVideo}
           />
         )}
       </div>
 
       <div className="main-area">
-        <MainResearch
-          movieList={movieList}
-          pageNumber={pageNumber}
-          lastMovieElementRef={lastMovieElementRef}
-          typeVideo={typeVideo}
-        />
+        {textFound !== "" && (
+          <MainResearch
+            movieList={movieList}
+            pageNumber={pageNumber}
+            lastMovieElementRef={lastMovieElementRef}
+            typeVideo={typeVideo}
+          />
+        )}
         {textFound === "" && <PopularVideos typeVideo={typeVideo} />}
       </div>
     </div>

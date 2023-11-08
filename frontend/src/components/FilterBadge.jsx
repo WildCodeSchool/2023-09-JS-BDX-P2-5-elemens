@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 import YearsSlider from "./YearsSlider";
 import "./filters.css";
 
-function FilterBadge({ handleClickFilters, setGenres }) {
+function FilterBadge({
+  handleClickFilters,
+  setGenres,
+  setPageNumber,
+  typeVideo,
+}) {
+  // ligne test
   const [showGenresButtons, setShowGenresButtons] = useState(false);
   const [showYearsSlider, setShowYearsSlider] = useState(false);
   // recuperer les genres de films de l'API
@@ -18,10 +24,10 @@ function FilterBadge({ handleClickFilters, setGenres }) {
   const handleClickShowYears = () => {
     setShowYearsSlider(!showYearsSlider);
   };
-  // Appel du endpoint de l'API pour récupérer les différents genres de films
+  // Options du endpoint de l'API pour récupérer les différents genres de films
   const genreCallOptions = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/genre/movie/list",
+    url: `https://api.themoviedb.org/3/genre/${typeVideo}/list`,
     params: { language: "fr" },
     headers: {
       accept: "application/json",
@@ -43,10 +49,12 @@ function FilterBadge({ handleClickFilters, setGenres }) {
         });
     };
     getGenres();
-  }, []);
+  }, [typeVideo]);
 
   // Ajouter ou supprimer des genres au filtres de recherche
   function toggleGenre(e) {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // ligne en test
+    setPageNumber(1); // ligne en test
     const targetedGenre = e.target.id;
     if (movieGenreArray.includes(targetedGenre)) {
       setMovieGenresArray((type) =>
@@ -55,11 +63,10 @@ function FilterBadge({ handleClickFilters, setGenres }) {
     } else {
       setMovieGenresArray([...movieGenreArray, targetedGenre]);
     }
-
-    // setGenres(movieGenreArray); ---> to add again in props
   }
 
   useEffect(() => {
+    // console.log(movieGenreArray);
     setGenres(movieGenreArray);
   }, [movieGenreArray]); // rajouter setGenres ????
 
@@ -121,6 +128,8 @@ function FilterBadge({ handleClickFilters, setGenres }) {
 FilterBadge.propTypes = {
   handleClickFilters: PropTypes.func.isRequired,
   setGenres: PropTypes.func.isRequired,
+  setPageNumber: PropTypes.func.isRequired,
+  typeVideo: PropTypes.string.isRequired,
 };
 
 export default FilterBadge;
