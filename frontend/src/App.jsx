@@ -5,7 +5,7 @@ import Headroom from "react-headroom";
 import FilterBar from "./components/FilterBar";
 import FilterBadge from "./components/FilterBadge";
 import "./components/filters.css";
-import "./App.css";
+import "./style/App.css";
 import Navbar from "./components/Navbar";
 import MainResearch from "./components/MainResearch";
 import PopularVideos from "./components/PopularVideos";
