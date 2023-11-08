@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { DebounceInput } from "react-debounce-input";
+import { UseSearch } from "../contexts/SearchContext";
 
-function Navbar({ setTextFound, setPageNumber }) {
+function Navbar() {
   const [letSearch, setLetSearch] = useState(false);
+  const { setTextFound, setPageNumber } = UseSearch();
 
   const search = () => {
     setLetSearch(!letSearch);
@@ -59,8 +60,4 @@ function Navbar({ setTextFound, setPageNumber }) {
     </>
   );
 }
-Navbar.propTypes = {
-  setTextFound: PropTypes.func.isRequired,
-  setPageNumber: PropTypes.func.isRequired,
-};
 export default Navbar;
