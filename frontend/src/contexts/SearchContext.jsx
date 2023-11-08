@@ -10,6 +10,7 @@ export function SearchContextProvider({ children }) {
   const [movieList, setMovieList] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [genres, setGenres] = useState([]);
+  const [releaseYear, setReleaseYear] = useState(["1969", "1985"]);
   const [minYear, setMinYear] = useState("1901");
   const [maxYear, setMaxYear] = useState("2023");
   const [filters, setFilters] = useState(false);
@@ -27,10 +28,8 @@ export function SearchContextProvider({ children }) {
       setHasMore,
       genres,
       setGenres,
-      minYear,
-      setMinYear,
-      maxYear,
-      setMaxYear,
+      releaseYear,
+      setReleaseYear,
       filters,
       setFilters,
       typeVideo,
@@ -66,8 +65,8 @@ export function SearchContextProvider({ children }) {
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
-      "primary_release_date.gte": `${minYear}-01-01`,
-      "primary_release_date.lte": `${maxYear}-01-01`,
+      "primary_release_date.gte": `${releaseYear[0]}-01-01`,
+      "primary_release_date.lte": `${releaseYear[1]}-01-01`,
       sort_by: "popularity.desc",
       with_genres: `${genres.join("%2C")}`,
       with_text_query: `${textFound}`,
@@ -90,8 +89,8 @@ export function SearchContextProvider({ children }) {
           include_video: "false",
           language: "fr",
           page: `${pageNumber}`,
-          "primary_release_date.gte": `${minYear}-01-01`,
-          "primary_release_date.lte": `${maxYear}-01-01`,
+          "primary_release_date.gte": `${releaseYear[0]}-01-01`,
+          "primary_release_date.lte": `${releaseYear[1]}-01-01`,
           sort_by: "popularity.desc",
           with_genres: `${genres.join("%2C")}`,
           with_text_query: `${textFound}`,
@@ -122,8 +121,8 @@ export function SearchContextProvider({ children }) {
           include_video: "false",
           language: "fr",
           page: `${pageNumber}`,
-          "primary_release_date.gte": `${minYear}-01-01`,
-          "primary_release_date.lte": `${maxYear}-01-01`,
+          "primary_release_date.gte": `${releaseYear[0]}-01-01`,
+          "primary_release_date.lte": `${releaseYear[1]}-01-01`,
           sort_by: "popularity.desc",
           with_genres: `${genres.join("%2C")}`,
           with_text_query: `${textFound}`,
@@ -152,7 +151,7 @@ export function SearchContextProvider({ children }) {
       return getMovie();
     }
     return fetchNextMovies();
-  }, [pageNumber, textFound, typeVideo, genres]);
+  }, [pageNumber, textFound, typeVideo, genres, releaseYear]);
 
   return (
     <SearchContext.Provider value={contextValues}>
