@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 import { UseSearch } from "../contexts/SearchContext";
 
@@ -17,22 +18,15 @@ function Navbar() {
   };
 
   return (
-    <>
-      <div
-        className="navbar"
-        style={{
-          height: "10%",
-          backgroundColor: "#202124",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{ width: "50px" }}
-          src="src/assets/pictures/logo_elemen5.png"
-          alt="logo elemen5"
-        />
+    <header id="header">
+      <div className="container">
+        <Link to="/">
+          <img
+            className="header-logo"
+            src="src/assets/elemen5-paysage.png"
+            alt="logo elemen5"
+          />
+        </Link>
         <div className="searchArea" style={{ display: "flex" }}>
           {letSearch && (
             <DebounceInput
@@ -56,8 +50,7 @@ function Navbar() {
           </button>
         </div>
       </div>
-      <div style={{ height: "45px", backgroundColor: "lightgray" }} />
-    </>
+    </header>
   );
 }
 export default Navbar;

@@ -2,14 +2,32 @@
 .filter-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 50px;
-  margin-inline: 20px;
+  padding: 0 20px;
 }
 
-.filter-bar > div > button {
-  font-size: 18px;
-  color: $white-color;
-  margin-right: 30px;
+.filter-bar {
+  .filter-button {
+    padding: 15px;
+    border: 2px solid $blue-color;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $blue-color;
+    }
+    &,
+    &:hover {
+      transition: all 0.3s;
+    }
+
+    img {
+      height: auto;
+      width: 30px;
+      vertical-align: middle;
+    }
+  }
 }
 
 .filter-bar > div > button > .categorie-selected {
@@ -17,16 +35,10 @@
   text-decoration: underline;
 }
 
-.filter-bar > div > button > img {
-  height: 30px;
-  width: 30px;
-}
-
 // boutons pour choisir les filtres
 .arrow {
   height: 100px;
   width: 100px;
-  background-color: $white-color;
 }
 
 .filter-arrow {

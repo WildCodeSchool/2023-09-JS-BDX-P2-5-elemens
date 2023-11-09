@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { UseSearch } from "../contexts/SearchContext";
 
 function Slider({ category }) {
@@ -43,18 +44,20 @@ function Slider({ category }) {
   return (
     <>
       <h2 className="blue-title mb-30">{titles[category]}</h2>
-      <ul className="horizontal-list slider-200 mb-50">
+      <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
         {videoArray.map((video) => (
           <li key={video.id} className="t-center">
-            <figure className="mb-20">
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${video.poster_path}`}
-                alt={typeVideo === "movie" ? video.title : video.name}
-              />
-              <figcaption>
-                {typeVideo === "movie" ? video.title : video.name}
-              </figcaption>
-            </figure>
+            <Link to={`/${typeVideo}/${video.id}`} key={video.id}>
+              <figure className="mb-20">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${video.poster_path}`}
+                  alt={typeVideo === "movie" ? video.title : video.name}
+                />
+                <figcaption>
+                  {typeVideo === "movie" ? video.title : video.name}
+                </figcaption>
+              </figure>
+            </Link>
           </li>
         ))}
       </ul>

@@ -4,26 +4,23 @@ function FilterBar({
   handleClickMovies,
   handleClickSeries,
   handleClickFilters,
-  typeVideo,
 }) {
   return (
     <div className="filter-bar">
-      <div>
+      <div className="switch-button big-switch-button">
         <button onClick={(event) => handleClickMovies(event)} type="submit">
-          <p
-            className={typeVideo === "movie" ? "categorie-selected" : "button"}
-          >
-            Films
-          </p>
+          Films
         </button>
         <button onClick={(event) => handleClickSeries(event)} type="submit">
-          <p className={typeVideo === "tv" ? "categorie-selected" : "button"}>
-            Séries
-          </p>
+          Séries
         </button>
       </div>
       <div>
-        <button onClick={(event) => handleClickFilters(event)} type="submit">
+        <button
+          onClick={(event) => handleClickFilters(event)}
+          type="submit"
+          className="filter-button"
+        >
           <img
             src="./src/assets/img/filter.png"
             alt="Bouton de Filtres."
@@ -39,7 +36,6 @@ FilterBar.propTypes = {
   handleClickMovies: PropTypes.func.isRequired,
   handleClickSeries: PropTypes.func.isRequired,
   handleClickFilters: PropTypes.func.isRequired,
-  typeVideo: PropTypes.string.isRequired,
 };
 export default FilterBar;
 

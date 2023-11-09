@@ -42,8 +42,8 @@ function App() {
   };
 
   return (
-    <div>
-      <div className="App">
+    <>
+      <div className="container mb-40">
         <FilterBar
           handleClickMovies={handleClickMovies}
           handleClickSeries={handleClickSeries}
@@ -70,7 +70,7 @@ function App() {
           <PopularVideos typeVideo={searchContext.typeVideo} />
         )}
       </div>
-    </div>
+    </>
   );
 }
 

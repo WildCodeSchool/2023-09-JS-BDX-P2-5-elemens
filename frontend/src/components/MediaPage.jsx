@@ -248,7 +248,7 @@ function MediaPage() {
                   className="close-popup"
                   onClick={toggleTrailerPopup}
                 >
-                  Test
+                  Close
                 </button>
               </div>
             </div>

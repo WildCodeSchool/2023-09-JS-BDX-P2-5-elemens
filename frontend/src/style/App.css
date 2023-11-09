@@ -16,6 +16,10 @@ button {
   color: white;
 }
 
+.headroom-wrapper {
+  height: auto !important;
+}
+
 html {
   overflow-x: hidden;
 }
@@ -71,6 +75,17 @@ h2 {
   font-size: 1.25rem;
 }
 
+a {
+  color: inherit;
+}
+a:hover {
+  color: #1a8dfd;
+}
+a,
+a:hover {
+  transition: 0.3s;
+}
+
 .dflex {
   display: flex;
 }
@@ -124,18 +139,47 @@ h2 {
   margin-bottom: 60px;
 }
 
+header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid white;
+  background-color: #202124;
+}
+header .container {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+header .header-logo {
+  width: 130px;
+}
+
 /* FILTERS */
 .filter-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 50px;
-  margin-inline: 20px;
+  padding: 0 20px;
 }
 
-.filter-bar > div > button {
-  font-size: 18px;
-  color: #e8eaed;
-  margin-right: 30px;
+.filter-bar .filter-button {
+  padding: 15px;
+  border: 2px solid #1a8dfd;
+  border-radius: 50%;
+}
+.filter-bar .filter-button:hover {
+  cursor: pointer;
+  background-color: #1a8dfd;
+}
+.filter-bar .filter-button,
+.filter-bar .filter-button:hover {
+  transition: all 0.3s;
+}
+.filter-bar .filter-button img {
+  height: auto;
+  width: 30px;
+  vertical-align: middle;
 }
 
 .filter-bar > div > button > .categorie-selected {
@@ -143,15 +187,9 @@ h2 {
   text-decoration: underline;
 }
 
-.filter-bar > div > button > img {
-  height: 30px;
-  width: 30px;
-}
-
 .arrow {
   height: 100px;
   width: 100px;
-  background-color: #e8eaed;
 }
 
 .filter-arrow {
@@ -373,14 +411,32 @@ iframe {
   width: 150px;
   border-radius: 8px;
 }
+.horizontal-list.slider-200 {
+  gap: 25px;
+}
 .horizontal-list.slider-200 img {
   width: 200px;
+  height: 300px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.horizontal-list li:hover a img {
+  transform: scale(1.03);
+}
+.horizontal-list li img,
+.horizontal-list li img:hover {
+  transition: all 0.3s ease-in-out;
 }
 
 .horizontal-list::-webkit-scrollbar,
 .custom-scrollbar-container::-webkit-scrollbar {
   width: 6px;
   height: 6px;
+}
+.horizontal-list.tiny-scrollbar::-webkit-scrollbar,
+.custom-scrollbar-container.tiny-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
 }
 .horizontal-list::-webkit-scrollbar-thumb,
 .custom-scrollbar-container::-webkit-scrollbar-thumb {
@@ -424,6 +480,13 @@ iframe {
 .switch-button button,
 .switch-button button.active {
   transition: all 0.3s;
+}
+.switch-button.big-switch-button {
+  margin-bottom: 0;
+}
+.switch-button.big-switch-button button {
+  width: 80px;
+  font-size: 1rem;
 }
 
 .blue-button {

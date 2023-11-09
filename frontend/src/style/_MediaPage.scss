@@ -108,8 +108,28 @@ iframe {
     width: 150px;
     border-radius: 8px;
   }
-  &.slider-200 img {
-    width: 200px;
+  &.slider-200 {
+    gap: 25px;
+
+    img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
+  li {
+    &:hover {
+      a img {
+        transform: scale(1.03);
+      }
+    }
+    img {
+      &,
+      &:hover {
+        transition: all 0.3s ease-in-out;
+      }
+    }
   }
 }
 
@@ -118,6 +138,10 @@ iframe {
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+  }
+  &.tiny-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: #2021247f;
@@ -163,6 +187,15 @@ iframe {
     &,
     &.active {
       transition: all 0.3s;
+    }
+  }
+
+  &.big-switch-button {
+    margin-bottom: 0;
+
+    button {
+      width: 80px;
+      font-size: 1rem;
     }
   }
 }
