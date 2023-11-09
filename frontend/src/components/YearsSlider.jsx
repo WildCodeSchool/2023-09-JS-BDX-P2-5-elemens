@@ -1,24 +1,19 @@
 // import React, { useState } from "react";
 import ReactSlider from "react-slider";
+import { UseSearch } from "../contexts/SearchContext";
 
 function YearsSlider() {
-  // const [selectedYear, setSelectedYear] = useState(2000); // Année par défaut
+  const searchContext = UseSearch();
 
-  // const handleYearChange = (event) => {
-  //   setSelectedYear(event.target.value);
-  // };
+  const handleChange = (e) => {
+    // console.log(e);
+    // window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // ligne en test
+    searchContext.setPageNumber(1);
+    searchContext.setReleaseYear(e);
+  };
 
   return (
     <div className="slider">
-      {/* <input
-        type="range"
-        min="1901"
-        max="2023"
-        step="1"
-        value={selectedYear}
-        onChange={handleYearChange}
-      />
-      <label>{selectedYear}</label> */}
       <ReactSlider
         className="horizontal-slider"
         thumbClassName="example-thumb"
@@ -29,9 +24,7 @@ function YearsSlider() {
         ariaLabel={["Lower thumb", "Upper thumb"]}
         ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
         // renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-        onChange={(value, index) =>
-          console.warn(`onChange: ${JSON.stringify({ value, index })}`)
-        }
+        onChange={handleChange}
         pearling
         minDistance={10}
       />
