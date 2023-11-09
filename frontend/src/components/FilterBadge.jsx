@@ -70,8 +70,12 @@ function FilterBadge({
 
   return (
     <div className="filters-window">
-      <button onClick={(event) => handleClickFilters(event)} type="submit">
-        <div className="close-btn">--</div>
+      <button
+        className="close-popup"
+        onClick={(event) => handleClickFilters(event)}
+        type="submit"
+      >
+        Close
       </button>
       <div className="genres">
         <div className="bloc-filter">

@@ -43,24 +43,22 @@ function App() {
 
   return (
     <>
-      <div className="container mb-40">
+      <div className="container">
         <FilterBar
           handleClickMovies={handleClickMovies}
           handleClickSeries={handleClickSeries}
           handleClickFilters={handleClickFilters}
           typeVideo={searchContext.typeVideo}
         />
-        {searchContext.filters && (
-          <FilterBadge
-            setGenres={searchContext.setGenres}
-            handleClickFilters={handleClickFilters}
-            setPageNumber={searchContext.setPageNumber}
-            typeVideo={searchContext.typeVideo}
-          />
-        )}
       </div>
 
-      <div className="main-area">
+      <div className="main-area pos-r">
+        <FilterBadge
+          setGenres={searchContext.setGenres}
+          handleClickFilters={handleClickFilters}
+          setPageNumber={searchContext.setPageNumber}
+          typeVideo={searchContext.typeVideo}
+        />
         {searchContext.textFound !== "" && (
           <MainResearch lastMovieElementRef={lastMovieElementRef} />
         )}

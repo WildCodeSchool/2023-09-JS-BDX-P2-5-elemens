@@ -47,12 +47,30 @@
 
 // FENETRE DE FILTRES
 .filters-window {
-  flex-direction: row;
-  margin-top: 30px;
-  padding: 20px;
-  border-top: 3px solid $white-color;
-  border-radius: 30px;
+  padding: 12px;
+  border: 1px solid $white-color;
+  border-radius: 10px;
   transition: all ease 1s;
+
+  position: absolute;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  background-color: $black-color;
+  top: 0;
+  left: 0;
+  z-index: +1;
+
+  transform: translateY(100vh);
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  &,
+  &.active {
+    transition: all 0.3s ease-in-out;
+  }
 }
 
 .filters-window > button > .close-btn {
