@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Streaming from "./Streaming";
 import "../style/App.css";
+import Reviews from "./Reviews";
 
 // options de l'appel à l'API
 const options = {
@@ -37,6 +38,14 @@ function MediaPage() {
   // on crée le state mediaData qui contiendra la réponse de l'api
   const [mediaData, setmediaData] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
+
+  // États permettant de manipuler le composant (Reviews.jsx).
+  const [feedback, setFeedback] = useState(false);
+
+  // Handle qui affiche le composant (Reviews.jsx).
+  const handleFeedbacks = () => {
+    setFeedback(!feedback);
+  };
 
   // on récupère l'id depuis l'url (si pas d'id on en génère une aléatoirement)
   let { id } = useParams();
@@ -253,6 +262,10 @@ function MediaPage() {
               </div>
             </div>
           )}
+          <button type="button" onClick={handleFeedbacks}>
+            Feedbacks.
+          </button>
+          {feedback && <Reviews id={mediaInfo.id} />}
         </div>
       )}
     </div>
