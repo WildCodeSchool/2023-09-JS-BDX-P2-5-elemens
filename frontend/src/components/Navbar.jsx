@@ -54,12 +54,7 @@ function Navbar() {
         </div>
       </header>
       <div className="container">
-        <FilterBar
-        // handleClickMovies={handleClickMovies}
-        // handleClickSeries={handleClickSeries}
-        // handleClickFilters={handleClickFilters}
-        // typeVideo={searchContext.typeVideo}
-        />
+        <FilterBar />
       </div>
     </>
   );

@@ -1,13 +1,8 @@
-// import PropTypes from "prop-types";
 import { UseSearch } from "../contexts/SearchContext";
 
 function FilterBar() {
-  // {
-  // handleClickMovies,
-  // handleClickSeries,
-  // handleClickFilters,
-  // }
   const searchContext = UseSearch();
+
   return (
     <div className="filter-bar">
       <div className="switch-button big-switch-button">
@@ -29,8 +24,8 @@ function FilterBar() {
       <div>
         <button
           onClick={(event) => searchContext.handleClickFilters(event)}
-          type="submit"
-          className="filter-button"
+          type="button"
+          className={`filter-button ${searchContext.filters && "active"}`}
         >
           <img
             src="./src/assets/img/filter.png"
@@ -43,9 +38,4 @@ function FilterBar() {
   );
 }
 
-FilterBar.propTypes = {
-  // handleClickMovies: PropTypes.func.isRequired,
-  // handleClickSeries: PropTypes.func.isRequired,
-  // handleClickFilters: PropTypes.func.isRequired,
-};
 export default FilterBar;

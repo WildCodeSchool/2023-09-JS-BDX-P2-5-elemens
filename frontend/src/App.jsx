@@ -26,21 +26,6 @@ function App() {
     [searchContext.hasMore]
   );
 
-  // Choisir le endpoint films
-  // const handleClickMovies = () => {
-  //   searchContext.setPageNumber(1);
-  //   searchContext.setTypeVideo("movie");
-  // };
-  // Choisir le endpoint series
-  // const handleClickSeries = () => {
-  //   searchContext.setPageNumber(1);
-  //   searchContext.setTypeVideo("tv");
-  // };
-  // Afficher ou faire disparaitre la section filtres
-  // const handleClickFilters = () => {
-  //   searchContext.setFilters(!searchContext.filters);
-  // };
-
   return (
     <div className="main-area pos-r">
       <FilterBadge

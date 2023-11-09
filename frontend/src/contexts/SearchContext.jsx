@@ -16,16 +16,19 @@ export function SearchContextProvider({ children }) {
 
   // Choisir le endpoint films
   const handleClickMovies = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setPageNumber(1);
     setTypeVideo("movie");
   };
   // Choisir le endpoint series
   const handleClickSeries = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setPageNumber(1);
     setTypeVideo("tv");
   };
   // Afficher ou faire disparaitre la section filtres
   const handleClickFilters = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setFilters(!filters);
   };
 
@@ -68,29 +71,11 @@ export function SearchContextProvider({ children }) {
       setFilters,
       typeVideo,
       setTypeVideo,
+      handleClickMovies,
+      handleClickSeries,
+      handleClickFilters,
     ]
   );
-
-  //   const callOptions2 = {
-  //     method: "GET",
-  //     url: `https://api.themoviedb.org/3/discover/${typeVideo}`,
-  //     params: {
-  //       include_adult: "true",
-  //       include_video: "false",
-  //       language: "fr",
-  //       page: `${pageNumber}`,
-  //       "primary_release_date.gte": `${releaseYear[0]}-01-01`,
-  //       "primary_release_date.lte": `${releaseYear[1]}-01-01`,
-  //       sort_by: "popularity.desc",
-  //       with_genres: `${genres.join("%2C")}`,
-  //       with_text_query: `${textFound}`,
-  //     },
-  //     headers: {
-  //       accept: "application/json",
-  //       Authorization:
-  //         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OWYxODU2NjkzOTk1ZDFiYmJmNmQwMjkxNWJmZjBjZCIsInN1YiI6IjY1MzBlNjFmN2ViNWYyMDBlNDk2MThlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tdpPC4AbWdIsbgC9lsaDjX5lpSodgskXu-f7M31TIrk",
-  //     },
-  //   };
 
   // Fonction d'appel de l'API
   const getMovie = () => {
@@ -176,5 +161,4 @@ export function SearchContextProvider({ children }) {
     </SearchContext.Provider>
   );
 }
-
 export const UseSearch = () => useContext(SearchContext);
