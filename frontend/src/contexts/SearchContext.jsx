@@ -14,6 +14,21 @@ export function SearchContextProvider({ children }) {
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
 
+  // Choisir le endpoint films
+  const handleClickMovies = () => {
+    setPageNumber(1);
+    setTypeVideo("movie");
+  };
+  // Choisir le endpoint series
+  const handleClickSeries = () => {
+    setPageNumber(1);
+    setTypeVideo("tv");
+  };
+  // Afficher ou faire disparaitre la section filtres
+  const handleClickFilters = () => {
+    setFilters(!filters);
+  };
+
   const contextValues = useMemo(
     () => ({
       textFound,
@@ -32,6 +47,9 @@ export function SearchContextProvider({ children }) {
       setFilters,
       typeVideo,
       setTypeVideo,
+      handleClickMovies,
+      handleClickSeries,
+      handleClickFilters,
     }),
     [
       textFound,

@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import YearsSlider from "./YearsSlider";
+import { UseSearch } from "../contexts/SearchContext";
 
 function FilterBadge({
-  handleClickFilters,
+  // handleClickFilters,
   setGenres,
   setPageNumber,
   typeVideo,
@@ -23,6 +24,9 @@ function FilterBadge({
   const handleClickShowYears = () => {
     setShowYearsSlider(!showYearsSlider);
   };
+
+  const searchContext = UseSearch();
+
   // Options du endpoint de l'API pour récupérer les différents genres de films
   const genreCallOptions = {
     method: "GET",
@@ -72,7 +76,7 @@ function FilterBadge({
     <div className="filters-window">
       <button
         className="close-popup"
-        onClick={(event) => handleClickFilters(event)}
+        onClick={(event) => searchContext.handleClickFilters(event)}
         type="submit"
       >
         Close
@@ -128,7 +132,7 @@ function FilterBadge({
 }
 
 FilterBadge.propTypes = {
-  handleClickFilters: PropTypes.func.isRequired,
+  // handleClickFilters: PropTypes.func.isRequired,
   setGenres: PropTypes.func.isRequired,
   setPageNumber: PropTypes.func.isRequired,
   typeVideo: PropTypes.string.isRequired,
