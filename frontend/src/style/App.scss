@@ -154,6 +154,30 @@ header {
   }
 }
 
+///// Common Style /////
+
+// Infinite-list
+
+.infinite-list {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+  li {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  img {
+    height: 300px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
 ////////////////////// PAGES IMPORTS ///////////////////////////
 
 /* FILTERS */
