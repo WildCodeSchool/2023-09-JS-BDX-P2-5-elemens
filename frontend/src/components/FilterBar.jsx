@@ -1,30 +1,32 @@
-import PropTypes from "prop-types";
-import "./filters.css";
+import { UseSearch } from "../contexts/SearchContext";
 
-function FilterBar({
-  handleClickMovies,
-  handleClickSeries,
-  handleClickFilters,
-  typeVideo,
-}) {
+function FilterBar() {
+  const searchContext = UseSearch();
+
   return (
     <div className="filter-bar">
-      <div>
-        <button onClick={(event) => handleClickMovies(event)} type="submit">
-          <p
-            className={typeVideo === "movie" ? "categorie-selected" : "button"}
-          >
-            Films
-          </p>
+      <div className="switch-button big-switch-button">
+        <button
+          onClick={(event) => searchContext.handleClickMovies(event)}
+          className={`${searchContext.typeVideo === "movie" && "active"}`}
+          type="button"
+        >
+          Films
         </button>
-        <button onClick={(event) => handleClickSeries(event)} type="submit">
-          <p className={typeVideo === "tv" ? "categorie-selected" : "button"}>
-            Séries
-          </p>
+        <button
+          onClick={(event) => searchContext.handleClickSeries(event)}
+          className={`${searchContext.typeVideo === "tv" && "active"}`}
+          type="button"
+        >
+          Séries
         </button>
       </div>
       <div>
-        <button onClick={(event) => handleClickFilters(event)} type="submit">
+        <button
+          onClick={(event) => searchContext.handleClickFilters(event)}
+          type="button"
+          className={`filter-button ${searchContext.filters && "active"}`}
+        >
           <img
             src="./src/assets/img/filter.png"
             alt="Bouton de Filtres."
@@ -36,21 +38,4 @@ function FilterBar({
   );
 }
 
-FilterBar.propTypes = {
-  handleClickMovies: PropTypes.func.isRequired,
-  handleClickSeries: PropTypes.func.isRequired,
-  handleClickFilters: PropTypes.func.isRequired,
-  typeVideo: PropTypes.string.isRequired,
-};
 export default FilterBar;
-
-// FilterBar.propTypes = {
-//   setMovies: PropTypes.shape({
-//     handleClickMovies: PropTypes.func.isRequired,
-//   }),
-//   isRequired,
-//   setSeries: PropTypes.shape({
-//     handleClickSeries: PropTypes.func.isRequired,
-//   }),
-//   isRequired,
-// };

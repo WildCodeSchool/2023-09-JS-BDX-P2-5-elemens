@@ -1,133 +1,3 @@
-// rooting
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-* {
-  font-family: "Twemoji Country Flags", "Poppins", sans-serif;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-}
-
-html {
-  overflow-x: hidden;
-}
-.no-scroll {
-  overflow: hidden !important;
-}
-
-// variables
-$black-color: #202124;
-$blue-color: #1a8dfd;
-$white-color: #e8eaed;
-
-//general/fonts
-body {
-  background-color: $black-color;
-  color: white;
-  overflow-x: hidden;
-  min-width: 380px;
-}
-
-img {
-  width: 100%;
-}
-h1,
-h2,
-h3 {
-  font-weight: 400;
-}
-h1 {
-  font-size: 1.5rem;
-}
-h2 {
-  font-size: 1.35rem;
-}
-h3 {
-  font-size: 1.225rem;
-}
-
-.blue-title {
-  position: relative;
-  padding-bottom: 8px;
-  display: block;
-  width: fit-content;
-
-  &:after {
-    content: "";
-    display: block;
-    width: 75%;
-    border-bottom: 5px solid $blue-color;
-
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-}
-
-.container-max,
-.container {
-  margin: 0 auto;
-  width: 100%;
-}
-.container-max {
-  max-width: 2500px;
-}
-.container {
-  max-width: 1280px;
-  padding: 0 12px;
-}
-
-// aligns & placements
-
-.dflex {
-  display: flex;
-}
-.dflex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.t-center {
-  text-align: center;
-}
-.t-nowrap {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 16px;
-}
-.t-underline {
-  text-decoration: underline;
-}
-.pos-r {
-  position: relative;
-}
-
-// margins
-
-.mb-10 {
-  margin-bottom: 10px;
-}
-.mb-20 {
-  margin-bottom: 20px;
-}
-.mb-30 {
-  margin-bottom: 30px;
-}
-.mb-40 {
-  margin-bottom: 40px;
-}
-.mb-50 {
-  margin-bottom: 50px;
-}
-.mb-60 {
-  margin-bottom: 60px;
-}
-
 // Pages
 // Media Details
 .backdrop {
@@ -238,6 +108,29 @@ iframe {
     width: 150px;
     border-radius: 8px;
   }
+  &.slider-200 {
+    gap: 25px;
+
+    img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
+  li {
+    &:hover {
+      a img {
+        transform: scale(1.03);
+      }
+    }
+    img {
+      &,
+      &:hover {
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
 }
 
 .horizontal-list,
@@ -245,6 +138,10 @@ iframe {
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+  }
+  &.tiny-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: #2021247f;
@@ -292,6 +189,15 @@ iframe {
       transition: all 0.3s;
     }
   }
+
+  &.big-switch-button {
+    margin-bottom: 0;
+
+    button {
+      width: 80px;
+      font-size: 1rem;
+    }
+  }
 }
 
 // blue-button
@@ -308,7 +214,7 @@ iframe {
   &.icon-play:before {
     content: "";
     display: inline-block;
-    background: url("assets/circle-play-regular.svg");
+    background: url("../assets/circle-play-regular.svg");
     width: 16px;
     height: 16px;
     margin-right: 7px;
@@ -373,7 +279,6 @@ iframe {
   width: 100%;
   max-width: 350px;
   height: 60px;
-  justify-content: space-between;
 
   li {
     margin: 0 8px;
@@ -421,48 +326,54 @@ iframe {
     z-index: 10;
     transition: opacity 0.3s;
   }
-  // close button
+}
 
-  .close-popup {
+// close button
+
+.close-popup {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  font-size: 0;
+  cursor: pointer;
+  position: absolute;
+  top: -30px;
+  right: 12px;
+
+  &:before,
+  &:after {
+    content: "";
     display: block;
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    font-size: 0;
-    cursor: pointer;
+    width: 100%;
+    height: 5px;
+    background-color: white;
     position: absolute;
-    top: -30px;
-    right: 12px;
-
+  }
+  &:before {
+    transform: rotate(45deg);
+    top: calc(50% - 2px);
+  }
+  &:after {
+    transform: rotate(-45deg);
+    top: calc(50% - 2px);
+  }
+  &:hover {
     &:before,
     &:after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 5px;
-      background-color: white;
-      position: absolute;
+      background-color: $blue-color;
     }
-    &:before {
-      transform: rotate(45deg);
-      top: calc(50% - 2px);
-    }
-    &:after {
-      transform: rotate(-45deg);
-      top: calc(50% - 2px);
-    }
-    &:hover {
-      &:before,
-      &:after {
-        background-color: $blue-color;
-      }
-    }
-    &,
-    &:after,
-    &:before {
-      transition: all 0.3s;
-    }
+  }
+  &,
+  &:after,
+  &:before {
+    transition: all 0.3s;
+  }
+
+  .filters-window & {
+    top: 6px;
+    right: 12px;
   }
 }
 
@@ -590,7 +501,7 @@ iframe {
         border: none;
       }
 
-      li:last-child {
+      li:nth-child(5) {
         display: none;
       }
     }

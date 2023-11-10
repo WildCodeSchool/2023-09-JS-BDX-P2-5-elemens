@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
+import { UseSearch } from "../contexts/SearchContext";
+import FilterBar from "./FilterBar";
 
-function Navbar({ setTextFound, setPageNumber }) {
+function Navbar() {
   const [letSearch, setLetSearch] = useState(false);
+  const { setTextFound, setPageNumber } = UseSearch();
 
   const search = () => {
     setLetSearch(!letSearch);
@@ -17,50 +20,43 @@ function Navbar({ setTextFound, setPageNumber }) {
 
   return (
     <>
-      <div
-        className="navbar"
-        style={{
-          height: "10%",
-          backgroundColor: "#202124",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{ width: "50px" }}
-          src="src/assets/pictures/logo_elemen5.png"
-          alt="logo elemen5"
-        />
-        <div className="searchArea" style={{ display: "flex" }}>
-          {letSearch && (
-            <DebounceInput
-              type="text"
-              style={{ backgroundColor: "white" }}
-              debounceTimeout={350}
-              onChange={searchMovie}
-            />
-          )}
-          <button
-            type="button"
-            onClick={search}
-            style={{ backgroundColor: "#202124", border: "none" }}
-          >
+      <header id="header">
+        <div className="container">
+          <Link to="/">
             <img
-              style={{ height: "25px" }}
-              src="src\assets\pictures\icon_loupe.png"
-              alt="search"
-              loading="lazy"
+              className="header-logo"
+              src="src/assets/elemen5-paysage.png"
+              alt="logo elemen5"
             />
-          </button>
+          </Link>
+          <div className="searchArea" style={{ display: "flex" }}>
+            {letSearch && (
+              <DebounceInput
+                type="text"
+                style={{ backgroundColor: "white" }}
+                debounceTimeout={350}
+                onChange={searchMovie}
+              />
+            )}
+            <button
+              type="button"
+              onClick={search}
+              style={{ backgroundColor: "#202124", border: "none" }}
+            >
+              <img
+                style={{ height: "25px" }}
+                src="src\assets\pictures\icon_loupe.png"
+                alt="search"
+                loading="lazy"
+              />
+            </button>
+          </div>
         </div>
+      </header>
+      <div className="container">
+        <FilterBar />
       </div>
-      <div style={{ height: "45px", backgroundColor: "lightgray" }} />
     </>
   );
 }
-Navbar.propTypes = {
-  setTextFound: PropTypes.func.isRequired,
-  setPageNumber: PropTypes.func.isRequired,
-};
 export default Navbar;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import Streaming from "./Streaming";
-import "../style/MediaPage.css";
+import "../style/App.css";
 
 // options de l'appel à l'API
 const options = {
@@ -235,7 +235,7 @@ function MediaPage() {
                 trailerPopup === true ? " active" : ""
               }`}
             >
-              <div className="trailer-popup">
+              <div className="trailer-popup t-center">
                 <iframe
                   width="100%"
                   height="auto"
@@ -250,7 +250,7 @@ function MediaPage() {
                   className="close-popup"
                   onClick={toggleTrailerPopup}
                 >
-                  Test
+                  Close
                 </button>
               </div>
             </div>
