@@ -4,6 +4,7 @@ import { useCallback, useRef } from "react";
 import FilterBadge from "./components/FilterBadge";
 import "./style/App.css";
 import MainResearch from "./components/MainResearch";
+
 import PopularVideos from "./components/PopularVideos";
 import { UseSearch } from "./contexts/SearchContext";
 

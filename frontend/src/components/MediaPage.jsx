@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import Streaming from "./Streaming";
 import "../style/App.css";
 
@@ -216,13 +216,15 @@ function MediaPage() {
             <ul className="horizontal-list mb-40">
               {mediaInfo.actors.slice(0, 10).map((person) => (
                 <li className="t-center" key={person.id}>
-                  <figure className="mb-20">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                      alt={person.name}
-                    />
-                    <figcaption>{person.name}</figcaption>
-                  </figure>
+                  <Link to={`/person/${person.id}`}>
+                    <figure className="mb-20">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                        alt={person.name}
+                      />
+                      <figcaption>{person.name}</figcaption>
+                    </figure>
+                  </Link>
                 </li>
               ))}
             </ul>
