@@ -150,6 +150,10 @@ header .header-logo {
   width: 130px;
 }
 
+.headroom-wrapper {
+  height: auto !important;
+}
+
 /* FILTERS */
 .filter-bar {
   display: flex;
