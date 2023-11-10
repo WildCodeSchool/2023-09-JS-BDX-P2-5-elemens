@@ -3,6 +3,8 @@ import { useParams, useLocation } from "react-router-dom";
 import Streaming from "./Streaming";
 import "../style/App.css";
 import Reviews from "./Reviews";
+import Rating from "./Rating";
+import RatingContextProvider from "../contexts/RatingContext";
 
 // options de l'appel à l'API
 const options = {
@@ -266,6 +268,9 @@ function MediaPage() {
             Feedbacks.
           </button>
           {feedback && <Reviews id={mediaInfo.id} />}
+          <RatingContextProvider>
+            <Rating />
+          </RatingContextProvider>
         </div>
       )}
     </div>
