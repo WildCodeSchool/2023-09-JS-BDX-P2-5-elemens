@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function ActorsIndexCards() {
   const { id } = useParams();
@@ -78,16 +78,24 @@ function ActorsIndexCards() {
         <div>
           <br />
           <h1>Célèbre pour</h1>
-          {actorsInformationsOne &&
-            credits.map((media) => (
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${media.poster_path}`}
-                  alt="media"
-                />
-                <p>{media.title ? media.title : media.name}</p>
-              </div>
-            ))}
+          <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
+            {actorsInformationsOne &&
+              credits.map((media) => (
+                <li key={media.id} className="t-center">
+                  <Link to={`/${media.media_type}/${media.id}`} key={media.id}>
+                    <figure className="mb-20">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
+                        alt={media.title ? media.title : media.name}
+                      />
+                      <figcaption>
+                        {media.title ? media.title : media.name}
+                      </figcaption>
+                    </figure>
+                  </Link>
+                </li>
+              ))}
+          </ul>
         </div>
       </div>
     </section>
