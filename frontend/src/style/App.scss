@@ -16,8 +16,8 @@
 button {
   border: none;
   background-color: transparent;
+  color: white;
 }
-
 html {
   overflow-x: hidden;
 }
@@ -68,6 +68,23 @@ body {
   max-width: 1280px;
   padding: 0 12px;
 }
+h1 {
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 1.25rem;
+}
+a {
+  color: inherit;
+
+  &:hover {
+    color: $blue-color;
+  }
+  &,
+  &:hover {
+    transition: 0.3s;
+  }
+}
 
 // aligns & placements
 
@@ -114,6 +131,28 @@ body {
 }
 .mb-60 {
   margin-bottom: 60px;
+}
+
+///// Header / Footer /////
+
+header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid white;
+  background-color: $black-color;
+
+  .container {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+  }
+  .header-logo {
+    width: 130px;
+  }
+}
+
+.headroom-wrapper {
+  height: auto !important;
 }
 
 ////////////////////// PAGES IMPORTS ///////////////////////////
