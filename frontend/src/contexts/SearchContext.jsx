@@ -54,7 +54,27 @@ export function SearchContextProvider({ children }) {
       handleClickSeries,
       handleClickFilters,
     }),
-    []
+    [
+      textFound,
+      setTextFound,
+      pageNumber,
+      setPageNumber,
+      movieList,
+      setMovieList,
+      hasMore,
+      setHasMore,
+      genres,
+      setGenres,
+      releaseYear,
+      setReleaseYear,
+      filters,
+      setFilters,
+      typeVideo,
+      setTypeVideo,
+      handleClickMovies,
+      handleClickSeries,
+      handleClickFilters,
+    ]
   );
 
   // Fonction d'appel de l'API
