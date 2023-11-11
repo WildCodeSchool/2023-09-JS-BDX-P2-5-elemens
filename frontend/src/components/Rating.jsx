@@ -6,6 +6,8 @@ import DisplayRating from "./DisplayRating";
 function Rating() {
   const { arrayStored, setArrayStored } = useRating();
 
+  // const codeID = { mediaID };
+
   // Fonction permettant de mettre a jour l'État avec un tableau.
   const handleSubmitData = (data) => {
     setArrayStored([...arrayStored, data]);
@@ -13,7 +15,7 @@ function Rating() {
 
   return (
     <div>
-      <h1>Composant Note.</h1>
+      <h1>Write & see Reviews.</h1>
       <WriteRating onSubmit={handleSubmitData} />
       <DisplayRating arrayStored={arrayStored} />
     </div>

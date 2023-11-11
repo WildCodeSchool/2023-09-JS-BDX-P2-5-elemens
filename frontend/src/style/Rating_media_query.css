@@ -1,0 +1,168 @@
+* {
+  --main-black: #202124;
+  --main-blue: #1a8dfd;
+  --main-white: #e8eaed;
+  --succes-msg: #355233;
+  --succes-bckgrnd: #d4eed9;
+  --error-msg: #3f1519;
+  --error-bckgrnd: #f7d7da;
+}
+
+/* Responsive TABLETTE 
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    
+};
+*/
+
+/* Responsive DESTKOP */
+/* WriteRating.jsx */
+.form-review {
+  margin: 20px 400px;
+  /* background-color: red; */
+}
+
+.form-review * {
+  display: block;
+}
+
+.form-review > .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-review > .top > .user-name {
+  border-radius: 5px;
+  padding-left: 10px;
+  background-color: var(--main-white);
+  border: none;
+}
+
+.form-review > .top > .star {
+  width: 75px;
+  color: var(--main-black);
+  text-align: center;
+  background-color: var(--main-white);
+  border: none;
+  border-radius: 5px;
+}
+
+.form-review > .top > .star > option {
+  background-color: var(--main-white);
+}
+
+.form-review > .comment {
+  height: 100px;
+  width: 100%;
+  margin: 10px 0px 10px 0;
+  padding: 7px;
+  resize: none;
+  background-color: var(--main-white);
+  border: none;
+  border-radius: 5px;
+}
+
+.form-review > .submit-btn {
+  width: 70%;
+  color: var(--main-white);
+  margin: auto;
+  text-align: center;
+  background-color: var(--main-blue);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Alert Messages */
+.succes-comment {
+  display: flex;
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  color: var(--succes-msg);
+  padding: 5px 20px;
+  background-color: var(--succes-bckgrnd);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.succes-comment > b {
+  margin: 2px 0px 0px 4px;
+}
+
+.error-comment {
+  display: flex;
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  color: var(--error-msg);
+  padding: 5px 20px;
+  background-color: var(--error-bckgrnd);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.error-comment > b {
+  margin-right: 4px;
+}
+/* WriteRating.jsx */
+
+/* DisplayRating.jsx */
+@media screen and (min-width: 1201px) {
+  .write-review {
+    margin: 20px 200px;
+  }
+
+  .write-review > h3 {
+    font-size: 22px;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .write-review > .review-card {
+    position: relative;
+    color: var(--main-black);
+    margin-block: 20px;
+    padding: 20px;
+    background-color: var(--main-white);
+    border-radius: 10px;
+  }
+
+  .write-review > .review-card > .top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .write-review > .review-card > .top > .user-name {
+    text-decoration: underline;
+  }
+
+  .write-review > .review-card > .top > .star {
+    height: 50px;
+    width: 50px;
+    float: right;
+    color: var(--main-white);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 0px 0px 8px;
+    background-color: var(--main-blue);
+    border-radius: 50%;
+  }
+
+  .write-review > .review-card > .top > .star::after {
+    content: " /10";
+    font-size: 12px;
+  }
+
+  .write-review > .review-card > .date-post {
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    font-size: 12px;
+    opacity: 0.5;
+  }
+
+  .write-review > .review-card > .comment {
+    margin-top: 10px;
+  }
+}
+/* DisplayRating.jsx */

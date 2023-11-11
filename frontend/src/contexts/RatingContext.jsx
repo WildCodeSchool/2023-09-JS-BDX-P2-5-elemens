@@ -7,7 +7,12 @@ function RatingContextProvider({ children }) {
   const [userName, setUserName] = useState("");
   const [star, setStar] = useState("");
   const [comment, setComment] = useState("");
+  // ID du commentaire et du film / serie.
   const [id, setId] = useState(0);
+  const [idMedia, setIdMedia] = useState("");
+  // Message d'alerte du formulaire.
+  const [succesMsg, setSuccesMsg] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   // Tableau qui stoque toute les commentaires.
   const [arrayStored, setArrayStored] = useState([]);
@@ -24,6 +29,12 @@ function RatingContextProvider({ children }) {
       setArrayStored,
       id,
       setId,
+      idMedia,
+      setIdMedia,
+      succesMsg,
+      setSuccesMsg,
+      errorMsg,
+      setErrorMsg,
     }),
     [
       userName,
@@ -36,6 +47,12 @@ function RatingContextProvider({ children }) {
       setArrayStored,
       id,
       setId,
+      idMedia,
+      setIdMedia,
+      succesMsg,
+      setSuccesMsg,
+      errorMsg,
+      setErrorMsg,
     ]
   );
 
