@@ -168,6 +168,9 @@ header .header-logo {
   border: 2px solid #1a8dfd;
   border-radius: 50%;
 }
+.filter-bar .filter-button.active {
+  background-color: #1a8dfd;
+}
 .filter-bar .filter-button:hover {
   cursor: pointer;
   background-color: #1a8dfd;
