@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import Header from "./Header";
 
 function ActorsIndexCards() {
   const { id } = useParams();
@@ -56,51 +57,59 @@ function ActorsIndexCards() {
     credits = credits.slice(0, 20);
   }
 
-  return actorsInformationsOne ? (
-    <section className="container">
-      <div className="poster_wrapper_profile">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
-          alt="profile"
-        />
-        <h3>Célèbre pour</h3>
-        <p>{actorsInformationsOne.known_for_department}</p>
-        <h3>Date de naissance</h3>
-        <p>{actorsInformationsOne.birthday}</p>
-        <h3>Lieu de naissance</h3>
-        <p>{actorsInformationsOne.place_of_birth}</p>
-        <h3>Alias</h3>
-        <p>{actorsInformationsOne.also_known_as}</p>
-      </div>
-      <div>
-        <h1>{actorsInformationsOne.name}</h1>
-        <div>{actorsInformationsOne.biography}</div>
-        <div>
-          <br />
-          <h1>Célèbre pour</h1>
-          <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
-            {actorsInformationsOne &&
-              credits.map((media) => (
-                <li key={media.id} className="t-center">
-                  <Link to={`/${media.media_type}/${media.id}`} key={media.id}>
-                    <figure className="mb-20">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
-                        alt={media.title ? media.title : media.name}
-                      />
-                      <figcaption>
-                        {media.title ? media.title : media.name}
-                      </figcaption>
-                    </figure>
-                  </Link>
-                </li>
-              ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  ) : (
-    <div>Erreur</div>
+  return (
+    <>
+      <Header />
+      {actorsInformationsOne ? (
+        <section className="container">
+          <div className="poster_wrapper_profile">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
+              alt="profile"
+            />
+            <h3>Célèbre pour</h3>
+            <p>{actorsInformationsOne.known_for_department}</p>
+            <h3>Date de naissance</h3>
+            <p>{actorsInformationsOne.birthday}</p>
+            <h3>Lieu de naissance</h3>
+            <p>{actorsInformationsOne.place_of_birth}</p>
+            <h3>Alias</h3>
+            <p>{actorsInformationsOne.also_known_as}</p>
+          </div>
+          <div>
+            <h1>{actorsInformationsOne.name}</h1>
+            <div>{actorsInformationsOne.biography}</div>
+            <div>
+              <br />
+              <h1>Célèbre pour</h1>
+              <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
+                {actorsInformationsOne &&
+                  credits.map((media) => (
+                    <li key={media.id} className="t-center">
+                      <Link
+                        to={`/${media.media_type}/${media.id}`}
+                        key={media.id}
+                      >
+                        <figure className="mb-20">
+                          <img
+                            src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
+                            alt={media.title ? media.title : media.name}
+                          />
+                          <figcaption>
+                            {media.title ? media.title : media.name}
+                          </figcaption>
+                        </figure>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <div>Erreur</div>
+      )}
+    </>
   );
 }
 
