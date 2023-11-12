@@ -142,7 +142,11 @@ function MediaPage() {
             <div
               className="backdrop mb-d-block"
               style={{
-                backgroundImage: `url(${mediaInfo.backdropPath})`,
+                backgroundImage: `url(${
+                  mediaInfo.backdropPath
+                    ? mediaInfo.backdropPath
+                    : "../src/assets/elemen5-backdrop.jpg"
+                })`,
               }}
             />
             <div className="container media-infos-container tc-d-flex">
@@ -216,7 +220,11 @@ function MediaPage() {
             <div
               className="backdrop mb-d-none"
               style={{
-                backgroundImage: `url(${mediaInfo.backdropPath})`,
+                backgroundImage: `url(${
+                  mediaInfo.backdropPath
+                    ? mediaInfo.backdrop
+                    : "../src/assets/elemen5-backdrop.jpg"
+                })`,
               }}
             />
           </div>

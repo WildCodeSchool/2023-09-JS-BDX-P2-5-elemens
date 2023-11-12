@@ -82,7 +82,7 @@ function Reviews() {
         </div>
       ) : (
         <div className="no-content-msg">
-          <p>Aucun commentaire n'est répertorié.</p>
+          <p className="t-center mb-30">Aucun commentaire n'est répertorié.</p>
         </div>
       )}
     </div>
