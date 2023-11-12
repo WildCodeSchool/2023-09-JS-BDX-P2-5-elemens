@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const RatingContext = createContext();
 
 function RatingContextProvider({ children }) {
+  // Inputs du formulaires.
   const [userName, setUserName] = useState("");
   const [star, setStar] = useState("");
   const [comment, setComment] = useState("");

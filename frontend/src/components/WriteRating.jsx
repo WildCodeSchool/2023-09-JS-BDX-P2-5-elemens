@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useRating } from "../contexts/RatingContext";
 import "../style/Rating_media_query.css";
+import "../style/Rating.css";
 
 function WriteRating({ onSubmit }) {
   const {

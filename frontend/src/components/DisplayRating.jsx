@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../style/Rating_media_query.css";
+import "../style/Rating.css";
 
 function DisplayRating({ arrayStored }) {
   return (

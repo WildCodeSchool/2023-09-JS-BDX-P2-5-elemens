@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Streaming from "./Streaming";
-import "../style/App.css";
 import Reviews from "./Reviews";
 import Rating from "./Rating";
 import RatingContextProvider from "../contexts/RatingContext";
+import "../style/App.css";
 
 // options de l'appel à l'API
 const options = {
@@ -43,10 +43,26 @@ function MediaPage() {
 
   // États permettant de manipuler le composant (Reviews.jsx).
   const [feedback, setFeedback] = useState(false);
+  // Catégories feedback / commentaire clients.
+  const [feedbackBtn, setFeedbackBtn] = useState(false);
+  const [ratingBtn, setRatingBtn] = useState(false);
 
   // Handle qui affiche le composant (Reviews.jsx).
   const handleFeedbacks = () => {
     setFeedback(!feedback);
+  };
+
+  // Handle des boutons "Feedback & Rating".
+  // Handle séléctionnant le bouton feedback.
+  const handleFeedbackBtn = () => {
+    setFeedbackBtn(true);
+    setRatingBtn(false);
+  };
+
+  // Handle séléctionnant le bouton rating.
+  const handleRatingBtn = () => {
+    setRatingBtn(true);
+    setFeedbackBtn(false);
   };
 
   // on récupère l'id depuis l'url (si pas d'id on en génère une aléatoirement)
@@ -267,10 +283,30 @@ function MediaPage() {
           <button type="button" onClick={handleFeedbacks}>
             Feedbacks.
           </button>
-          {feedback && <Reviews id={mediaInfo.id} />}
-          <RatingContextProvider>
-            <Rating />
-          </RatingContextProvider>
+          {feedback && (
+            <div className="feedback-rating">
+              <button
+                type="button"
+                onClick={handleFeedbackBtn}
+                className="feedback-btn"
+              >
+                Feedback
+              </button>{" "}
+              <button
+                type="button"
+                onClick={handleRatingBtn}
+                className="rating-btns"
+              >
+                Rating
+              </button>
+            </div>
+          )}
+          {feedbackBtn && <Reviews id={mediaInfo.id} />}
+          {ratingBtn && (
+            <RatingContextProvider>
+              <Rating />
+            </RatingContextProvider>
+          )}
         </div>
       )}
     </div>
