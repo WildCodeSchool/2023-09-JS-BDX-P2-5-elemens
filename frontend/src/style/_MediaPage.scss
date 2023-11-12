@@ -8,7 +8,6 @@
 
 iframe {
   aspect-ratio: 16/9;
-  max-width: 950px;
 }
 
 // Affichage des informations du film/série
@@ -318,6 +317,7 @@ iframe {
 
   .trailer-popup {
     width: 100%;
+    max-width: 950px;
     position: relative;
   }
 
