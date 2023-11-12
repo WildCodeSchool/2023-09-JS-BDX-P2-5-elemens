@@ -220,11 +220,7 @@ function MediaPage() {
             <div
               className="backdrop mb-d-none"
               style={{
-                backgroundImage: `url(${
-                  mediaInfo.backdropPath
-                    ? mediaInfo.backdrop
-                    : "../src/assets/elemen5-backdrop.jpg"
-                })`,
+                backgroundImage: `url(${mediaInfo.backdropPath})`,
               }}
             />
           </div>
