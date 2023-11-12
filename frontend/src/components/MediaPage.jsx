@@ -152,7 +152,6 @@ function MediaPage() {
                   src={`${mediaInfo.posterPath}`}
                   alt={mediaInfo.title}
                 />
-                <p>ID = {mediaInfo.id}</p>
               </div>
               <div className="media-infos mb-30">
                 <h1 className="mb-20 mb-t-center">{mediaInfo.title}</h1>
@@ -262,10 +261,18 @@ function MediaPage() {
               </div>
             </div>
           )}
-          <button type="button" onClick={handleFeedbacks}>
-            Feedbacks.
-          </button>
-          {feedback && <Reviews id={mediaInfo.id} />}
+          <div className="container">
+            <h2 className="t-center mb-30">
+              <button
+                type="button"
+                className="arrow-button big-arrow-button"
+                onClick={handleFeedbacks}
+              >
+                Commentaires
+              </button>
+            </h2>
+            <div className="reviews-container">{feedback && <Reviews />}</div>
+          </div>
         </div>
       )}
     </div>

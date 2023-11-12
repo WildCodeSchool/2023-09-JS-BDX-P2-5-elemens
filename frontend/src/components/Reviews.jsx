@@ -1,85 +1,82 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import PropTypes from "prop-types";
-import "../style/reviews.css";
+import { useLoaderData } from "react-router-dom";
 
-function Reviews({ id }) {
-  const [reviews, setReviews] = useState([]);
-
-  const options = {
-    method: "GET",
-    url: `https://api.themoviedb.org/3/movie/${id}/reviews`,
-    params: { language: "en-US", page: "1" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTExOTUzYTBlZWM3MGViNjk3ZjU3NmNhY2Q2NTBlZCIsInN1YiI6IjY1MzdkZjhkYWUzNjY4MDE0ZGE2MGI0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.UuP_tt5IVV6u6c7tq6mREyZE7Wx0UAAaISMybyYvwE0",
-    },
-  };
-
-  const getReviews = () => {
-    axios
-      .request(options)
-      .then((response) => {
-        setReviews(response.data.results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  // Déclaration de la variable qui contient la route d'accés aux images.
+function Reviews() {
+  const reviews = useLoaderData();
   const imgPath =
     "https://image.tmdb.org/t/p/w45_and_h45_face/t/p/w45_and_h45_face";
 
-  useEffect(() => {
-    getReviews();
-  }, []);
+  const [openCommentId, setOpenCommentId] = useState(null);
+
+  const toggleText = (commentId) => {
+    setOpenCommentId((prevId) => (prevId === commentId ? null : commentId));
+  };
 
   return (
-    <section>
+    <div className="container">
       {reviews.length > 0 ? (
-        <div className="container-review">
-          <h2>Commentaires.</h2>
+        <div>
           {reviews.map((comments) => (
-            <div key={comments.id}>
-              <div className="infos_user">
+            <div
+              key={comments.id}
+              className={`user-review pos-r mb-50 ${
+                comments.content && comments.content.length > 240
+                  ? "see-more"
+                  : ""
+              } ${openCommentId === comments.id ? "active" : ""}`}
+            >
+              <div className="note">
+                {comments.author_details.rating != null &&
+                comments.author_details.rating !== ""
+                  ? comments.author_details.rating
+                  : 0}
+              </div>
+              <div className="user-infos mb-20">
                 {comments.author_details.avatar_path != null &&
                 comments.author_details.avatar_path !== "" ? (
                   <img
                     className="avatar-path"
                     src={`${imgPath}${comments.author_details.avatar_path}`}
-                    alt="Avatar d'utilisateur"
+                    alt="UserProfilePicture"
                   />
                 ) : (
                   <img
                     className="avatar-path"
-                    src="./src/assets/pictures/logo_elemen5.png"
+                    src="../src/assets/elemen5-header-logo.jpg"
                     alt="logo"
                   />
                 )}
-
-                <h3 className="username">{comments.author_details.username}</h3>
-                <p className="date-comment">
-                  le{" "}
-                  {format(new Date(comments.updated_at), "dd MMMM yyyy", {
-                    locale: fr,
-                  })}
-                </p>
+                <div>
+                  <h3 className="username">
+                    {comments.author_details.username}
+                  </h3>
+                  <p className="date-comment">
+                    le{" "}
+                    {format(new Date(comments.updated_at), "dd MMMM yyyy", {
+                      locale: fr,
+                    })}
+                  </p>
+                </div>
               </div>
-
-              <div className="rating-btn">
-                {comments.author_details.rating != null &&
-                comments.author_details.rating !== "" ? (
-                  <p className="rating">{comments.author_details.rating}</p>
-                ) : (
-                  <p className="rating">~</p>
-                )}
-              </div>
-
-              <p className="content-review">{comments.content}</p>
+              {comments.content && comments.content.length < 240 ? (
+                <p className="mb-20">{comments.content}</p>
+              ) : (
+                <button
+                  type="button"
+                  className="t-left arrow-button"
+                  onClick={() => toggleText(comments.id)}
+                >
+                  <p
+                    className={`content-review mb-10 ${
+                      openCommentId === comments.id ? "active" : "hidden-text"
+                    }`}
+                  >
+                    {comments.content}
+                  </p>
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -88,12 +85,8 @@ function Reviews({ id }) {
           <p>Aucun commentaire n'est répertorié.</p>
         </div>
       )}
-    </section>
+    </div>
   );
 }
-
-Reviews.propTypes = {
-  id: PropTypes.number.isRequired,
-};
 
 export default Reviews;
