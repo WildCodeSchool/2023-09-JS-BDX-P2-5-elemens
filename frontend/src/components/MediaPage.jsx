@@ -149,7 +149,11 @@ function MediaPage() {
               <div className="poster-container mb-d-none">
                 <img
                   className="poster"
-                  src={`${mediaInfo.posterPath}`}
+                  src={`${
+                    mediaInfo.posterPath
+                      ? mediaInfo.posterPath
+                      : "../src/assets/elemen5-poster.jpg"
+                  }`}
                   alt={mediaInfo.title}
                 />
               </div>
@@ -226,7 +230,11 @@ function MediaPage() {
                 <li className="t-center" key={person.id}>
                   <figure className="mb-20">
                     <img
-                      src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                      src={
+                        person.profile_path
+                          ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+                          : "../src/assets/elemen5-poster.jpg"
+                      }
                       alt={person.name}
                     />
                     <figcaption>{person.name}</figcaption>

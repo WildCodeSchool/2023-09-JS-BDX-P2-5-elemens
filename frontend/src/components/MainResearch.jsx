@@ -25,7 +25,7 @@ function MainResearch({ lastMovieElementRef }) {
                     />
                   ) : (
                     <img
-                      src="src/assets/pictures/logo_elemen5.png"
+                      src="../src/assets/elemen5-poster.jpg"
                       alt="logo elemen5"
                     />
                   )}
@@ -48,8 +48,7 @@ function MainResearch({ lastMovieElementRef }) {
                     />
                   ) : (
                     <img
-                      style={{ width: "120px" }}
-                      src="src/assets/pictures/logo_elemen5.png"
+                      src="../src/assets/elemen5-poster.jpg"
                       alt="logo elemen5"
                     />
                   )}
