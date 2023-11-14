@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 import { UseSearch } from "../contexts/SearchContext";
+import FilterBar from "./FilterBar";
 
 function Navbar() {
   const [letSearch, setLetSearch] = useState(false);
@@ -18,39 +19,37 @@ function Navbar() {
   };
 
   return (
-    <header id="header">
-      <div className="container">
-        <Link to="/">
-          <img
-            className="header-logo"
-            src="src/assets/elemen5-paysage.png"
-            alt="logo elemen5"
-          />
-        </Link>
-        <div className="searchArea" style={{ display: "flex" }}>
-          {letSearch && (
+    <>
+      <header id="header">
+        <div className="container dflex">
+          <Link to="/">
+            <img
+              className="header-logo"
+              src="src/assets/elemen5-paysage.png"
+              alt="logo elemen5"
+            />
+          </Link>
+          <div className={`search-area${letSearch ? " active" : ""}`}>
             <DebounceInput
               type="text"
-              style={{ backgroundColor: "white" }}
               debounceTimeout={350}
               onChange={searchMovie}
+              style={{
+                width: letSearch ? "180px" : "0px",
+                backgroundColor: letSearch ? "white" : "transparent",
+                padding: letSearch ? "5px 40px 5px 15px" : "0",
+              }}
             />
-          )}
-          <button
-            type="button"
-            onClick={search}
-            style={{ backgroundColor: "#202124", border: "none" }}
-          >
-            <img
-              style={{ height: "25px" }}
-              src="src\assets\pictures\icon_loupe.png"
-              alt="search"
-              loading="lazy"
-            />
-          </button>
+            <button type="button" onClick={search}>
+              Loupe
+            </button>
+          </div>
         </div>
+      </header>
+      <div className="container">
+        <FilterBar />
       </div>
-    </header>
+    </>
   );
 }
 export default Navbar;
