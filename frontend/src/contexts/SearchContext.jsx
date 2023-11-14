@@ -118,23 +118,28 @@ export function SearchContextProvider({ children }) {
   };
   // Fonction d'appel de l'API pour charger les pages suivantes corespondant à la recherche
   const fetchNextMovies = () => {
+    const params = {
+      include_adult: "true",
+      include_video: "false",
+      language: "fr",
+      page: `${pageNumber}`,
+      sort_by: "popularity.desc",
+      with_genres: `${genres.join("%2C")}`,
+      with_text_query: `${textFound}`,
+    };
+
+    if (typeVideo === "movie") {
+      params["primary_release_date.gte"] = `${releaseYear[0]}-01-01`;
+      params["primary_release_date.lte"] = `${releaseYear[1]}-01-01`;
+    } else if (typeVideo === "tv") {
+      params["first_air_date.gte"] = `${releaseYear[0]}-01-01`;
+      params["first_air_date.lte"] = `${releaseYear[1]}-01-01`;
+    }
     axios
       .request({
         method: "GET",
         url: `https://api.themoviedb.org/3/discover/${typeVideo}`,
-        params: {
-          include_adult: "true",
-          include_video: "false",
-          language: "fr",
-          page: `${pageNumber}`,
-          "primary_release_date.gte": `${releaseYear[0]}-01-01`,
-          "primary_release_date.lte": `${releaseYear[1]}-01-01`,
-          "first_air_date.gte": `${releaseYear[0]}-01-01`,
-          "first_air_date.lte": `${releaseYear[1]}-01-01`,
-          sort_by: "popularity.desc",
-          with_genres: `${genres.join("%2C")}`,
-          with_text_query: `${textFound}`,
-        },
+        params,
         headers: {
           accept: "application/json",
           Authorization:

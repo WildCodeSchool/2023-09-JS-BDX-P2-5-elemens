@@ -12,6 +12,9 @@
     border: 2px solid $blue-color;
     border-radius: 50%;
 
+    &.active {
+      background-color: $blue-color;
+    }
     &:hover {
       cursor: pointer;
       background-color: $blue-color;
@@ -97,7 +100,12 @@
   border: 1px solid $white-color;
   transition: all ease 1s;
 }
-
+.filters-window > .genres > .boutons > button {
+  &.active {
+    border: 1px solid $blue-color;
+    border-radius: 5px;
+  }
+}
 //--------------YEAR SLIDER----------------*/
 .horizontal-slider {
   height: 20px;
