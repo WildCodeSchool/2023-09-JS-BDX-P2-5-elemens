@@ -4,7 +4,7 @@ import Slider from "./Slider";
 function PopularVideos() {
   const { typeVideo } = UseSearch();
   return (
-    <div className="container">
+    <>
       <Slider category="popular" />
       <Slider category="top_rated" />
       {typeVideo === "movie" ? (
@@ -17,7 +17,7 @@ function PopularVideos() {
       ) : (
         <Slider category="on_the_air" />
       )}
-    </div>
+    </>
   );
 }
 

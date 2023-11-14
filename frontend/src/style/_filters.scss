@@ -3,8 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 50px;
-  padding: 0 20px;
+  padding: 20px 0;
 }
 
 .filter-bar {
@@ -50,29 +49,32 @@
 
 // FENETRE DE FILTRES
 .filters-window {
-  padding: 12px;
+  padding: 24px 12px;
+  margin: 0 auto;
   border: 1px solid $white-color;
   border-radius: 10px;
+  background-color: $black-color;
   transition: all ease 1s;
 
-  position: absolute;
   width: 100%;
-  min-height: calc(100vh - 120px);
-  background-color: $black-color;
-  top: 0;
-  left: 0;
-  z-index: +1;
+  max-width: 440px;
+  min-height: calc(100vh - 192px);
 
-  transform: translateY(100vh);
+  position: absolute;
+  top: 100vh;
+  right: 0;
+  z-index: -10;
   opacity: 0;
+  transition:
+    all 0.5s ease-in-out,
+    opacity 0.1s 0.5s,
+    z-index 0.1s 0.5s;
 
   &.active {
     opacity: 1;
-    transform: translateY(0);
-  }
-  &,
-  &.active {
-    transition: all 0.3s ease-in-out;
+    z-index: 10;
+    top: 0;
+    transition: top 0.5s;
   }
 }
 
