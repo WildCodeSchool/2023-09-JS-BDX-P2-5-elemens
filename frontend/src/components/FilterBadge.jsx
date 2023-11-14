@@ -50,6 +50,11 @@ function FilterBadge() {
 
   // Ajouter ou supprimer des genres au filtres de recherche
   function toggleGenre(e) {
+    if (e.target.className === "active") {
+      e.target.className = "";
+    } else {
+      e.target.className = "active";
+    }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     searchContext.setPageNumber(1);
     const targetedGenre = e.target.id;
@@ -65,7 +70,6 @@ function FilterBadge() {
   useEffect(() => {
     searchContext.setGenres(movieGenreArray);
   }, [movieGenreArray]);
-
   return (
     <div className={`filters-window ${searchContext.filters && "active"}`}>
       <button

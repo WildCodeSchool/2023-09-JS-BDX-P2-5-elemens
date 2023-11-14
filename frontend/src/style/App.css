@@ -168,6 +168,9 @@ header .header-logo {
   border: 2px solid #1a8dfd;
   border-radius: 50%;
 }
+.filter-bar .filter-button.active {
+  background-color: #1a8dfd;
+}
 .filter-bar .filter-button:hover {
   cursor: pointer;
   background-color: #1a8dfd;
@@ -241,6 +244,11 @@ header .header-logo {
   border-radius: 10px;
   border: 1px solid #e8eaed;
   transition: all ease 1s;
+}
+
+.filters-window > .genres > .boutons > button.active {
+  border: 1px solid #1a8dfd;
+  border-radius: 5px;
 }
 
 .horizontal-slider {
