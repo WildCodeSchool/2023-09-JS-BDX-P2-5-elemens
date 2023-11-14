@@ -5,10 +5,8 @@ import Headroom from "react-headroom";
 import FilterBadge from "./components/FilterBadge";
 import "./style/App.css";
 import MainResearch from "./components/MainResearch";
-
 import PopularVideos from "./components/PopularVideos";
 import { UseSearch } from "./contexts/SearchContext";
-
 import Navbar from "./components/Navbar";
 
 function App() {
