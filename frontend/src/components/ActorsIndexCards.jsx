@@ -56,28 +56,61 @@ function ActorsIndexCards() {
     credits = credits.slice(0, 20);
   }
 
+  if (actorsInformationsOne != null) {
+    actorsInformationsOne.profilePath =
+      actorsInformationsOne.profile_path != null
+        ? `https://image.tmdb.org/t/p/original/${actorsInformationsOne.profile_path}`
+        : null;
+  }
+
   return actorsInformationsOne ? (
-    <section className="container">
-      <div className="poster_wrapper_profile">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
-          alt="profile"
+    <div className="media-detail">
+      <div className="container-max pos-r">
+        <div
+          className="backdrop mb-d-block"
+          style={{
+            backgroundImage: `url(${actorsInformationsOne.profilePath})`,
+          }}
         />
-        <h3>Célèbre pour</h3>
-        <p>{actorsInformationsOne.known_for_department}</p>
-        <h3>Date de naissance</h3>
-        <p>{actorsInformationsOne.birthday}</p>
-        <h3>Lieu de naissance</h3>
-        <p>{actorsInformationsOne.place_of_birth}</p>
-        <h3>Alias</h3>
-        <p>{actorsInformationsOne.also_known_as}</p>
-      </div>
-      <div>
-        <h1>{actorsInformationsOne.name}</h1>
-        <div>{actorsInformationsOne.biography}</div>
-        <div>
-          <br />
-          <h1>Célèbre pour</h1>
+        <div className="container media-infos-container tc-d-flex">
+          <div className="poster_wrapper_profile">
+            <div className="poster-container mb-d-none">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
+                alt="profile"
+              />
+            </div>
+          </div>
+          <div className="media-infos mb-30">
+            <h1 className="mb-20 mb-t-center">{actorsInformationsOne.name}</h1>
+            <p className="mb-t-center mb-20 ">
+              {actorsInformationsOne.gender === 2 ? <>Acteur</> : <>Actrice</>}
+              <b>•</b>
+              {actorsInformationsOne.birthday}
+              <b>•</b>
+              {actorsInformationsOne.place_of_birth}
+            </p>
+            <div className="mb-d-none mb-20">
+              <h2 className="mb-20 blue-title">Biographie</h2>
+              <br />
+              {actorsInformationsOne.biography !== "" ? (
+                <p>{actorsInformationsOne.biography}</p>
+              ) : (
+                <p>Aucune biographie n'est disponible pour le moment.</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div
+          className="backdrop mb-d-none"
+          style={{
+            backgroundImage: `url(${actorsInformationsOne.profilePath})`,
+          }}
+        />
+
+        <div className="container">
+          <h2 className="blue-title mb-10 mb-d-none ">Célèbre pour</h2>
+
           <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
             {actorsInformationsOne &&
               credits.map((media) => (
@@ -98,7 +131,7 @@ function ActorsIndexCards() {
           </ul>
         </div>
       </div>
-    </section>
+    </div>
   ) : (
     <div>Erreur</div>
   );
