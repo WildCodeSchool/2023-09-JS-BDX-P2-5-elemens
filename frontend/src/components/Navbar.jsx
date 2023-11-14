@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <>
       <header id="header">
-        <div className="container">
+        <div className="container dflex">
           <Link to="/">
             <img
               className="header-logo"

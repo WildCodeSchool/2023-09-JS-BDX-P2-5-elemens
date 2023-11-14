@@ -35,7 +35,7 @@ function App() {
       <Headroom>
         <Navbar />
       </Headroom>
-      <div className="main-area pos-r">
+      <div className="main-area container pos-r">
         <FilterBadge
           setGenres={searchContext.setGenres}
           // handleClickFilters={handleClickFilters}
