@@ -14,7 +14,7 @@ import Navbar from "./components/Navbar";
 function App() {
   const searchContext = UseSearch();
 
-  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page
+  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page a
   const observer = useRef();
   const lastMovieElementRef = useCallback(
     (node) => {
