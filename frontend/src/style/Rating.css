@@ -197,4 +197,16 @@
   font-size: 12px;
   opacity: 0.5;
 }
+
+.write-review > .review-card > .bin {
+  position: absolute;
+  bottom: 20px;
+  right: 35px;
+  cursor: pointer;
+}
+
+.write-review > .review-card > .bin > img {
+  height: 20px;
+  width: 20px;
+}
 /* DisplayRating.jsx */

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { v4 as uuid } from "uuid";
 import { useRating } from "../contexts/RatingContext";
 import "../style/Rating_media_query.css";
 import "../style/Rating.css";
@@ -12,26 +13,23 @@ function WriteRating({ onSubmit }) {
     setStar,
     comment,
     setComment,
-    id,
-    setId,
     succesMsg,
     setSuccesMsg,
     errorMsg,
     setErrorMsg,
   } = useRating();
 
-  // const inputValue = event.target.value;
   const handleSubmit = () => {
     if (userName !== "" && star !== "" && comment !== "") {
-      // Ajoute Met à jour l'id de l'objet qui est envoyé dans un tableau.
-      setId(id + 1);
+      const reviewData = {
+        id: uuid(),
+        userName,
+        star,
+        comment,
+      };
 
-      // Renvoie un tableau des "values" entrée.
-      const reviewData = [id, userName, star, comment];
-      // Envoie le tableau dans l'élément parent.
       onSubmit(reviewData);
 
-      // Rafraichit l'input, select et textarea et les met à vide.
       setUserName("");
       setStar("");
       setComment("");
