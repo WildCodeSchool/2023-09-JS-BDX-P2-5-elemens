@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import Streaming from "./Streaming";
 import "../style/App.css";
+import Reviews from "./Reviews";
 import Header from "./Header";
 
 // options de l'appel à l'API
@@ -38,6 +39,14 @@ function MediaPage() {
   // on crée le state mediaData qui contiendra la réponse de l'api
   const [mediaData, setmediaData] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
+
+  // États permettant de manipuler le composant (Reviews.jsx).
+  const [feedback, setFeedback] = useState(false);
+
+  // Handle qui affiche le composant (Reviews.jsx).
+  const handleFeedbacks = () => {
+    setFeedback(!feedback);
+  };
 
   // on récupère l'id depuis l'url (si pas d'id on en génère une aléatoirement)
   let { id } = useParams();
@@ -136,22 +145,28 @@ function MediaPage() {
               <div
                 className="backdrop mb-d-block"
                 style={{
-                  backgroundImage: `url(${mediaInfo.backdropPath})`,
+                  backgroundImage: `url(${
+                    mediaInfo.backdropPath
+                      ? mediaInfo.backdropPath
+                      : "../src/assets/elemen5-backdrop.jpg"
+                  })`,
                 }}
               />
               <div className="container media-infos-container tc-d-flex">
                 <div className="poster-container mb-d-none">
                   <img
                     className="poster"
-                    src={`${mediaInfo.posterPath}`}
+                    src={
+                      mediaInfo.posterPath
+                        ? `https://image.tmdb.org/t/p/w500/${mediaInfo.posterPath}`
+                        : "../src/assets/elemen5-poster.jpg"
+                    }
                     alt={mediaInfo.title}
                   />
-                  <p>ID = {mediaInfo.id}</p>
                 </div>
                 <div className="media-infos mb-30">
                   <h1 className="mb-20 mb-t-center">{mediaInfo.title}</h1>
                   <i className="note">{mediaInfo.rating}</i>
-
                   {mediaInfo.trailerPath && (
                     <div className="infos-note dflex-center mb-d-flex mb-20">
                       <div>
@@ -222,7 +237,11 @@ function MediaPage() {
                     <Link to={`/person/${person.id}`}>
                       <figure className="mb-20">
                         <img
-                          src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                          src={
+                            person.profile_path
+                              ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+                              : "../src/assets/elemen5-poster.jpg"
+                          }
                           alt={person.name}
                         />
                         <figcaption>{person.name}</figcaption>
@@ -231,6 +250,18 @@ function MediaPage() {
                   </li>
                 ))}
               </ul>
+            </div>
+            <div className="container">
+              <h2 className="t-center mb-30">
+                <button
+                  type="button"
+                  className="arrow-button big-arrow-button"
+                  onClick={handleFeedbacks}
+                >
+                  Commentaires
+                </button>
+              </h2>
+              <div className="reviews-container">{feedback && <Reviews />}</div>
             </div>
             {mediaInfo.trailerPath && (
               <div
