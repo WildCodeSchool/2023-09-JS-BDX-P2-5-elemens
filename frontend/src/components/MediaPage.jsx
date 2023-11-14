@@ -157,8 +157,8 @@ function MediaPage() {
                   <img
                     className="poster"
                     src={
-                      mediaInfo.poster_path
-                        ? `https://image.tmdb.org/t/p/w500/${mediaInfo.poster_path}`
+                      mediaInfo.posterPath
+                        ? `https://image.tmdb.org/t/p/w500/${mediaInfo.posterPath}`
                         : "../src/assets/elemen5-poster.jpg"
                     }
                     alt={mediaInfo.title}
