@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import Header from "./Header";
 
 function ActorsIndexCards() {
   const { id } = useParams();
@@ -63,7 +64,10 @@ function ActorsIndexCards() {
         : null;
   }
 
-  return actorsInformationsOne ? (
+  return (
+     <>
+     <Header />
+    {actorsInformationsOne ? (
     <div className="media-detail">
       <div className="container-max pos-r">
         <div
@@ -134,6 +138,8 @@ function ActorsIndexCards() {
     </div>
   ) : (
     <div>Erreur</div>
+    )}
+    </>
   );
 }
 

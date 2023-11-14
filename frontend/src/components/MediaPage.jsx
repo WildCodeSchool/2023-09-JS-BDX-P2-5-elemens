@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import Streaming from "./Streaming";
 import "../style/App.css";
+import Reviews from "./Reviews";
+import Header from "./Header";
 
 // options de l'appel à l'API
 const options = {
@@ -37,6 +39,14 @@ function MediaPage() {
   // on crée le state mediaData qui contiendra la réponse de l'api
   const [mediaData, setmediaData] = useState(null);
   const [trailerPopup, setTrailerPopup] = useState(false);
+
+  // États permettant de manipuler le composant (Reviews.jsx).
+  const [feedback, setFeedback] = useState(false);
+
+  // Handle qui affiche le composant (Reviews.jsx).
+  const handleFeedbacks = () => {
+    setFeedback(!feedback);
+  };
 
   // on récupère l'id depuis l'url (si pas d'id on en génère une aléatoirement)
   let { id } = useParams();
@@ -126,138 +136,163 @@ function MediaPage() {
 
   // ==================== DEBUT DU RETURN ICI (affichage de la page en utilisant les données de mediaInfo)
   return (
-    <div className={`App${trailerPopup === true ? " no-scroll" : ""}`}>
-      {mediaData && (
-        <div className="media-detail">
-          <div className="container-max pos-r">
-            <div
-              className="backdrop mb-d-block"
-              style={{
-                backgroundImage: `url(${mediaInfo.backdropPath})`,
-              }}
-            />
-            <div className="container media-infos-container tc-d-flex">
-              <div className="poster-container mb-d-none">
-                <img
-                  className="poster"
-                  src={`${mediaInfo.posterPath}`}
-                  alt={mediaInfo.title}
-                />
-                <p>ID = {mediaInfo.id}</p>
-              </div>
-              <div className="media-infos mb-30">
-                <h1 className="mb-20 mb-t-center">{mediaInfo.title}</h1>
-                <i className="note">{mediaInfo.rating}</i>
-
-                {mediaInfo.trailerPath && (
-                  <div className="infos-note dflex-center mb-d-flex mb-20">
-                    <div>
-                      <button
-                        type="button"
-                        className="blue-button icon-play"
-                        onClick={toggleTrailerPopup}
-                      >
-                        Bande annonce
-                      </button>
+    <>
+      <Header />
+      <div className={`App${trailerPopup === true ? " no-scroll" : ""}`}>
+        {mediaData && (
+          <div className="media-detail">
+            <div className="container-max pos-r">
+              <div
+                className="backdrop mb-d-block"
+                style={{
+                  backgroundImage: `url(${
+                    mediaInfo.backdropPath
+                      ? mediaInfo.backdropPath
+                      : "../src/assets/elemen5-backdrop.jpg"
+                  })`,
+                }}
+              />
+              <div className="container media-infos-container tc-d-flex">
+                <div className="poster-container mb-d-none">
+                  <img
+                    className="poster"
+                    src={
+                      mediaInfo.posterPath
+                        ? `https://image.tmdb.org/t/p/w500/${mediaInfo.posterPath}`
+                        : "../src/assets/elemen5-poster.jpg"
+                    }
+                    alt={mediaInfo.title}
+                  />
+                </div>
+                <div className="media-infos mb-30">
+                  <h1 className="mb-20 mb-t-center">{mediaInfo.title}</h1>
+                  <i className="note">{mediaInfo.rating}</i>
+                  {mediaInfo.trailerPath && (
+                    <div className="infos-note dflex-center mb-d-flex mb-20">
+                      <div>
+                        <button
+                          type="button"
+                          className="blue-button icon-play"
+                          onClick={toggleTrailerPopup}
+                        >
+                          Bande annonce
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                )}
-                <p className="mb-t-center mb-20">
-                  {mediaInfo.releaseDate}
-                  <b>•</b>
-                  {mediaInfo.duration}
-                  <b>•</b>
-                  {mediaInfo.genres}
-                  {mediaInfo.certification &&
-                    certificate(mediaInfo.certification)}
-                  <br />
-                  <i>{type === "movie" ? "Réalisé par " : "Créé par "}</i>
-                  {mediaInfo.director}
-                </p>
-                <h2 className="blue-title mb-10 mb-d-none">Synopsis</h2>
-                {mediaInfo.tagline && (
-                  <p className="tagline mb-d-none">"{mediaInfo.tagline}"</p>
-                )}
-                <p className="mb-d-none mb-20">{mediaInfo.overview}</p>
-                {mediaInfo.trailerPath && (
-                  <div className="infos-note mb-d-none mb-20">
-                    <div>
-                      <button
-                        type="button"
-                        className="blue-button icon-play"
-                        onClick={toggleTrailerPopup}
-                      >
-                        Bande annonce
-                      </button>
+                  )}
+                  <p className="mb-t-center mb-20">
+                    {mediaInfo.releaseDate}
+                    <b>•</b>
+                    {mediaInfo.duration}
+                    <b>•</b>
+                    {mediaInfo.genres}
+                    {mediaInfo.certification &&
+                      certificate(mediaInfo.certification)}
+                    <br />
+                    <i>{type === "movie" ? "Réalisé par " : "Créé par "}</i>
+                    {mediaInfo.director}
+                  </p>
+                  <h2 className="blue-title mb-10 mb-d-none">Synopsis</h2>
+                  {mediaInfo.tagline && (
+                    <p className="tagline mb-d-none">"{mediaInfo.tagline}"</p>
+                  )}
+                  <p className="mb-d-none mb-20">{mediaInfo.overview}</p>
+                  {mediaInfo.trailerPath && (
+                    <div className="infos-note mb-d-none mb-20">
+                      <div>
+                        <button
+                          type="button"
+                          className="blue-button icon-play"
+                          onClick={toggleTrailerPopup}
+                        >
+                          Bande annonce
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+                <div className="mb-d-block">
+                  <h2 className="mb-20 blue-title">Synopsis</h2>
+                  {mediaInfo.tagline && (
+                    <p className="tagline mb-20">"{mediaInfo.tagline}"</p>
+                  )}
+                  <p className="mb-60">{mediaInfo.overview}</p>
+                </div>
               </div>
-              <div className="mb-d-block">
-                <h2 className="mb-20 blue-title">Synopsis</h2>
-                {mediaInfo.tagline && (
-                  <p className="tagline mb-20">"{mediaInfo.tagline}"</p>
-                )}
-                <p className="mb-60">{mediaInfo.overview}</p>
-              </div>
+              <div
+                className="backdrop mb-d-none"
+                style={{
+                  backgroundImage: `url(${mediaInfo.backdropPath})`,
+                }}
+              />
             </div>
-            <div
-              className="backdrop mb-d-none"
-              style={{
-                backgroundImage: `url(${mediaInfo.backdropPath})`,
-              }}
-            />
-          </div>
 
-          <Streaming providers={mediaInfo.providers} />
+            <Streaming providers={mediaInfo.providers} />
 
-          <div className="container">
-            <h2 className="mb-20 blue-title">Têtes d'affiche</h2>
-            <ul className="horizontal-list mb-40">
-              {mediaInfo.actors.slice(0, 10).map((person) => (
-                <li className="t-center" key={person.id}>
-                  <Link to={`/person/${person.id}`}>
-                    <figure className="mb-20">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                        alt={person.name}
-                      />
-                      <figcaption>{person.name}</figcaption>
-                    </figure>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {mediaInfo.trailerPath && (
-            <div
-              className={`dflex-center popup-container${
-                trailerPopup === true ? " active" : ""
-              }`}
-            >
-              <div className="trailer-popup t-center">
-                <iframe
-                  width="100%"
-                  height="auto"
-                  src={mediaInfo.trailerPath}
-                  seamless
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Embedded youtube"
-                />
+            <div className="container">
+              <h2 className="mb-20 blue-title">Têtes d'affiche</h2>
+              <ul className="horizontal-list mb-40">
+                {mediaInfo.actors.slice(0, 10).map((person) => (
+                  <li className="t-center" key={person.id}>
+                    <Link to={`/person/${person.id}`}>
+                      <figure className="mb-20">
+                        <img
+                          src={
+                            person.profile_path
+                              ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+                              : "../src/assets/elemen5-poster.jpg"
+                          }
+                          alt={person.name}
+                        />
+                        <figcaption>{person.name}</figcaption>
+                      </figure>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="container">
+              <h2 className="t-center mb-30">
                 <button
                   type="button"
-                  className="close-popup"
-                  onClick={toggleTrailerPopup}
+                  className="arrow-button big-arrow-button"
+                  onClick={handleFeedbacks}
                 >
-                  Close
+                  Commentaires
                 </button>
-              </div>
+              </h2>
+              <div className="reviews-container">{feedback && <Reviews />}</div>
             </div>
-          )}
-        </div>
-      )}
-    </div>
+            {mediaInfo.trailerPath && (
+              <div
+                className={`dflex-center popup-container${
+                  trailerPopup === true ? " active" : ""
+                }`}
+              >
+                <div className="trailer-popup t-center">
+                  <iframe
+                    width="100%"
+                    height="auto"
+                    src={mediaInfo.trailerPath}
+                    seamless
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Embedded youtube"
+                  />
+                  <button
+                    type="button"
+                    className="close-popup"
+                    onClick={toggleTrailerPopup}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

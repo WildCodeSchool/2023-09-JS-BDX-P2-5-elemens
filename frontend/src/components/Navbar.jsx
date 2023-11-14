@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <>
       <header id="header">
-        <div className="container">
+        <div className="container dflex">
           <Link to="/">
             <img
               className="header-logo"
@@ -29,26 +29,19 @@ function Navbar() {
               alt="logo elemen5"
             />
           </Link>
-          <div className="searchArea" style={{ display: "flex" }}>
-            {letSearch && (
-              <DebounceInput
-                type="text"
-                style={{ backgroundColor: "white" }}
-                debounceTimeout={350}
-                onChange={searchMovie}
-              />
-            )}
-            <button
-              type="button"
-              onClick={search}
-              style={{ backgroundColor: "#202124", border: "none" }}
-            >
-              <img
-                style={{ height: "25px" }}
-                src="src\assets\pictures\icon_loupe.png"
-                alt="search"
-                loading="lazy"
-              />
+          <div className={`search-area${letSearch ? " active" : ""}`}>
+            <DebounceInput
+              type="text"
+              debounceTimeout={350}
+              onChange={searchMovie}
+              style={{
+                width: letSearch ? "180px" : "0px",
+                backgroundColor: letSearch ? "white" : "transparent",
+                padding: letSearch ? "5px 40px 5px 15px" : "0",
+              }}
+            />
+            <button type="button" onClick={search}>
+              Loupe
             </button>
           </div>
         </div>
