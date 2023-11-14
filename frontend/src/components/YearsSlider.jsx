@@ -18,7 +18,10 @@ function YearsSlider() {
         className="horizontal-slider"
         thumbClassName="example-thumb"
         trackClassName="example-track"
-        defaultValue={[1901, 2023]}
+        defaultValue={[
+          searchContext.setReleaseYear[0],
+          searchContext.setReleaseYear[1],
+        ]}
         max={2023}
         min={1901}
         ariaLabel={["Lower thumb", "Upper thumb"]}
