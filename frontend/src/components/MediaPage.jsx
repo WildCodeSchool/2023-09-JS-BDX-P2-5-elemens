@@ -156,10 +156,13 @@ function MediaPage() {
                 <div className="poster-container mb-d-none">
                   <img
                     className="poster"
-                    src={`${mediaInfo.posterPath}`}
+                    src={
+                      mediaInfo.poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${mediaInfo.poster_path}`
+                        : "../src/assets/elemen5-poster.jpg"
+                    }
                     alt={mediaInfo.title}
                   />
-                  <p>ID = {mediaInfo.id}</p>
                 </div>
                 <div className="media-infos mb-30">
                   <h1 className="mb-20 mb-t-center">{mediaInfo.title}</h1>

@@ -283,6 +283,46 @@ header .header-logo {
   width: 130px;
 }
 
+.search-area {
+  display: flex;
+  position: relative;
+}
+.search-area input {
+  transition: all 0.2s ease-in-out;
+  height: 35px;
+  border-radius: 35px;
+  border-color: transparent;
+  font-size: 14px;
+}
+.search-area button {
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 10px);
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 0px;
+}
+.search-area button:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/icon-loupe.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all 0.3s;
+}
+.search-area:hover button:after,
+.search-area.active button:after {
+  background-image: url("../assets/icon-loupe-blue.svg");
+  transition: all 0.3s;
+}
+
+.headroom-wrapper .headroom {
+  background-color: #202124;
+}
+
 .infinite-list {
   display: flex;
   align-items: stretch;
@@ -339,6 +379,10 @@ header .header-logo {
 .close-popup:after,
 .close-popup:before {
   transition: all 0.3s;
+}
+.filters-window .close-popup {
+  top: 14px;
+  right: 28px;
 }
 
 .switch-button {
@@ -597,7 +641,7 @@ header .header-logo {
   width: 100%;
   max-width: 440px;
   min-height: calc(100vh - 192px);
-  position: absolute;
+  position: fixed;
   top: 100vh;
   right: 0;
   z-index: -10;
@@ -610,7 +654,7 @@ header .header-logo {
 .filters-window.active {
   opacity: 1;
   z-index: 10;
-  top: 0;
+  top: 192px;
   transition: top 0.5s;
 }
 

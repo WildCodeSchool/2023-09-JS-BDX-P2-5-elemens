@@ -304,6 +304,51 @@ header {
   }
 }
 
+.search-area {
+  display: flex;
+  position: relative;
+
+  input {
+    transition: all 0.2s ease-in-out;
+    height: 35px;
+    border-radius: 35px;
+    border-color: transparent;
+    font-size: 14px;
+  }
+  button {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 10px);
+    width: fit-content;
+    font-size: 0px;
+
+    &:after {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-image: (url("../assets/icon-loupe.svg"));
+      background-size: 20px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      transition: all 0.3s;
+    }
+  }
+  &:hover,
+  &.active {
+    button:after {
+      background-image: (url("../assets/icon-loupe-blue.svg"));
+      transition: all 0.3s;
+    }
+  }
+}
+
+.headroom-wrapper {
+  .headroom {
+    background-color: $black-color;
+  }
+}
+
 ///// Common Style /////
 
 // Infinite-list
@@ -370,6 +415,11 @@ header {
   &:after,
   &:before {
     transition: all 0.3s;
+  }
+
+  .filters-window & {
+    top: 14px;
+    right: 28px;
   }
 }
 
