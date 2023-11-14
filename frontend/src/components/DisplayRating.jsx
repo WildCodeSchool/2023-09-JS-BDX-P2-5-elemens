@@ -14,19 +14,14 @@ function DisplayRating({ arrayStored }) {
             <p className="star">{data[2]}</p>
           </div>
           <p className="date-post">Posté Aujourd'hui</p>
-          <p>ID = {data[0]}</p>
-          <p>{data.id}</p>
-          {/* <p>MEDIA ID = {data[1]}</p> */}
           <p className="comment">{data[3]}</p>
-          {/* <p>{data[4]}</p> */}
         </div>
       ))}
     </div>
   );
 }
-
 DisplayRating.propTypes = {
-  arrayStored: PropTypes.func.isRequired,
+  arrayStored: PropTypes.arrayOf.isRequired,
 };
 
 export default DisplayRating;

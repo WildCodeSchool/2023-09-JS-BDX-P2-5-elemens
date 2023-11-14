@@ -26,11 +26,6 @@ function WriteRating({ onSubmit }) {
       // Ajoute Met à jour l'id de l'objet qui est envoyé dans un tableau.
       setId(id + 1);
 
-      // // setIdMedia(codeID);
-      // const submitBtn = document.getElementsByClassName("submit-btn");
-      // submitBtn[0].style.color = "var(--main-white)";
-      // submitBtn[0].style.backgroundColor = "var(--main-blue)";.
-
       // Renvoie un tableau des "values" entrée.
       const reviewData = [id, userName, star, comment];
       // Envoie le tableau dans l'élément parent.
@@ -107,7 +102,7 @@ function WriteRating({ onSubmit }) {
 }
 
 WriteRating.propTypes = {
-  onSubmit: PropTypes.element.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default WriteRating;
