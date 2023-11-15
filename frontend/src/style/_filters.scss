@@ -138,9 +138,9 @@
   border-radius: 50%;
 }
 
-.bloc-filter > button > img {
-  height: 50px;
-  width: 50px;
+.bloc-filter > img {
+  height: 30px;
+  width: 30px;
   cursor: pointer;
 }
 
@@ -154,6 +154,9 @@
   align-items: center;
   margin-inline: 20px;
   transition: all ease 1s;
+  width: auto;
+  padding: 10px;
+  width: 90%;
 }
 
 // Bouttons */

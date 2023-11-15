@@ -13,6 +13,8 @@ export function SearchContextProvider({ children }) {
   const [releaseYear, setReleaseYear] = useState([1901, 2023]);
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
+  const [showGenresButtons, setShowGenresButtons] = useState(false);
+  const [showYearsSlider, setShowYearsSlider] = useState(false);
 
   // Choisir le endpoint films
   const handleClickMovies = () => {
@@ -53,27 +55,22 @@ export function SearchContextProvider({ children }) {
       handleClickMovies,
       handleClickSeries,
       handleClickFilters,
+      showGenresButtons,
+      setShowGenresButtons,
+      showYearsSlider,
+      setShowYearsSlider,
     }),
     [
       textFound,
-      setTextFound,
       pageNumber,
-      setPageNumber,
       movieList,
-      setMovieList,
       hasMore,
-      setHasMore,
       genres,
-      setGenres,
       releaseYear,
-      setReleaseYear,
       filters,
-      setFilters,
       typeVideo,
-      setTypeVideo,
-      handleClickMovies,
-      handleClickSeries,
-      handleClickFilters,
+      showGenresButtons,
+      showYearsSlider,
     ]
   );
 
