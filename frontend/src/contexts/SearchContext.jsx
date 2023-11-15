@@ -85,7 +85,7 @@ export function SearchContextProvider({ children }) {
       language: "fr",
       page: `${pageNumber}`,
       sort_by: "popularity.desc",
-      with_genres: `${genres.join("%2C")}`,
+      with_genres: `${genres.join(",")}`,
       with_text_query: `${textFound}`,
     };
 
@@ -124,7 +124,7 @@ export function SearchContextProvider({ children }) {
       language: "fr",
       page: `${pageNumber}`,
       sort_by: "popularity.desc",
-      with_genres: `${genres.join("%2C")}`,
+      with_genres: `${genres.join(",")}`,
       with_text_query: `${textFound}`,
     };
 
