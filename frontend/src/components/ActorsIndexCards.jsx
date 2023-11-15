@@ -95,7 +95,8 @@ function ActorsIndexCards() {
                   {actorsInformationsOne.name}
                 </h1>
                 <p className="mb-t-center mb-20 ">
-                  {actorsInformationsOne.gender === 2 ? (
+                  {actorsInformationsOne.gender === 2 ||
+                  actorsInformationsOne.gender === 0 ? (
                     <>Acteur</>
                   ) : (
                     <>Actrice</>
