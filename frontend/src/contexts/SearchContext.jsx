@@ -10,7 +10,7 @@ export function SearchContextProvider({ children }) {
   const [movieList, setMovieList] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [genres, setGenres] = useState([]);
-  const [releaseYear, setReleaseYear] = useState(["1901", "2023"]);
+  const [releaseYear, setReleaseYear] = useState([1901, 2023]);
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
 

@@ -18,12 +18,16 @@ function YearsSlider() {
         className="horizontal-slider"
         thumbClassName="example-thumb"
         trackClassName="example-track"
-        defaultValue={[1901, 2023]}
+        defaultValue={[
+          searchContext.releaseYear[0],
+          searchContext.releaseYear[1],
+        ]}
         max={2023}
         min={1901}
         ariaLabel={["Lower thumb", "Upper thumb"]}
         ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-        // renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
         onChange={handleChange}
         pearling
         minDistance={10}
