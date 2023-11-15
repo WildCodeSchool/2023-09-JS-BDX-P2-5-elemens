@@ -80,22 +80,21 @@ function FilterBadge() {
       >
         Close
       </button>
-      <div className="genres">
-        <div className="bloc-filter">
-          <p className="title">Genre</p>
-          <button
-            onClick={(event) => handleClickShowGenres(event)}
-            type="submit"
-          >
-            <img
-              className="arrow"
-              src="./src/assets/img/arrow_down.png"
-              alt="Bouton ouverture/fermeture de liste."
-            />
-          </button>
-        </div>
-
-        {showGenresButtons && (
+      <div className="custom-scrollbar-container">
+        <div className={`genres${showGenresButtons ? " active" : ""}`}>
+          <div className="bloc-filter">
+            <p className="title">Genre</p>
+            <button
+              onClick={(event) => handleClickShowGenres(event)}
+              type="submit"
+            >
+              <img
+                className="arrow"
+                src="./src/assets/chevron-down-solid.svg"
+                alt="Bouton ouverture/fermeture de liste."
+              />
+            </button>
+          </div>
           <div className="boutons">
             {movieGenres.map((genre) => (
               <button
@@ -108,23 +107,23 @@ function FilterBadge() {
               </button>
             ))}
           </div>
-        )}
-      </div>
-      <div className="year">
-        <div className="bloc-filter">
-          <p className="title">Année</p>
-          <button
-            onClick={(event) => handleClickShowYears(event)}
-            type="submit"
-          >
-            <img
-              className="arrow"
-              src="./src/assets/img/arrow_down.png"
-              alt="Bouton ouverture/fermeture de liste."
-            />
-          </button>
         </div>
-        {showYearsSlider && <YearsSlider />}
+        <div className="year">
+          <div className="bloc-filter">
+            <p className="title">Année</p>
+            <button
+              onClick={(event) => handleClickShowYears(event)}
+              type="submit"
+            >
+              <img
+                className="arrow"
+                src="./src/assets/chevron-down-solid.svg"
+                alt="Bouton ouverture/fermeture de liste."
+              />
+            </button>
+          </div>
+          {showYearsSlider && <YearsSlider />}
+        </div>
       </div>
     </div>
   );
