@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
+import logo from "../assets/elemen5-poster.jpg";
 
 function ActorsIndexCards() {
   const { id } = useParams();
@@ -79,10 +80,14 @@ function ActorsIndexCards() {
             <div className="container media-infos-container tc-d-flex">
               <div className="poster_wrapper_profile">
                 <div className="poster-container mb-d-none">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
-                    alt="profile"
-                  />
+                  {actorsInformationsOne.profile_path === null ? (
+                    <img src={logo} alt="poster" />
+                  ) : (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
+                      alt="profile"
+                    />
+                  )}
                 </div>
               </div>
               <div className="media-infos mb-30">
@@ -95,10 +100,20 @@ function ActorsIndexCards() {
                   ) : (
                     <>Actrice</>
                   )}
+
                   <b>•</b>
-                  {actorsInformationsOne.birthday}
+                  {actorsInformationsOne.birthday === null ? (
+                    <>Non Communiqué</>
+                  ) : (
+                    actorsInformationsOne.birthday
+                  )}
+
                   <b>•</b>
-                  {actorsInformationsOne.place_of_birth}
+                  {actorsInformationsOne.place_of_birth === null ? (
+                    <>Non Communiqué</>
+                  ) : (
+                    actorsInformationsOne.place_of_birth
+                  )}
                 </p>
                 <div className="mb-d-none mb-20">
                   <h2 className="mb-20 blue-title">Biographie</h2>
