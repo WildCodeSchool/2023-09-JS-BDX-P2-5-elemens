@@ -24,11 +24,12 @@ function YearsSlider() {
         ]}
         max={2023}
         min={1901}
+        value={searchContext.releaseYear}
         ariaLabel={["Lower thumb", "Upper thumb"]}
         ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
         // eslint-disable-next-line react/jsx-props-no-spreading
         renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-        onChange={handleChange}
+        onAfterChange={handleChange}
         pearling
         minDistance={10}
       />
