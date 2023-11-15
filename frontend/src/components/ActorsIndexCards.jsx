@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
+import logo from "../assets/elemen5-poster.jpg";
 
 function ActorsIndexCards() {
   const { id } = useParams();
@@ -65,80 +66,98 @@ function ActorsIndexCards() {
   }
 
   return (
-     <>
-     <Header />
-    {actorsInformationsOne ? (
-    <div className="media-detail">
-      <div className="container-max pos-r">
-        <div
-          className="backdrop mb-d-block"
-          style={{
-            backgroundImage: `url(${actorsInformationsOne.profilePath})`,
-          }}
-        />
-        <div className="container media-infos-container tc-d-flex">
-          <div className="poster_wrapper_profile">
-            <div className="poster-container mb-d-none">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
-                alt="profile"
-              />
+    <>
+      <Header />
+      {actorsInformationsOne ? (
+        <div className="media-detail">
+          <div className="container-max pos-r">
+            <div
+              className="backdrop mb-d-block"
+              style={{
+                backgroundImage: `url(${actorsInformationsOne.profilePath})`,
+              }}
+            />
+            <div className="container media-infos-container tc-d-flex">
+              <div className="poster_wrapper_profile">
+                <div className="poster-container mb-d-none">
+                  {actorsInformationsOne.profile_path === null ? (
+                    <img src={logo} alt="poster" />
+                  ) : (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${actorsInformationsOne.profile_path}`}
+                      alt="profile"
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="media-infos mb-30">
+                <h1 className="mb-20 mb-t-center">
+                  {actorsInformationsOne.name}
+                </h1>
+                <p className="mb-t-center mb-20 ">
+                  {actorsInformationsOne.gender === 2 ||
+                  actorsInformationsOne.gender === 0 ? (
+                    <>Acteur</>
+                  ) : (
+                    <>Actrice</>
+                  )}
+
+                  <b>•</b>
+                  {actorsInformationsOne.birthday === null ? (
+                    <>Non Communiqué</>
+                  ) : (
+                    actorsInformationsOne.birthday
+                  )}
+
+                  <b>•</b>
+                  {actorsInformationsOne.place_of_birth === null ? (
+                    <>Non Communiqué</>
+                  ) : (
+                    actorsInformationsOne.place_of_birth
+                  )}
+                </p>
+                <div className="mb-d-none mb-20">
+                  <h2 className="mb-20 blue-title">Biographie</h2>
+                  <br />
+                  {actorsInformationsOne.biography !== "" ? (
+                    <p>{actorsInformationsOne.biography}</p>
+                  ) : (
+                    <p>Aucune biographie n'est disponible pour le moment.</p>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="media-infos mb-30">
-            <h1 className="mb-20 mb-t-center">{actorsInformationsOne.name}</h1>
-            <p className="mb-t-center mb-20 ">
-              {actorsInformationsOne.gender === 2 ? <>Acteur</> : <>Actrice</>}
-              <b>•</b>
-              {actorsInformationsOne.birthday}
-              <b>•</b>
-              {actorsInformationsOne.place_of_birth}
-            </p>
-            <div className="mb-d-none mb-20">
-              <h2 className="mb-20 blue-title">Biographie</h2>
-              <br />
-              {actorsInformationsOne.biography !== "" ? (
-                <p>{actorsInformationsOne.biography}</p>
-              ) : (
-                <p>Aucune biographie n'est disponible pour le moment.</p>
-              )}
+
+            <div className="container">
+              <h2 className="blue-title mb-10 mb-d-none ">Célèbre pour</h2>
+
+              <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
+                {actorsInformationsOne &&
+                  credits.map((media) => (
+                    <li key={media.id} className="t-center">
+                      <Link
+                        to={`/${media.media_type}/${media.id}`}
+                        key={media.id}
+                      >
+                        <figure className="mb-20">
+                          <img
+                            src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
+                            alt={media.title ? media.title : media.name}
+                          />
+                          <figcaption>
+                            {media.title ? media.title : media.name}
+                          </figcaption>
+                        </figure>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
             </div>
           </div>
         </div>
-        <div
-          className="backdrop mb-d-none"
-          style={{
-            backgroundImage: `url(${actorsInformationsOne.profilePath})`,
-          }}
-        />
-
-        <div className="container">
-          <h2 className="blue-title mb-10 mb-d-none ">Célèbre pour</h2>
-
-          <ul className="horizontal-list tiny-scrollbar slider-200 mb-50">
-            {actorsInformationsOne &&
-              credits.map((media) => (
-                <li key={media.id} className="t-center">
-                  <Link to={`/${media.media_type}/${media.id}`} key={media.id}>
-                    <figure className="mb-20">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
-                        alt={media.title ? media.title : media.name}
-                      />
-                      <figcaption>
-                        {media.title ? media.title : media.name}
-                      </figcaption>
-                    </figure>
-                  </Link>
-                </li>
-              ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div>Erreur</div>
-    )}
+      ) : (
+        <div>Erreur</div>
+      )}
     </>
   );
 }
