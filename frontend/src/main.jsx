@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     loader: async ({ params }) => {
       const options = {
         method: "GET",
-        url: `https://api.themoviedb.org/3/movie/${params.id}/reviews`,
+        url: `https://api.themoviedb.org/3/tv/${params.id}/reviews`,
         params: { language: "en-US", page: "1" },
         headers: {
           accept: "application/json",
