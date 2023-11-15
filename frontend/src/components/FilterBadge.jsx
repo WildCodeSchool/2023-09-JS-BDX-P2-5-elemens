@@ -70,6 +70,7 @@ function FilterBadge() {
   useEffect(() => {
     searchContext.setGenres(movieGenreArray);
   }, [movieGenreArray]);
+
   return (
     <div className={`filters-window ${searchContext.filters && "active"}`}>
       <button

@@ -6,7 +6,8 @@ import FilterBar from "./FilterBar";
 
 function Navbar() {
   const [letSearch, setLetSearch] = useState(false);
-  const { setTextFound, setPageNumber } = UseSearch();
+  const { textFound, setTextFound, setPageNumber, setReleaseYear, setGenres } =
+    UseSearch();
 
   const search = () => {
     setLetSearch(!letSearch);
@@ -17,12 +18,20 @@ function Navbar() {
     setPageNumber(1);
     setTextFound(e.target.value);
   };
+  // function to check for its behavior (must empty text input value)!!!!!!!!!!!!!!!!!!!!!!!
+  const backToHomePage = () => {
+    window.scrollTo({ top: 0, left: 0 });
+    setTextFound("");
+    setPageNumber(1);
+    setReleaseYear([1901, 2023]);
+    setGenres([]);
+  };
 
   return (
     <>
       <header id="header">
         <div className="container dflex">
-          <Link to="/">
+          <Link to="/" onClick={backToHomePage}>
             <img
               className="header-logo"
               src="src/assets/elemen5-paysage.png"
@@ -32,6 +41,7 @@ function Navbar() {
           <div className={`search-area${letSearch ? " active" : ""}`}>
             <DebounceInput
               type="text"
+              value={textFound} // here to be able to empty the area when emptying the  text state
               debounceTimeout={350}
               onChange={searchMovie}
               style={{

@@ -6,19 +6,18 @@ import App from "./App";
 import MediaPage from "./components/MediaPage";
 import ActorsIndexCards from "./components/ActorsIndexCards";
 import { SearchContextProvider } from "./contexts/SearchContext";
+import ErrorPage from "./components/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/movie",
-    element: <MediaPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/movie/:id",
     element: <MediaPage />,
+    errorElement: <ErrorPage />,
     loader: async ({ params }) => {
       const options = {
         method: "GET",
@@ -36,16 +35,13 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: "/tv",
-    element: <MediaPage />,
-  },
-  {
     path: "/tv/:id",
     element: <MediaPage />,
+    errorElement: <ErrorPage />,
     loader: async ({ params }) => {
       const options = {
         method: "GET",
-        url: `https://api.themoviedb.org/3/movie/${params.id}/reviews`,
+        url: `https://api.themoviedb.org/3/tv/${params.id}/reviews`,
         params: { language: "en-US", page: "1" },
         headers: {
           accept: "application/json",
@@ -61,6 +57,7 @@ const router = createBrowserRouter([
   {
     path: "/person/:id",
     element: <ActorsIndexCards />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

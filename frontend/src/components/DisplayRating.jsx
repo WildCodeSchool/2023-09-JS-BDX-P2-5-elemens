@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useRating } from "../contexts/RatingContext";
+import bin from "../assets/img/bin.png";
 
 function DisplayRating() {
   const { localStorageData, setLocalStorageData, removeItem } = useRating();
@@ -31,7 +32,7 @@ function DisplayRating() {
             className="bin"
             onClick={() => handleRemoveItem(data.id)}
           >
-            <img src="../src/assets/img/bin.png" alt="Supprimer." />
+            <img src={bin} alt="Supprimer." />
           </button>
         </div>
       ))}
