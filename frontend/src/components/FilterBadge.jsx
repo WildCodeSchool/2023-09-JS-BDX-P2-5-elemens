@@ -4,22 +4,18 @@ import YearsSlider from "./YearsSlider";
 import { UseSearch } from "../contexts/SearchContext";
 
 function FilterBadge() {
-  // Faire apparaître les filtres genres et annéé de sortie
-  const [showGenresButtons, setShowGenresButtons] = useState(false);
-  const [showYearsSlider, setShowYearsSlider] = useState(false);
+  const searchContext = UseSearch();
+
   // recuperer les genres de films de l'API
   const [movieGenres, setMovieGenres] = useState([]);
-  const [movieGenreArray, setMovieGenresArray] = useState([]);
 
   const handleClickShowGenres = () => {
-    setShowGenresButtons(!showGenresButtons);
+    searchContext.setShowGenresButtons(!searchContext.showGenresButtons);
   };
 
   const handleClickShowYears = () => {
-    setShowYearsSlider(!showYearsSlider);
+    searchContext.setShowYearsSlider(!searchContext.showYearsSlider);
   };
-
-  const searchContext = UseSearch();
 
   // Options du endpoint de l'API pour récupérer les différents genres de films
   const genreCallOptions = {
@@ -50,26 +46,21 @@ function FilterBadge() {
 
   // Ajouter ou supprimer des genres au filtres de recherche
   function toggleGenre(e) {
-    if (e.target.className === "active") {
-      e.target.className = "";
-    } else {
-      e.target.className = "active";
-    }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     searchContext.setPageNumber(1);
     const targetedGenre = e.target.id;
-    if (movieGenreArray.includes(targetedGenre)) {
-      setMovieGenresArray((type) =>
+    if (searchContext.genres.includes(targetedGenre)) {
+      searchContext.setGenres((type) =>
         type.filter((genre) => genre !== targetedGenre)
       );
     } else {
-      setMovieGenresArray([...movieGenreArray, targetedGenre]);
+      searchContext.setGenres([...searchContext.genres, targetedGenre]);
     }
   }
 
   useEffect(() => {
-    searchContext.setGenres(movieGenreArray);
-  }, [movieGenreArray]);
+    searchContext.setGenres(searchContext.genres);
+  }, [searchContext.genres]);
 
   return (
     <div className={`filters-window ${searchContext.filters && "active"}`}>
@@ -81,48 +72,58 @@ function FilterBadge() {
         Close
       </button>
       <div className="custom-scrollbar-container">
-        <div className={`genres${showGenresButtons ? " active" : ""}`}>
-          <div className="bloc-filter">
+        <div
+          className={`genres${
+            searchContext.showGenresButtons ? " active" : ""
+          }`}
+        >
+          <button
+            className="bloc-filter"
+            onClick={(event) => handleClickShowGenres(event)}
+            type="submit"
+          >
             <p className="title">Genre</p>
-            <button
-              onClick={(event) => handleClickShowGenres(event)}
-              type="submit"
-            >
-              <img
-                className="arrow"
-                src="./src/assets/chevron-down-solid.svg"
-                alt="Bouton ouverture/fermeture de liste."
-              />
-            </button>
-          </div>
-          <div className="boutons">
-            {movieGenres.map((genre) => (
-              <button
-                type="button"
-                key={genre.name}
-                id={genre.id}
-                onClick={toggleGenre}
-              >
-                {genre.name}
-              </button>
-            ))}
-          </div>
+            <img
+              className="arrow"
+              src="./src/assets/chevron-down-solid.svg"
+              alt="Bouton ouverture/fermeture de liste."
+            />
+          </button>
+
+          {searchContext.showGenresButtons && (
+            <div className="boutons">
+              {movieGenres.map((genre) => (
+                <button
+                  type="button"
+                  key={genre.name}
+                  id={genre.id}
+                  className={
+                    searchContext.genres.includes(genre.id.toString())
+                      ? "active"
+                      : ""
+                  }
+                  onClick={toggleGenre}
+                >
+                  {genre.name}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div className="year">
-          <div className="bloc-filter">
+          <button
+            className="bloc-filter"
+            onClick={(event) => handleClickShowYears(event)}
+            type="submit"
+          >
             <p className="title">Année</p>
-            <button
-              onClick={(event) => handleClickShowYears(event)}
-              type="submit"
-            >
-              <img
-                className="arrow"
-                src="./src/assets/chevron-down-solid.svg"
-                alt="Bouton ouverture/fermeture de liste."
-              />
-            </button>
-          </div>
-          {showYearsSlider && <YearsSlider />}
+            <img
+              className="arrow"
+              src="./src/assets/chevron-down-solid.svg"
+              alt="Bouton ouverture/fermeture de liste."
+            />
+          </button>
+          {searchContext.showYearsSlider && <YearsSlider />}
         </div>
       </div>
     </div>

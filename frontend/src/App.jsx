@@ -72,13 +72,12 @@ function App() {
           setPageNumber={searchContext.setPageNumber}
           typeVideo={searchContext.typeVideo}
         />
-        {(searchContext.textFound !== "" ||
-          searchContext.releaseYear[0] !== 1901 ||
-          searchContext.releaseYear[1] !== 2023 ||
-          searchContext.genres[0] !== undefined) && (
+        {searchContext.textFound !== "" ||
+        searchContext.releaseYear[0] !== 1901 ||
+        searchContext.releaseYear[1] !== 2023 ||
+        searchContext.genres[0] !== undefined ? (
           <MainResearch lastMovieElementRef={lastMovieElementRef} />
-        )}
-        {searchContext.textFound === "" && (
+        ) : (
           <PopularVideos typeVideo={searchContext.typeVideo} />
         )}
       </div>

@@ -37,12 +37,6 @@
   text-decoration: underline;
 }
 
-// boutons pour choisir les filtres
-.arrow {
-  height: 100px;
-  width: 100px;
-}
-
 .filter-arrow {
   filter: invert(1);
 }
@@ -157,18 +151,17 @@
   text-align: center;
   justify-content: space-between;
   align-items: center;
-  margin-inline: 20px;
+  padding: 13px 12px;
+  width: 100%;
   transition: all ease 1s;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
 
-  & > button {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-
-    img {
-      width: 20px;
-      height: auto;
-    }
+  img {
+    width: 20px;
+    height: auto;
+    margin-right: 13px;
   }
 }
 
