@@ -26,8 +26,7 @@ function Rating() {
   };
 
   return (
-    <div>
-      <h1>Write & see Reviews.</h1>
+    <div className="container-tiny comments-container custom-scrollbar-container">
       <WriteRating onSubmit={handleSubmitData} />
       <DisplayRating arrayStored={arrayStored} />
     </div>

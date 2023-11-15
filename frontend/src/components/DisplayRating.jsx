@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import "../style/Rating_media_query.css";
-import "../style/Rating.css";
 import { useRating } from "../contexts/RatingContext";
 
 function DisplayRating() {
@@ -21,14 +19,11 @@ function DisplayRating() {
   };
 
   return (
-    <div className="write-review">
-      <h3>Commentaire utilisateur.</h3>
+    <div className="write-review mb-50">
       {localStorageData.map((data) => (
-        <div key={data.id} className="review-card">
-          <div className="top">
-            <h2 className="user-name">{data.userName}</h2>
-            <p className="star">{data.star}</p>
-          </div>
+        <div key={data.id} className="review-card mb-30">
+          <h2 className="user-name">{data.userName}</h2>
+          <i className="note">{data.star}</i>
           <p className="date-post">Posté Aujourd'hui</p>
           <p className="comment">{data.comment}</p>
           <button

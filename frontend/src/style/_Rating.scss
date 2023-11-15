@@ -11,7 +11,6 @@
 @media screen and (max-width: 767px) {
   /* WriteRating.jsx */
   .form-review {
-    margin: auto;
     width: clamp(345px, 30px, 767px);
   }
 
@@ -40,22 +39,11 @@
   }
 
   .write-review > .review-card {
-    padding: 15px;
-  }
-
-  .write-review > .review-card > .top > .star {
-    height: 40px;
-    width: 40px;
-    font-size: 16px;
-    padding: 6px 0px 0px 8px;
+    padding: 15px 55px 15px 15px;
   }
 
   .write-review > .review-card > .top > .user-name {
     font-size: 16px;
-  }
-
-  .write-review > .review-card > .top > .star::after {
-    font-size: 8px;
   }
 
   .write-review > .review-card > .date-post {
@@ -69,9 +57,19 @@
   }
 }
 
+.comments-container {
+  max-height: 600px;
+  overflow-y: auto;
+  margin-bottom: 50px;
+}
+
 /* WriteRating.jsx */
-.form-review {
-  margin-block: 20px;
+
+.write-review {
+  .note {
+    top: -15px;
+    right: -15px;
+  }
 }
 
 .form-review * {
@@ -166,7 +164,6 @@
 .write-review > .review-card {
   position: relative;
   color: var(--main-black);
-  margin-block: 20px;
   background-color: var(--main-white);
   border-radius: 10px;
 }
@@ -193,7 +190,6 @@
 }
 
 .write-review > .review-card > .date-post {
-  position: absolute;
   font-size: 12px;
   opacity: 0.5;
 }
@@ -210,3 +206,146 @@
   width: 20px;
 }
 /* DisplayRating.jsx */
+
+/* Responsive TABLETTE */
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  /* WriteRating.jsx */
+  .form-review {
+    width: clamp(468px, 100px, 768px);
+  }
+
+  .form-review > .submit-btn {
+    font-size: 14px;
+  }
+
+  /* Alerte Message */
+  .succes-comment {
+    top: 80px;
+    right: 25px;
+  }
+
+  .error-comment {
+    top: 80px;
+    right: 50px;
+  }
+
+  /* DisplayRating.jsx */
+  .write-review {
+    margin: 20px 60px;
+  }
+
+  .write-review > h3 {
+    font-size: 20px;
+  }
+
+  .write-review > .review-card {
+    padding: 15px;
+  }
+
+  .write-review > .review-card > .top > .star {
+    height: 40px;
+    width: 40px;
+    font-size: 16px;
+    padding: 6px 0px 0px 8px;
+  }
+
+  .write-review > .review-card > .top > .user-name {
+    font-size: 16px;
+  }
+
+  .write-review > .review-card > .top > .star::after {
+    font-size: 8px;
+  }
+
+  .write-review > .review-card > .date-post {
+    top: 40px;
+    left: 15px;
+  }
+
+  .write-review > .review-card > .comment {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}
+
+/* Responsive DESTKOP */
+@media screen and (min-width: 1201px) {
+  /* WriteRating.jsx */
+  .form-review {
+    width: clamp(450px, 20px, 650px);
+  }
+
+  .form-review > .submit-btn {
+    font-size: 16px;
+  }
+
+  /* Alert Messages */
+  .succes-comment {
+    bottom: 60px;
+    right: 20px;
+  }
+
+  .succes-comment > b {
+    margin: 2px 0px 0px 4px;
+  }
+
+  .error-comment {
+    bottom: 60px;
+    right: 20px;
+  }
+
+  .error-comment > b {
+    margin-right: 4px;
+  }
+  /* WriteRating.jsx */
+
+  /* DisplayRating.jsx */
+  .write-review {
+    width: clamp(767px, 80px, 1201px);
+  }
+
+  .write-review > h3 {
+    font-size: 22px;
+  }
+
+  .write-review > .review-card {
+    padding: 20px;
+  }
+
+  .write-review > .review-card > .top > .user-name {
+    font-size: 20px;
+  }
+
+  .write-review > .review-card > .top > .star {
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    padding: 8px 0px 0px 8px;
+    border-radius: 50%;
+  }
+
+  .write-review > .review-card > .top > .star::after {
+    content: " /10";
+    font-size: 12px;
+  }
+
+  .write-review > .review-card > .date-post {
+    top: 45px;
+    left: 20px;
+  }
+
+  .write-review > .review-card > .comment {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+}
+/* DisplayRating.jsx */
+
+.feedback-btn {
+  padding-right: 3px;
+  margin-right: -4px;
+}
+.rating-btn {
+  padding-left: 3px;
+  margin-left: -3px;
+}

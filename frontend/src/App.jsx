@@ -1,16 +1,18 @@
 import { useCallback, useRef } from "react";
+import Headroom from "react-headroom";
 // import InfiniteScroll from "react-infinite-scroll-component";
-import FilterBar from "./components/FilterBar";
+// import FilterBar from "./components/FilterBar";
 import FilterBadge from "./components/FilterBadge";
 import "./style/App.css";
 import MainResearch from "./components/MainResearch";
 import PopularVideos from "./components/PopularVideos";
 import { UseSearch } from "./contexts/SearchContext";
+import Navbar from "./components/Navbar";
 
 function App() {
   const searchContext = UseSearch();
 
-  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page
+  // Fonction pour incrémenter le numéro de page lorsqu'on arrive sur un élémént ciblé de la page a
   const observer = useRef();
   const lastMovieElementRef = useCallback(
     (node) => {
@@ -26,41 +28,18 @@ function App() {
     [searchContext.hasMore]
   );
 
-  // Choisir le endpoint films
-  const handleClickMovies = () => {
-    searchContext.setPageNumber(1);
-    searchContext.setTypeVideo("movie");
-  };
-  // Choisir le endpoint series
-  const handleClickSeries = () => {
-    searchContext.setPageNumber(1);
-    searchContext.setTypeVideo("tv");
-  };
-  // Afficher ou faire disparaitre la section filtres
-  const handleClickFilters = () => {
-    searchContext.setFilters(!searchContext.filters);
-  };
-
   return (
     <>
-      <div className="container mb-40">
-        <FilterBar
-          handleClickMovies={handleClickMovies}
-          handleClickSeries={handleClickSeries}
-          handleClickFilters={handleClickFilters}
+      <Headroom>
+        <Navbar />
+      </Headroom>
+      <div className="main-area container pos-r">
+        <FilterBadge
+          setGenres={searchContext.setGenres}
+          // handleClickFilters={handleClickFilters}
+          setPageNumber={searchContext.setPageNumber}
           typeVideo={searchContext.typeVideo}
         />
-        {searchContext.filters && (
-          <FilterBadge
-            setGenres={searchContext.setGenres}
-            handleClickFilters={handleClickFilters}
-            setPageNumber={searchContext.setPageNumber}
-            typeVideo={searchContext.typeVideo}
-          />
-        )}
-      </div>
-
-      <div className="main-area">
         {searchContext.textFound !== "" && (
           <MainResearch lastMovieElementRef={lastMovieElementRef} />
         )}
