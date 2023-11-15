@@ -71,54 +71,60 @@ function FilterBadge() {
       >
         Close
       </button>
-      <div className="genres">
-        <button
-          className="bloc-filter"
-          onClick={(event) => handleClickShowGenres(event)}
-          type="submit"
+      <div className="custom-scrollbar-container">
+        <div
+          className={`genres${
+            searchContext.showGenresButtons ? " active" : ""
+          }`}
         >
-          <p className="title">Genre</p>
-          <img
-            className="arrow"
-            src="./src/assets/chevron-down-solid.svg"
-            alt="Bouton ouverture/fermeture de liste."
-          />
-        </button>
+          <button
+            className="bloc-filter"
+            onClick={(event) => handleClickShowGenres(event)}
+            type="submit"
+          >
+            <p className="title">Genre</p>
+            <img
+              className="arrow"
+              src="./src/assets/chevron-down-solid.svg"
+              alt="Bouton ouverture/fermeture de liste."
+            />
+          </button>
 
-        {searchContext.showGenresButtons && (
-          <div className="boutons">
-            {movieGenres.map((genre) => (
-              <button
-                type="button"
-                key={genre.name}
-                id={genre.id}
-                className={
-                  searchContext.genres.includes(genre.id.toString())
-                    ? "active"
-                    : ""
-                }
-                onClick={toggleGenre}
-              >
-                {genre.name}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="year">
-        <button
-          className="bloc-filter"
-          onClick={(event) => handleClickShowYears(event)}
-          type="submit"
-        >
-          <p className="title">Année</p>
-          <img
-            className="arrow"
-            src="./src/assets/chevron-down-solid.svg"
-            alt="Bouton ouverture/fermeture de liste."
-          />
-        </button>
-        {searchContext.showYearsSlider && <YearsSlider />}
+          {searchContext.showGenresButtons && (
+            <div className="boutons">
+              {movieGenres.map((genre) => (
+                <button
+                  type="button"
+                  key={genre.name}
+                  id={genre.id}
+                  className={
+                    searchContext.genres.includes(genre.id.toString())
+                      ? "active"
+                      : ""
+                  }
+                  onClick={toggleGenre}
+                >
+                  {genre.name}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="year">
+          <button
+            className="bloc-filter"
+            onClick={(event) => handleClickShowYears(event)}
+            type="submit"
+          >
+            <p className="title">Année</p>
+            <img
+              className="arrow"
+              src="./src/assets/chevron-down-solid.svg"
+              alt="Bouton ouverture/fermeture de liste."
+            />
+          </button>
+          {searchContext.showYearsSlider && <YearsSlider />}
+        </div>
       </div>
     </div>
   );

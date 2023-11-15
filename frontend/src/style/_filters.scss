@@ -8,7 +8,7 @@
 
 .filter-bar {
   .filter-button {
-    padding: 15px;
+    padding: 12px;
     border: 2px solid $blue-color;
     border-radius: 50%;
 
@@ -26,21 +26,15 @@
 
     img {
       height: auto;
-      width: 30px;
+      width: 24px;
       vertical-align: middle;
     }
   }
 }
 
-.filter-bar > div > button > .categorie-selected {
+.filter-bar div button .categorie-selected {
   font-weight: bold;
   text-decoration: underline;
-}
-
-// boutons pour choisir les filtres
-.arrow {
-  height: 100px;
-  width: 100px;
 }
 
 .filter-arrow {
@@ -49,7 +43,7 @@
 
 // FENETRE DE FILTRES
 .filters-window {
-  padding: 24px 12px;
+  padding: 55px 12px 12px;
   margin: 0 auto;
   border: 1px solid $white-color;
   border-radius: 10px;
@@ -58,7 +52,7 @@
 
   width: 100%;
   max-width: 440px;
-  min-height: calc(100vh - 192px);
+  height: calc(100vh - 192px);
 
   position: fixed;
   top: 100vh;
@@ -78,7 +72,7 @@
   }
 }
 
-.filters-window > button > .close-btn {
+.filters-window button .close-btn {
   font-size: 1px;
   height: 5px;
   width: 100px;
@@ -88,19 +82,18 @@
   cursor: pointer;
 }
 
-.filters-window > .genres {
-  margin-top: 40px;
+.filters-window .genres {
+  margin-bottom: 30px;
 }
 
-.filters-window > .genres,
+.filters-window .genres,
 .year {
-  margin-bottom: 30px;
   background-color: $black-color;
   border-radius: 10px;
   border: 1px solid $white-color;
   transition: all ease 1s;
 }
-.filters-window > .genres > .boutons > button {
+.filters-window .genres .boutons button {
   &.active {
     border: 1px solid $blue-color;
     border-radius: 5px;
@@ -110,7 +103,6 @@
 .horizontal-slider {
   height: 20px;
   margin-top: 20px;
-  border: 1px black solid;
 }
 
 .example-track-0,
@@ -138,10 +130,17 @@
   border-radius: 50%;
 }
 
-.bloc-filter > img {
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
+.genres {
+  height: 50px;
+  overflow: hidden;
+
+  &.active {
+    height: fit-content;
+
+    img {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .bloc-filter {
@@ -152,15 +151,28 @@
   text-align: center;
   justify-content: space-between;
   align-items: center;
-  margin-inline: 20px;
+  padding: 13px 12px;
+  width: 100%;
   transition: all ease 1s;
-  width: auto;
-  padding: 10px;
-  width: 90%;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+
+  img {
+    width: 20px;
+    height: auto;
+    margin-right: 13px;
+  }
 }
 
-// Bouttons */
-.filters-window > .genres > .boutons {
+.filters-window {
+  .custom-scrollbar-container {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+.filters-window .genres .boutons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
@@ -169,7 +181,7 @@
   justify-content: space-around;
 }
 
-.filters-window > .genres > .boutons > p {
+.filters-window .genres .boutons p {
   color: $white-color;
   width: 70%;
   margin: auto;
@@ -181,12 +193,12 @@
   cursor: pointer;
 }
 
-.filters-window > .genres > .boutons > .selected {
+.filters-window .genres .boutons .selected {
   border: 1px solid $blue-color;
 }
 
 // Years */
-.filters-window > .year > .slider {
+.filters-window .year .slider {
   display: flex;
   margin-bottom: 30px;
   padding-inline: 30px;
@@ -194,7 +206,7 @@
   transition: all ease 1s;
 }
 
-.filters-window > .year > .slider > label {
+.filters-window .year .slider label {
   color: $white-color;
   margin-bottom: 10px;
 }
