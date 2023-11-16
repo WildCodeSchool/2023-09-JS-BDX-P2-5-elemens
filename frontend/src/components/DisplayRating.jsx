@@ -29,7 +29,6 @@ function DisplayRating() {
             <div key={data.id} className="review-card mb-30">
               <h2 className="user-name">{data.userName}</h2>
               <i className="note">{data.star}</i>
-              <p>ID = {data.mediaId}</p>
               <p className="date-post">Posté Aujourd'hui</p>
               <p>{data.ratingTitle}</p>
               <p className="comment">{data.comment}</p>

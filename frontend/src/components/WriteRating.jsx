@@ -18,8 +18,6 @@ function WriteRating({ onSubmit }) {
     setSuccesMsg,
     errorMsg,
     setErrorMsg,
-    ratingTitle,
-    setRatingTitle,
     date,
     setDate,
   } = useRating();
@@ -31,12 +29,7 @@ function WriteRating({ onSubmit }) {
   };
 
   const handleSubmit = () => {
-    if (
-      userName !== "" &&
-      star !== "" &&
-      ratingTitle !== "" &&
-      comment !== ""
-    ) {
+    if (userName !== "" && star !== "" && comment !== "") {
       getCurrentDate();
 
       const reviewData = {
@@ -45,7 +38,6 @@ function WriteRating({ onSubmit }) {
         userName,
         star,
         date,
-        ratingTitle,
         comment,
       };
 
@@ -53,7 +45,6 @@ function WriteRating({ onSubmit }) {
 
       setUserName("");
       setStar("");
-      setRatingTitle("");
       setComment("");
 
       setSuccesMsg(true);
@@ -97,11 +88,6 @@ function WriteRating({ onSubmit }) {
           <option>10</option>
         </select>
       </div>
-      <input
-        type="text"
-        placeholder="Tite de l'avis *"
-        onChange={(event) => setRatingTitle(event.target.value)}
-      />
       <textarea
         type="text"
         placeholder="Commentaire *"

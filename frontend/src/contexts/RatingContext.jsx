@@ -9,7 +9,6 @@ function RatingContextProvider({ children }) {
   const [userName, setUserName] = useState("");
   const [star, setStar] = useState("");
   const [date, setDate] = useState("");
-  const [ratingTitle, setRatingTitle] = useState("");
   const [comment, setComment] = useState("");
   // ID du commentaire et du film / serie.
   const [id, setId] = useState(uuid());
@@ -52,8 +51,6 @@ function RatingContextProvider({ children }) {
       localStorageData,
       setLocalStorageData,
       removeItem,
-      ratingTitle,
-      setRatingTitle,
       date,
       setDate,
     }),
@@ -77,8 +74,6 @@ function RatingContextProvider({ children }) {
       localStorageData,
       setLocalStorageData,
       removeItem,
-      ratingTitle,
-      setRatingTitle,
       date,
       setDate,
     ]
