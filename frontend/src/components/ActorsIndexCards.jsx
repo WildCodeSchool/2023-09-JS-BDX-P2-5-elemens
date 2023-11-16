@@ -93,7 +93,7 @@ function ActorsIndexCards() {
                   <p className="mb-t-center mb-20 ">
                     Maître de l'humour
                     <b>•</b>
-                    Née le 1 Avril 1978
+                    Né le 1 Avril 1978
                     <b>•</b>
                     Théâtre Fontaine
                   </p>
@@ -102,13 +102,13 @@ function ActorsIndexCards() {
                     <br />
                     T'sais le gars charismatique qui capte l'attention quand il
                     parle à un groupe, qui a un super sens de la répartie et qui
-                    n'a pas peur du ridicule. C'est le genre de gars que t'dis :
-                    "Wow !" lui, s'il m'accompagnait au souper de famille, ma
+                    n'a pas peur du ridicule. C'est le genre de gars tu t'dis :
+                    "Wooow !" lui, s'il m'accompagnait au souper de famille, ma
                     tante Cécile arrêterait de toujours dénigrer mes relations
                     en les comparant au chum parfait de ma cousine avec qui elle
-                    est depuis 2 ans. On a tous connu un gars comme ça, si c'est
+                    est depuis 9 ans. On a tous connu un gars comme ça, si c'est
                     pas ton cas, ben aujourd'hui t'as la chance d'en rencontrer
-                    un. Ne la manque pas !
+                    un. Ne la manque pas !!!
                   </div>
                 </div>
               </div>
