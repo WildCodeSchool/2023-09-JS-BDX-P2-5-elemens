@@ -77,7 +77,7 @@ export function SearchContextProvider({ children }) {
   // Fonction d'appel de l'API
   const getMovie = () => {
     const params = {
-      include_adult: "true",
+      include_adult: "false",
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
@@ -116,7 +116,7 @@ export function SearchContextProvider({ children }) {
   // Fonction d'appel de l'API pour charger les pages suivantes corespondant à la recherche
   const fetchNextMovies = () => {
     const params = {
-      include_adult: "true",
+      include_adult: "false",
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
