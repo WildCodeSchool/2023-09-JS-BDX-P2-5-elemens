@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
+import { useParams } from "react-router-dom";
 import { useRating } from "../contexts/RatingContext";
 
 function WriteRating({ onSubmit }) {
+  const { id } = useParams();
+
   const {
     userName,
     setUserName,
@@ -15,14 +18,34 @@ function WriteRating({ onSubmit }) {
     setSuccesMsg,
     errorMsg,
     setErrorMsg,
+    ratingTitle,
+    setRatingTitle,
+    date,
+    setDate,
   } = useRating();
 
+  // Créer et stoque la date actuelle.
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    setDate(currentDate);
+  };
+
   const handleSubmit = () => {
-    if (userName !== "" && star !== "" && comment !== "") {
+    if (
+      userName !== "" &&
+      star !== "" &&
+      ratingTitle !== "" &&
+      comment !== ""
+    ) {
+      getCurrentDate();
+
       const reviewData = {
-        id: uuid(),
+        uuid: uuid(),
+        mediaId: id,
         userName,
         star,
+        date,
+        ratingTitle,
         comment,
       };
 
@@ -30,6 +53,7 @@ function WriteRating({ onSubmit }) {
 
       setUserName("");
       setStar("");
+      setRatingTitle("");
       setComment("");
 
       setSuccesMsg(true);
@@ -73,6 +97,11 @@ function WriteRating({ onSubmit }) {
           <option>10</option>
         </select>
       </div>
+      <input
+        type="text"
+        placeholder="Tite de l'avis *"
+        onChange={(event) => setRatingTitle(event.target.value)}
+      />
       <textarea
         type="text"
         placeholder="Commentaire *"

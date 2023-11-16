@@ -8,6 +8,8 @@ function RatingContextProvider({ children }) {
   // Inputs du formulaires.
   const [userName, setUserName] = useState("");
   const [star, setStar] = useState("");
+  const [date, setDate] = useState("");
+  const [ratingTitle, setRatingTitle] = useState("");
   const [comment, setComment] = useState("");
   // ID du commentaire et du film / serie.
   const [id, setId] = useState(uuid());
@@ -23,7 +25,7 @@ function RatingContextProvider({ children }) {
   // Fonction supprimer un objet du local storage en identifiant l'id.
   const removeItem = (idOfObject) => {
     const updateData = localStorageData.filter(
-      (item) => item.id !== idOfObject
+      (item) => item.uuid !== idOfObject
     );
     setLocalStorageData(updateData);
     localStorage.setItem("Feedback", JSON.stringify(updateData));
@@ -50,6 +52,10 @@ function RatingContextProvider({ children }) {
       localStorageData,
       setLocalStorageData,
       removeItem,
+      ratingTitle,
+      setRatingTitle,
+      date,
+      setDate,
     }),
     [
       userName,
@@ -71,6 +77,10 @@ function RatingContextProvider({ children }) {
       localStorageData,
       setLocalStorageData,
       removeItem,
+      ratingTitle,
+      setRatingTitle,
+      date,
+      setDate,
     ]
   );
 

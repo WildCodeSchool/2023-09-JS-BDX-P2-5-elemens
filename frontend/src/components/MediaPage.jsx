@@ -51,7 +51,6 @@ function MediaPage() {
   // Handle qui affiche le composant (Reviews.jsx).
   const handleFeedbacks = () => {
     setFeedback(!feedback);
-    // feedback ? setFeedbackBtn(false) : setFeedbackBtn(true);
     setFeedbackBtn(!feedback);
     setRatingBtn(false);
   };
