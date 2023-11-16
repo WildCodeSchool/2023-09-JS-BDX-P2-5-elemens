@@ -9,7 +9,7 @@ function MainResearch({ lastMovieElementRef }) {
       <ul className="infinite-list t-center">
         {movieList.map((movie, index) =>
           index === movieList.length - 2 ? (
-            <li>
+            <li key={movie.id}>
               <Link
                 to={`/${typeVideo}/${movie.id}`}
                 key={movie.id}
@@ -36,7 +36,7 @@ function MainResearch({ lastMovieElementRef }) {
               </Link>
             </li>
           ) : (
-            <li>
+            <li key={movie.id}>
               <Link to={`/${typeVideo}/${movie.id}`} key={movie.id}>
                 <figure>
                   {movie.poster_path ? (
