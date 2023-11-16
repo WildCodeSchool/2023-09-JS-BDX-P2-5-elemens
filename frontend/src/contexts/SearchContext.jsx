@@ -13,6 +13,8 @@ export function SearchContextProvider({ children }) {
   const [releaseYear, setReleaseYear] = useState([1901, 2023]);
   const [filters, setFilters] = useState(false);
   const [typeVideo, setTypeVideo] = useState("movie");
+  const [showGenresButtons, setShowGenresButtons] = useState(false);
+  const [showYearsSlider, setShowYearsSlider] = useState(false);
 
   // Choisir le endpoint films
   const handleClickMovies = () => {
@@ -53,48 +55,43 @@ export function SearchContextProvider({ children }) {
       handleClickMovies,
       handleClickSeries,
       handleClickFilters,
+      showGenresButtons,
+      setShowGenresButtons,
+      showYearsSlider,
+      setShowYearsSlider,
     }),
     [
       textFound,
-      setTextFound,
       pageNumber,
-      setPageNumber,
       movieList,
-      setMovieList,
       hasMore,
-      setHasMore,
       genres,
-      setGenres,
       releaseYear,
-      setReleaseYear,
       filters,
-      setFilters,
       typeVideo,
-      setTypeVideo,
-      handleClickMovies,
-      handleClickSeries,
-      handleClickFilters,
+      showGenresButtons,
+      showYearsSlider,
     ]
   );
 
   // Fonction d'appel de l'API
   const getMovie = () => {
     const params = {
-      include_adult: "true",
+      include_adult: "false",
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
       sort_by: "popularity.desc",
-      with_genres: `${genres.join("%2C")}`,
+      with_genres: `${genres.join(",")}`,
       with_text_query: `${textFound}`,
     };
 
     if (typeVideo === "movie") {
       params["primary_release_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["primary_release_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["primary_release_date.lte"] = `${releaseYear[1]}-12-31`;
     } else if (typeVideo === "tv") {
       params["first_air_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["first_air_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["first_air_date.lte"] = `${releaseYear[1]}-12-31`;
     }
     axios
       .request({
@@ -119,21 +116,21 @@ export function SearchContextProvider({ children }) {
   // Fonction d'appel de l'API pour charger les pages suivantes corespondant à la recherche
   const fetchNextMovies = () => {
     const params = {
-      include_adult: "true",
+      include_adult: "false",
       include_video: "false",
       language: "fr",
       page: `${pageNumber}`,
       sort_by: "popularity.desc",
-      with_genres: `${genres.join("%2C")}`,
+      with_genres: `${genres.join(",")}`,
       with_text_query: `${textFound}`,
     };
 
     if (typeVideo === "movie") {
       params["primary_release_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["primary_release_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["primary_release_date.lte"] = `${releaseYear[1]}-12-31`;
     } else if (typeVideo === "tv") {
       params["first_air_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["first_air_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["first_air_date.lte"] = `${releaseYear[1]}-12-31`;
     }
     axios
       .request({

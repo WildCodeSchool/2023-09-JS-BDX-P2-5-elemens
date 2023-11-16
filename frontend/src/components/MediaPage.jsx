@@ -20,7 +20,9 @@ const options = {
 function toHoursAndMinutes(totalMinutes) {
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
-  return `${hours}h${minutes > 0 ? `${minutes}` : ""}`;
+  return `${hours}h${
+    minutes > 0 ? `${minutes.toString().padStart(2, "0")}` : ""
+  }`;
 }
 
 const certificate = (certif) => {
