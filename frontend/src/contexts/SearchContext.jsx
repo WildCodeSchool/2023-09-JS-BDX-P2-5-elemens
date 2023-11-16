@@ -88,10 +88,10 @@ export function SearchContextProvider({ children }) {
 
     if (typeVideo === "movie") {
       params["primary_release_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["primary_release_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["primary_release_date.lte"] = `${releaseYear[1]}-12-31`;
     } else if (typeVideo === "tv") {
       params["first_air_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["first_air_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["first_air_date.lte"] = `${releaseYear[1]}-12-31`;
     }
     axios
       .request({
@@ -127,10 +127,10 @@ export function SearchContextProvider({ children }) {
 
     if (typeVideo === "movie") {
       params["primary_release_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["primary_release_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["primary_release_date.lte"] = `${releaseYear[1]}-12-31`;
     } else if (typeVideo === "tv") {
       params["first_air_date.gte"] = `${releaseYear[0]}-01-01`;
-      params["first_air_date.lte"] = `${releaseYear[1]}-01-01`;
+      params["first_air_date.lte"] = `${releaseYear[1]}-12-31`;
     }
     axios
       .request({
