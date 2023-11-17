@@ -172,7 +172,7 @@ function MediaPage() {
                   backgroundImage: `url(${
                     mediaInfo.backdropPath
                       ? mediaInfo.backdropPath
-                      : { logoBackdrop }
+                      : logoBackdrop
                   })`,
                 }}
               />
@@ -183,7 +183,7 @@ function MediaPage() {
                     src={
                       mediaInfo.posterPath
                         ? `https://image.tmdb.org/t/p/w500/${mediaInfo.posterPath}`
-                        : { logoPoster }
+                        : logoPoster
                     }
                     alt={mediaInfo.title}
                   />
@@ -269,7 +269,7 @@ function MediaPage() {
                           src={
                             person.profile_path
                               ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
-                              : { logoPoster }
+                              : logoPoster
                           }
                           alt={person.name}
                         />
