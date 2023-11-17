@@ -6,6 +6,8 @@ import Rating from "./Rating";
 import RatingContextProvider from "../contexts/RatingContext";
 import "../style/App.css";
 import Header from "./Header";
+import logoBackdrop from "../assets/elemen5-backdrop.jpg";
+import logoPoster from "../assets/elemen5-poster.jpg";
 
 // options de l'appel à l'API
 const options = {
@@ -170,7 +172,7 @@ function MediaPage() {
                   backgroundImage: `url(${
                     mediaInfo.backdropPath
                       ? mediaInfo.backdropPath
-                      : "../src/assets/elemen5-backdrop.jpg"
+                      : logoBackdrop
                   })`,
                 }}
               />
@@ -181,7 +183,7 @@ function MediaPage() {
                     src={
                       mediaInfo.posterPath
                         ? `https://image.tmdb.org/t/p/w500/${mediaInfo.posterPath}`
-                        : "../src/assets/elemen5-poster.jpg"
+                        : logoPoster
                     }
                     alt={mediaInfo.title}
                   />
@@ -267,7 +269,7 @@ function MediaPage() {
                           src={
                             person.profile_path
                               ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
-                              : "../src/assets/elemen5-poster.jpg"
+                              : logoPoster
                           }
                           alt={person.name}
                         />
