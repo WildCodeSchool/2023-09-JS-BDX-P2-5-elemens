@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { UseSearch } from "../contexts/SearchContext";
+import logoPoster from "../assets/elemen5-poster.jpg";
 
 function MainResearch({ lastMovieElementRef }) {
   const { movieList, typeVideo } = UseSearch();
@@ -24,10 +25,7 @@ function MainResearch({ lastMovieElementRef }) {
                       loading="lazy"
                     />
                   ) : (
-                    <img
-                      src="../src/assets/elemen5-poster.jpg"
-                      alt="logo elemen5"
-                    />
+                    <img src={logoPoster} alt="logo elemen5" />
                   )}
                   <figcaption id={movie.id}>
                     {movie.title ?? movie.name}
@@ -47,10 +45,7 @@ function MainResearch({ lastMovieElementRef }) {
                       loading="lazy"
                     />
                   ) : (
-                    <img
-                      src="../src/assets/elemen5-poster.jpg"
-                      alt="logo elemen5"
-                    />
+                    <img src={logoPoster} alt="logo elemen5" />
                   )}
                   <figcaption>{movie.title ?? movie.name}</figcaption>
                 </figure>

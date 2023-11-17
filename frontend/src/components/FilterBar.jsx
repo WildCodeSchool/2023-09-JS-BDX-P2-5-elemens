@@ -1,4 +1,5 @@
 import { UseSearch } from "../contexts/SearchContext";
+import filterImg from "../assets/img/filter.png";
 
 function FilterBar() {
   const searchContext = UseSearch();
@@ -28,7 +29,7 @@ function FilterBar() {
           className={`filter-button ${searchContext.filters && "active"}`}
         >
           <img
-            src="./src/assets/img/filter.png"
+            src={filterImg}
             alt="Bouton de Filtres."
             className="arrow filter-arrow"
           />

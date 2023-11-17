@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import YearsSlider from "./YearsSlider";
 import { UseSearch } from "../contexts/SearchContext";
+import chevronDownImg from "../assets/chevron-down-solid.svg";
 
 function FilterBadge() {
   const searchContext = UseSearch();
@@ -85,7 +86,7 @@ function FilterBadge() {
             <p className="title">Genre</p>
             <img
               className="arrow"
-              src="./src/assets/chevron-down-solid.svg"
+              src={chevronDownImg}
               alt="Bouton ouverture/fermeture de liste."
             />
           </button>
@@ -119,7 +120,7 @@ function FilterBadge() {
             <p className="title">Année</p>
             <img
               className="arrow"
-              src="./src/assets/chevron-down-solid.svg"
+              src={chevronDownImg}
               alt="Bouton ouverture/fermeture de liste."
             />
           </button>

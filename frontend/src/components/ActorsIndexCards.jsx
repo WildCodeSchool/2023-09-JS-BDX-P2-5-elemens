@@ -4,6 +4,8 @@ import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
 import logo from "../assets/elemen5-poster.jpg";
 import Mat from "../assets/math_murdock.jpg";
+import violetteImg from "../assets/violette.png";
+import promiseImg from "../assets/je_te_promet.jpg";
 import "../style/App.css";
 
 function ActorsIndexCards() {
@@ -126,10 +128,7 @@ function ActorsIndexCards() {
                             key={media.id}
                           >
                             <figure className="mb-20">
-                              <img
-                                src="../src/assets/violette.png"
-                                alt="poster"
-                              />
+                              <img src={violetteImg} alt="poster" />
                               <figcaption>En attendant Violette</figcaption>
                             </figure>
                           </Link>
@@ -140,10 +139,7 @@ function ActorsIndexCards() {
                             key={media.id}
                           >
                             <figure className="mb-20">
-                              <img
-                                src="../src/assets/je_te_promet.jpg"
-                                alt="poster"
-                              />
+                              <img src={promiseImg} alt="poster" />
                               <figcaption>Je te promets</figcaption>
                             </figure>
                           </Link>

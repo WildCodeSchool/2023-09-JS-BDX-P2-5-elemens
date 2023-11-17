@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { useLoaderData } from "react-router-dom";
+import logoHeader from "../assets/elemen5-header-logo.jpg";
 
 function Reviews() {
   const reviews = useLoaderData();
@@ -42,11 +43,7 @@ function Reviews() {
                     alt="UserProfilePicture"
                   />
                 ) : (
-                  <img
-                    className="avatar-path"
-                    src="../src/assets/elemen5-header-logo.jpg"
-                    alt="logo"
-                  />
+                  <img className="avatar-path" src={logoHeader} alt="logo" />
                 )}
                 <div>
                   <h3 className="username">

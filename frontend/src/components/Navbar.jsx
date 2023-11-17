@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 import { UseSearch } from "../contexts/SearchContext";
 import FilterBar from "./FilterBar";
+import logoPaysage from "../assets/elemen5-paysage.png";
 
 function Navbar() {
   const [letSearch, setLetSearch] = useState(false);
@@ -32,11 +33,7 @@ function Navbar() {
       <header id="header">
         <div className="container dflex">
           <Link to="/" onClick={backToHomePage}>
-            <img
-              className="header-logo"
-              src="src/assets/elemen5-paysage.png"
-              alt="logo elemen5"
-            />
+            <img className="header-logo" src={logoPaysage} alt="logo elemen5" />
           </Link>
           <div className={`search-area${letSearch ? " active" : ""}`}>
             <DebounceInput
