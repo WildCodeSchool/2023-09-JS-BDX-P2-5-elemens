@@ -39,6 +39,8 @@ function Slider({ category }) {
     top_rated: "Les mieux notés",
     upcoming: "À venir",
     now_playing: "Du moment",
+    airing_today: "Diffusé aujourd'hui",
+    on_the_air: "A l'affiche",
   };
 
   return (
