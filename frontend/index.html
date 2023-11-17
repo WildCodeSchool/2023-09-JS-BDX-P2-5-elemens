@@ -2,11 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/src/assets/favicon-32x32.png"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Elemen5</title>
+    <script type="module" defer>
+      import { polyfillCountryFlagEmojis } from "https://cdn.skypack.dev/country-flag-emoji-polyfill";
+      polyfillCountryFlagEmojis();
+    </script>
   </head>
-  <body>
+  <body class="custom-scrollbar-container">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
